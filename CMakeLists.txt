@@ -46,12 +46,10 @@ FILE(GLOB ProjectResources
 )
 
 set(app_HDRS
-	${LibHeaders}
 	${ProjectHeaders}
 )
 
 set(app_SRCS
-	${LibSources}
 	${ProjectSources}
 )
 
@@ -64,4 +62,3 @@ foreach(resFile ${ProjectResources})
 	get_filename_component(resFileName ${resFile} NAME)
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/data/${resFileName} ${CMAKE_CURRENT_BINARY_DIR}/${resFileName} COPYONLY)
 endforeach()
-# file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/)
