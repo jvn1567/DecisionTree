@@ -1,42 +1,52 @@
-#include "DecisionTreeBase.h"
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <cstring>
 #include <vector>
+#include "DecisionTreeBase.h"
+#include "GenericTypeWrapper.h"
 using namespace std;
 
-char* convertString(string basicString) {
-    char* cstring = new char[basicString.length()];
-    for (int i = 0; i < basicString.length(); i++) {
-        cstring[i] = basicString[i];
+Generic* wrapPrimitive(string data) {
+    Generic* genericData;
+    try {
+        genericData = new Double(stod(data));
+    } catch (std::invalid_argument) {
+        genericData = new String(data);
     }
-    return cstring;
+    return genericData;
 }
 
-//template <typename T>
-vector<vector<int>>* parseFile(string filename, vector<string>& attributes) {
-    vector<vector<int>>* dataset = new vector<vector<int>>;
+vector<vector<Generic*>>* parseFile(string filename, vector<string>& colNames) {
+    vector<vector<Generic*>>* dataset = new vector<vector<Generic*>>;
     ifstream input;
     input.open(filename); //try-catch
     string line;
     getline(input, line);
-    //grab attributes line
-    char* attribute = strtok(convertString(line), ",");
-    while (attribute != NULL) {
-        cout << attribute << endl;
-        attributes.push_back(string(attribute));
-        attribute = strtok(NULL, ",");
+    //grab variables line
+    istringstream inputstring(line);
+    string variable;
+    while (getline(inputstring, variable, ',')) {
+        colNames.push_back(variable);
     }
     //grab remaining dataset
     while (getline(input, line)) {
-        //different data types????
+        string data;
+        vector<Generic*> row;
+        istringstream inputstring(line);
+        while (getline(inputstring, data, ',')) {
+            Generic* genericData = wrapPrimitive(data);
+            row.push_back(genericData);
+        }
+        dataset->push_back(row);
     }
     return dataset;
 }
 
 int main() {
-    vector<string> attributes;
-    vector<vector<int>>* dataset = parseFile("iris.csv", attributes);
+    vector<string> colNames;
+    vector<vector<Generic*>>* dataset = parseFile("iris.csv", colNames);
+    
     return 0;
 }

@@ -20,7 +20,7 @@ private:
 public:
     DecisionTreeBase();
     virtual void fit();
-    virtual int predict();  //template
+    virtual int predict();
     virtual double computeLoss();
 };
 
