@@ -1,8 +1,16 @@
 #include "DecisionNode.h"
 
-DecisionNode::DecisionNode(int splitIndex, double splitValue, double splitLoss,
-        int sampleSize, int* values, DecisionNode* left = nullptr,
-        DecisionNode* right = nullptr) {
+using namespace std;
+
+DecisionNode::DecisionNode(
+    int splitIndex, 
+    double splitValue, 
+    double splitLoss,
+    int sampleSize, 
+    int* values, 
+    DecisionNode* left,
+    DecisionNode* right
+) {
     this->splitIndex = splitIndex;
     this->splitValue = splitValue;
     this->splitLoss = splitLoss;

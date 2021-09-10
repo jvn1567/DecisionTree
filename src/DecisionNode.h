@@ -9,8 +9,15 @@ struct DecisionNode {
     double splitLoss;
     int sampleSize;
     int* values;
-    DecisionNode(int splitIndex, double splitValue, double splitLoss,
-        int sampleSize, int* values, DecisionNode* left, DecisionNode* right);
+    DecisionNode(
+        int splitIndex, 
+        double splitValue, 
+        double splitLoss,
+        int sampleSize, 
+        int* values, 
+        DecisionNode* left = nullptr,
+        DecisionNode* right = nullptr
+    );
     bool isLeaf();
 };
 

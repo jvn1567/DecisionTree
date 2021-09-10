@@ -2,26 +2,34 @@
 #define _DecisionTreeBase_h
 
 #include <string>
+#include <vector>
 #include "DecisionNode.h"
-using namespace std;
+#include "GenericTypeWrapper.h"
 
 class DecisionTreeBase {
 private:
     DecisionNode* root;
-    string lossCriteria;
+    std::string lossCriterion;
     int maxDepth;
     int minSamplesSplit;
     int minSamplesLeaf;
-    int maxFeatures;
-    double minImpurityChange;
+    double maxFeatures;
+    double minImpurityDecrease;
     int* featureImportance;
     void printTree(DecisionNode* node, int indents);
     void printTree();
 public:
-    DecisionTreeBase();
-    virtual void fit();
-    virtual int predict();
-    virtual double computeLoss();
+    DecisionTreeBase(
+        std::string lossCriterion,
+        double maxFeatures = 1.0,
+        int minSamplesSplit = 2,
+        int maxDepth = -1,
+        int minSamplesLeaf = 1,
+        double minImpurityDecrease = 0.0
+    );
+    virtual void fit() = 0;
+    virtual std::vector<std::vector<double> > predict(std::vector<std::vector<Generic*> >*) = 0;
+    virtual double computeLoss() = 0;
 };
 
 #endif

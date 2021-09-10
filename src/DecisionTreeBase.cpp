@@ -1,20 +1,23 @@
 #include <iostream>
 #include "DecisionTreeBase.h"
 
-DecisionTreeBase::DecisionTreeBase() {
+using namespace std;
 
-}
-
-void DecisionTreeBase::fit() {
-
-}
-
-int DecisionTreeBase::predict() {
-    return 0;
-}
-
-double DecisionTreeBase::computeLoss() {
-    return 0;
+DecisionTreeBase::DecisionTreeBase(
+    std::string lossCriterion,
+    double maxFeatures,
+    int minSamplesSplit,
+    int maxDepth,
+    int minSamplesLeaf,
+    double minImpurityDecrease
+) {
+    root = nullptr;
+    this->lossCriterion = lossCriterion;
+    this->maxFeatures = maxFeatures;
+    this->minSamplesSplit = minSamplesSplit;
+    this->maxDepth = maxDepth;
+    this->minSamplesLeaf = minSamplesLeaf;
+    this->minImpurityDecrease = minImpurityDecrease;
 }
 
 void DecisionTreeBase::printTree(DecisionNode* node, int indents) {
