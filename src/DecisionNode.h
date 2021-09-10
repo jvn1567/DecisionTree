@@ -1,5 +1,5 @@
-#ifndef _DecisionNode_h
-#define _DecisionNode_h
+#ifndef _DECISIONNODE_H
+#define _DECISIONNODE_H
 
 struct DecisionNode {
     DecisionNode* left;

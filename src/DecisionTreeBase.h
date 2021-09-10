@@ -1,5 +1,5 @@
-#ifndef _DecisionTreeBase_h
-#define _DecisionTreeBase_h
+#ifndef _DECISIONTREEBASE_H
+#define _DECISIONTREEBASE_H
 
 #include <string>
 #include <vector>
@@ -21,14 +21,14 @@ private:
 public:
     DecisionTreeBase(
         std::string lossCriterion,
-        double maxFeatures = 1.0,
-        int minSamplesSplit = 2,
-        int maxDepth = -1,
-        int minSamplesLeaf = 1,
-        double minImpurityDecrease = 0.0
+        double maxFeatures,
+        int minSamplesSplit,
+        int maxDepth,
+        int minSamplesLeaf,
+        double minImpurityDecrease
     );
     virtual void fit() = 0;
-    virtual std::vector<std::vector<double> > predict(std::vector<std::vector<Generic*> >*) = 0;
+    virtual std::vector<std::vector<double>> predict(std::vector<std::vector<Generic*>>*) = 0;
     virtual double computeLoss() = 0;
 };
 
