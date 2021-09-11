@@ -27,7 +27,7 @@ public:
         int minSamplesLeaf,
         double minImpurityDecrease
     );
-    virtual void fit() = 0;
+    virtual void fit(std::vector<std::vector<Generic*>>* testData) = 0;
     virtual std::vector<std::vector<double>> predict(std::vector<std::vector<Generic*>>*) = 0;
     virtual double computeLoss() = 0;
 };

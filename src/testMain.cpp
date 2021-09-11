@@ -4,7 +4,7 @@
 #include <string>
 #include <cstring>
 #include <vector>
-#include "DecisionTreeBase.h"
+#include "DecisionTreeClassifier.h"
 #include "GenericTypeWrapper.h"
 using namespace std;
 
@@ -47,6 +47,8 @@ vector<vector<Generic*>>* parseFile(string filename, vector<string>& colNames) {
 int main() {
     vector<string> colNames;
     vector<vector<Generic*>>* dataset = parseFile("iris.csv", colNames);
+    DecisionTreeClassifier test(colNames, "LOL TEST");
+    test.fit(dataset);
     
     return 0;
 }
