@@ -6,6 +6,7 @@
 #include <vector>
 #include "DecisionTreeClassifier.h"
 #include "GenericTypeWrapper.h"
+#include "DataMatrix.h"
 using namespace std;
 
 Generic* wrapPrimitive(string data) {
@@ -47,8 +48,11 @@ vector<vector<Generic*>>* parseFile(string filename, vector<string>& colNames) {
 int main() {
     vector<string> colNames;
     vector<vector<Generic*>>* dataset = parseFile("iris.csv", colNames);
-    DecisionTreeClassifier test(colNames, "LOL TEST");
-    test.fit(dataset);
-    
+    //DecisionTreeClassifier test(colNames, "LOL TEST");
+    //test.fit(dataset);
+    DataMatrix testObject(dataset);
+    cout << testObject << endl;
+    testObject.sort(0);
+    cout << testObject << endl;
     return 0;
 }

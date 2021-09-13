@@ -6,7 +6,7 @@
 enum GenericType {GENERIC, INTEGER, DOUBLE, STRING, BOOL};
 
 struct Generic {
-    virtual GenericType type() {
+    virtual GenericType type() const {
         return GENERIC;
     }
 };
@@ -14,7 +14,7 @@ struct Generic {
 struct Integer : public Generic {
     int data;
     Integer(int data) : data(data) {}
-    GenericType type() {
+    GenericType type() const {
         return INTEGER;
     }
 };
@@ -22,7 +22,7 @@ struct Integer : public Generic {
 struct Double : public Generic {
     double data;
     Double(double data) : data(data) {}
-    GenericType type() {
+    GenericType type() const {
         return DOUBLE;
     }
 };
@@ -30,7 +30,7 @@ struct Double : public Generic {
 struct String : public Generic {
     std::string data;
     String(std::string data) : data(data) {}
-    GenericType type() {
+    GenericType type() const {
         return STRING;
     }
 };
@@ -38,7 +38,7 @@ struct String : public Generic {
 struct Bool : public Generic {
     bool data;
     Bool(bool data) : data(data) {}
-    GenericType type() {
+    GenericType type() const {
         return BOOL;
     }
 };
