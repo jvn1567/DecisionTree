@@ -8,13 +8,14 @@ struct DecisionNode {
     double splitValue;
     double splitLoss;
     int sampleSize;
-    int* values;
+    double* values;
+    
     DecisionNode(
-        int splitIndex, 
-        double splitValue, 
-        double splitLoss,
         int sampleSize, 
-        int* values, 
+        double splitLoss,
+        double* values, 
+        int splitIndex = 0, 
+        double splitValue = 0, 
         DecisionNode* left = nullptr,
         DecisionNode* right = nullptr
     );

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "DataFrame.h"
 #include "DecisionNode.h"
 #include "GenericTypeWrapper.h"
 
@@ -16,6 +17,9 @@ private:
     double maxFeatures;
     double minImpurityDecrease;
     int* featureImportance;
+    virtual double calculateLoss() = 0;
+    void findSplit(DataFrame* testData, int& bestRow, int& bestCol, double minLoss);
+    void fit(DataFrame* testData, DecisionNode*& node);
     void printTree(DecisionNode* node, int indents);
     void printTree();
 public:
@@ -27,9 +31,11 @@ public:
         int minSamplesLeaf,
         double minImpurityDecrease
     );
-    virtual void fit(std::vector<std::vector<Generic*>>* testData) = 0;
-    virtual std::vector<std::vector<double>> predict(std::vector<std::vector<Generic*>>*) = 0;
+    void fit(std::vector<std::vector<Generic*>>* testData);
+    void fit(DataFrame* testData);
+    virtual DataFrame* predict(DataFrame*) = 0;
     virtual double computeLoss() = 0;
+    std::string getLossCriterion() const;
 };
 
 #endif

@@ -2,11 +2,11 @@
 #define _DECISIONTREECLASSIFIER_H
 
 #include "DecisionTreeBase.h"
-#include "DataMatrix.h"
 
 class DecisionTreeClassifier : public DecisionTreeBase {
 private:
     std::vector<std::string> labels;
+    double calculateLoss();
 public:
     DecisionTreeClassifier(
         std::vector<std::string> labels,
@@ -17,8 +17,6 @@ public:
         int minSamplesLeaf = 1,
         double minImpurityDecrease = 0.0
     );
-    void fit(std::vector<std::vector<Generic*>>* testData);
-    void fit(DataMatrix* testData);
     std::vector<std::vector<double>> predict(
         std::vector<std::vector<Generic*>>* validationData);
     std::string predictClass();

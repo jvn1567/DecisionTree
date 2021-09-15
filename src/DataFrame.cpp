@@ -1,14 +1,14 @@
-#include "DataMatrix.h"
+#include "DataFrame.h"
 using namespace std;
 
-DataMatrix::DataMatrix(vector<vector<Generic*>>* data) {
+DataFrame::DataFrame(vector<vector<Generic*>>* data) {
     if (data == nullptr) {
         throw "INVALID DATA MATRIX";
     }
     this->data = data;
 }
 
-vector<vector<Generic*>>* DataMatrix::sortMerge(vector<vector<Generic*>>* half1,
+vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
         vector<vector<Generic*>>* half2, int sortIndex) {
     vector<vector<Generic*>>* merged = new vector<vector<Generic*>>;
     int index1 = 0;
@@ -37,7 +37,7 @@ vector<vector<Generic*>>* DataMatrix::sortMerge(vector<vector<Generic*>>* half1,
     return merged;
 }
 
-vector<vector<Generic*>>* DataMatrix::sortSplit(vector<vector<Generic*>>* data, int sortIndex) {
+vector<vector<Generic*>>* DataFrame::sortSplit(vector<vector<Generic*>>* data, int sortIndex) {
     if (data->size() == 1) {
         return data;
     } else {
@@ -55,29 +55,37 @@ vector<vector<Generic*>>* DataMatrix::sortSplit(vector<vector<Generic*>>* data, 
     }
 }
 
-void DataMatrix::sort(int sortIndex) {
+void DataFrame::sort(int sortIndex) {
     data = sortSplit(data, sortIndex);
 }
 
-void DataMatrix::set(Generic* generic, int row, int col) {
+DataFrame* DataFrame::slice(int startIndex, int endIndex) {
+    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    for (int row = startIndex; row < endIndex; row++) {
+        vec->push_back((*data)[row]);
+    }
+    return new DataFrame(vec);
+}
+
+void DataFrame::set(Generic* generic, int row, int col) {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
         throw "LOCATION OUT OF BOUNDS";
     }
     (*data)[row][col] = generic;
 }
 
-Generic* DataMatrix::get(int row, int col) const {
+Generic* DataFrame::get(int row, int col) const {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
         throw "LOCATION OUT OF BOUNDS";
     }
     return (*data)[row][col];
 }
 
-int DataMatrix::rows() const {
+int DataFrame::rows() const {
     return data->size();
 }
 
-int DataMatrix::cols() const {
+int DataFrame::cols() const {
     if (data->size() == 0) {
         return 0;
     } else {
@@ -85,11 +93,11 @@ int DataMatrix::cols() const {
     }
 }
 
-ostream& operator <<(ostream& out, const DataMatrix& dataMatrix) {
+ostream& operator <<(ostream& out, const DataFrame& DataFrame) {
     out << "{" << endl;
-    for (int row = 0; row < dataMatrix.rows(); row++) {
-        for (int col = 0; col < dataMatrix.cols(); col++) {
-            Generic* generic = dataMatrix.get(row, col);
+    for (int row = 0; row < DataFrame.rows(); row++) {
+        for (int col = 0; col < DataFrame.cols(); col++) {
+            Generic* generic = DataFrame.get(row, col);
             if (generic->type() == DOUBLE) {
                 out << ((Double*)generic)->data;
             } else {
