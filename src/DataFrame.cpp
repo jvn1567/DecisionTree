@@ -1,9 +1,37 @@
+#include <sstream>
+#include <fstream>
 #include "DataFrame.h"
 using namespace std;
 
+DataFrame::DataFrame(string filename, vector<string>& colNames) {
+    vector<vector<Generic*>>* dataset = new vector<vector<Generic*>>;
+    ifstream input;
+    input.open(filename); //try-catch
+    string line;
+    getline(input, line);
+    //grab variables line
+    istringstream inputstring(line);
+    string variable;
+    while (getline(inputstring, variable, ',')) {
+        colNames.push_back(variable);
+    }
+    //grab remaining dataset
+    while (getline(input, line)) {
+        string data;
+        vector<Generic*> row;
+        istringstream inputstring(line);
+        while (getline(inputstring, data, ',')) {
+            Generic* genericData = Generic::wrapPrimitive(data);
+            row.push_back(genericData);
+        }
+        dataset->push_back(row);
+    }
+    this->data = dataset;
+}
+
 DataFrame::DataFrame(vector<vector<Generic*>>* data) {
     if (data == nullptr) {
-        throw "INVALID DATA MATRIX";
+        throw "DATA MATRIX IS NULLPTR";
     }
     this->data = data;
 }
@@ -56,15 +84,40 @@ vector<vector<Generic*>>* DataFrame::sortSplit(vector<vector<Generic*>>* data, i
 }
 
 void DataFrame::sort(int sortIndex) {
+    if (sortIndex < 0 || sortIndex < cols()) {
+        throw "INDEX TO SORT OUT OF BOUNDS";
+    }
     data = sortSplit(data, sortIndex);
 }
 
-DataFrame* DataFrame::slice(int startIndex, int endIndex) {
+DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
+    if (startIndex < 0 || endIndex < 0 || startIndex >= rows() || endIndex >= rows()
+            || (startIndex >= endIndex)) {
+        throw "INVALID START/END BOUNDARIES";
+    }
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = startIndex; row < endIndex; row++) {
         vec->push_back((*data)[row]);
     }
     return new DataFrame(vec);
+}
+
+void DataFrame::append(vector<Generic*> row) {
+    if (row.size() != cols()) {
+        throw "ROW DOES NOT HAVE THE CORRECT COLUMN COUNT";
+    }
+    data->push_back(row);
+}
+
+void DataFrame::append(DataFrame* other) {
+    if (other == nullptr) {
+        throw "DATAFRAME TO APPEND DOES NOT EXIST";
+    } else if (other->cols() != cols()) {
+        throw "DATAFRAMES DO NOT HAVE MATCHING COLUMN COUNTS";
+    }
+    for (int row = 0; row < other->rows(); row++) {
+        data->push_back(other->get(row));
+    }
 }
 
 void DataFrame::set(Generic* generic, int row, int col) {
@@ -81,6 +134,13 @@ Generic* DataFrame::get(int row, int col) const {
     return (*data)[row][col];
 }
 
+vector<Generic*> DataFrame::get(int row) const {
+    if (row >= rows() || row < 0) {
+        throw "LOCATION OUT OF BOUNDS";
+    }
+    return (*data)[row];
+}
+
 int DataFrame::rows() const {
     return data->size();
 }
@@ -91,6 +151,25 @@ int DataFrame::cols() const {
     } else {
         return (*data)[0].size();
     }
+}
+
+DataFrame::~DataFrame() {
+    delete data;
+}
+
+double DataFrame::average(int col) const {
+    if (rows() == 0 || cols() == 0) {
+        throw "DATAFRAME IS EMPTY";
+    } else if (col < 0 || col >= cols()) {
+        throw "COLUMN IS OUT OF BOUNDS";
+    } else if (get(0, col)->type() != DOUBLE) {
+        throw "SPECIFIED COLUMN DOES NOT CONTAIN DOUBLE VALUES";
+    }
+    double total = 0.0;
+    for (int row = 0; row < rows(); row++) {
+        total += ((Double*)get(row, col))->data;
+    }
+    return total / rows();
 }
 
 ostream& operator <<(ostream& out, const DataFrame& DataFrame) {
