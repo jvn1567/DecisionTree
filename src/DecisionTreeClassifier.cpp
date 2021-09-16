@@ -18,7 +18,7 @@ DecisionTreeClassifier::DecisionTreeClassifier(
     minImpurityDecrease
 ), labels(labels) {}
 
-double DecisionTreeClassifier::calculateLoss() {
+double DecisionTreeClassifier::calculateLoss(vector<int> labelCounts) {
     if (getLossCriterion() == "GINI") {
         return 0.0;
     } else {

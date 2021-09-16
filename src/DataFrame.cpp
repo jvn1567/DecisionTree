@@ -84,7 +84,7 @@ vector<vector<Generic*>>* DataFrame::sortSplit(vector<vector<Generic*>>* data, i
 }
 
 void DataFrame::sort(int sortIndex) {
-    if (sortIndex < 0 || sortIndex < cols()) {
+    if (sortIndex < 0 || sortIndex >= cols()) {
         throw "INDEX TO SORT OUT OF BOUNDS";
     }
     data = sortSplit(data, sortIndex);
