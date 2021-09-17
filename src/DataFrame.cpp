@@ -6,7 +6,10 @@ using namespace std;
 DataFrame::DataFrame(string filename, vector<string>& colNames) {
     vector<vector<Generic*>>* dataset = new vector<vector<Generic*>>;
     ifstream input;
-    input.open(filename); //try-catch
+    input.open(filename);
+    if (!input.good()) {
+        throw "INVALID FILE";
+    }
     string line;
     getline(input, line);
     //grab variables line
@@ -189,3 +192,4 @@ ostream& operator <<(ostream& out, const DataFrame& DataFrame) {
     out << "}" << endl;
     return out;
 }
+

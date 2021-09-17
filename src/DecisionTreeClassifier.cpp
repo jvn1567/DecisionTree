@@ -1,3 +1,4 @@
+#include <cmath>
 #include "DecisionTreeClassifier.h"
 using namespace std;
 
@@ -20,7 +21,16 @@ DecisionTreeClassifier::DecisionTreeClassifier(
 
 double DecisionTreeClassifier::calculateLoss(vector<int> labelCounts) {
     if (getLossCriterion() == "GINI") {
-        return 0.0;
+        int total = 0; 
+        for (int i = 0; i < labelCounts.size(); i++) {
+            total += labelCounts[i];
+        }
+        double probabilityRaw = 0.0;
+        for (int i = 0; i < labelCounts.size(); i++) {
+            probabilityRaw += pow((1.0 * labelCounts[i] / total), 2);
+        }
+        return 1 - probabilityRaw;
+    //placeholder
     } else {
         return 0.0;
     }

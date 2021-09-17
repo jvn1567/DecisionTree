@@ -21,27 +21,53 @@ DecisionTreeBase::DecisionTreeBase(
     this->minImpurityDecrease = minImpurityDecrease;
 }
 
+//we need a vector of classes
+vector<int> DecisionTreeBase::countClasses(DataFrame* testData) {
+    unordered_map<string, int> classes; //TEMP PLACEHOLDER
+    vector<int> counts;
+    for (int i = 0; i < classes.size(); i++) {
+        counts.push_back(0);
+    }
+    for (int row = 0; row < testData->rows(); row++) {
+        //assumes class is the last column
+        string classname = ((String*)testData->get(row, testData->cols()))->data;
+        counts[classes[classname]]++;
+    }
+    return counts;
+}
+
 void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol,
         double minLoss) {
     for (int col = 0; col < testData->cols() - 1; col++) {
         GenericType type = testData->get(0, col)->type();
         //probably separate functions
         if (type == STRING) {
-            //TODO all of current type on top
-            /*unordered_map<string, int> counts;
+            unordered_map<string, int> counts;
             for (int row = 0; row < testData->rows(); row++) {
                 counts[((String*)(testData->get(row, col)))->data]++;
             }
-            int leftCount = 0;
             for (auto pair : counts) {
-                double loss = calculateLoss();
-                if (loss < minLoss) {
-                    minLoss = loss;
-                    bestRow = leftCount;
-                    bestCol = col;
+                //shoves all rows with current string to the front of all other rows
+                DataFrame* thisItemFirst = new DataFrame(new vector<vector<Generic*>>);
+                DataFrame* allOthers = new DataFrame(new vector<vector<Generic*>>);
+                for (int row = 0; row < testData->rows(); row++) {
+                    string current = ((String*)testData->get(row, col))->data;
+                    if (current == pair.first) {
+                        thisItemFirst->append(testData->get(row));
+                    } else {
+                        allOthers->append(testData->get(row));
+                    }
+                    thisItemFirst->append(allOthers);
+                    double loss = calculateLoss();
+                    if (loss < minLoss) {
+                        minLoss = loss;
+                        bestRow = pair.second; // i think??? this is the count for "this item"
+                        bestCol = col;
+                    }
                 }
-                leftCount += pair.second;
-            }*/
+                delete thisItemFirst;
+                delete allOthers;
+            }
         //ew
         } else {
             testData->sort(col);

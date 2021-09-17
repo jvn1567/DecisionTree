@@ -18,6 +18,7 @@ private:
     double minImpurityDecrease;
     int* featureImportance;
     virtual double calculateLoss() = 0;
+    std::vector<int> countClasses(DataFrame* testData);
     void findSplit(DataFrame* testData, int& bestRow, int& bestCol, double minLoss);
     void fit(DataFrame* testData, DecisionNode*& node);
     void printTree(DecisionNode* node, int indents);
