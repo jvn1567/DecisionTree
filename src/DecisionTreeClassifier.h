@@ -7,7 +7,7 @@ class DecisionTreeClassifier : public DecisionTreeBase {
 private:
     std::vector<std::string> labels;
     double calculateLoss(std::vector<int> labelCounts);
-    std::vector<int> getLabelCounts();
+    std::vector<int> countClasses(DataFrame* testData);
 public:
     DecisionTreeClassifier(
         std::vector<std::string> labels,

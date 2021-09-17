@@ -1,4 +1,5 @@
 #include <cmath>
+#include <unordered_map>
 #include "DecisionTreeClassifier.h"
 using namespace std;
 
@@ -48,4 +49,19 @@ string DecisionTreeClassifier::predictClass() {
 
 double DecisionTreeClassifier::computeLoss() {
     return 0.0;
+}
+
+//we need a vector of classes
+vector<int> DecisionTreeClassifier::countClasses(DataFrame* testData) {
+    unordered_map<string, int> classes; //TEMP PLACEHOLDER
+    vector<int> counts;
+    for (int i = 0; i < classes.size(); i++) {
+        counts.push_back(0);
+    }
+    for (int row = 0; row < testData->rows(); row++) {
+        //assumes class is the last column
+        string classname = ((String*)testData->get(row, testData->cols()))->data;
+        counts[classes[classname]]++;
+    }
+    return counts;
 }

@@ -21,21 +21,6 @@ DecisionTreeBase::DecisionTreeBase(
     this->minImpurityDecrease = minImpurityDecrease;
 }
 
-//we need a vector of classes
-vector<int> DecisionTreeBase::countClasses(DataFrame* testData) {
-    unordered_map<string, int> classes; //TEMP PLACEHOLDER
-    vector<int> counts;
-    for (int i = 0; i < classes.size(); i++) {
-        counts.push_back(0);
-    }
-    for (int row = 0; row < testData->rows(); row++) {
-        //assumes class is the last column
-        string classname = ((String*)testData->get(row, testData->cols()))->data;
-        counts[classes[classname]]++;
-    }
-    return counts;
-}
-
 void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol,
         double minLoss) {
     for (int col = 0; col < testData->cols() - 1; col++) {
@@ -57,13 +42,13 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
                     } else {
                         allOthers->append(testData->get(row));
                     }
-                    thisItemFirst->append(allOthers);
-                    double loss = calculateLoss();
-                    if (loss < minLoss) {
-                        minLoss = loss;
-                        bestRow = pair.second; // i think??? this is the count for "this item"
-                        bestCol = col;
-                    }
+                }
+                thisItemFirst->append(allOthers);            
+                double loss = calculateLoss();
+                if (loss < minLoss) {
+                    minLoss = loss;
+                    bestRow = pair.second; // i think??? this is the count for "this item"
+                    bestCol = col;
                 }
                 delete thisItemFirst;
                 delete allOthers;
