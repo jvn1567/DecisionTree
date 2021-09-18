@@ -6,13 +6,13 @@ DecisionNode::DecisionNode(
     int sampleSize,
     double splitLoss,
     double* values, 
-    int splitIndex,
-    double splitValue,
+    int splitColumn,
+    Generic* splitValue,
     DecisionNode* left,
     DecisionNode* right
 ) {
     this->sampleSize = sampleSize;
-    this->splitIndex = splitIndex;
+    this->splitColumn = splitColumn;
     this->splitValue = splitValue;
     this->splitLoss = splitLoss;
     this->values = values;

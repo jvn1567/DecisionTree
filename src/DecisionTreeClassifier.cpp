@@ -1,6 +1,7 @@
 #include <cmath>
 #include <unordered_map>
 #include "DecisionTreeClassifier.h"
+
 using namespace std;
 
 DecisionTreeClassifier::DecisionTreeClassifier(
@@ -20,7 +21,7 @@ DecisionTreeClassifier::DecisionTreeClassifier(
     minImpurityDecrease
 ), labels(labels) {}
 
-double DecisionTreeClassifier::calculateLoss(vector<int> labelCounts) {
+double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
     if (getLossCriterion() == "GINI") {
         int total = 0; 
         for (int i = 0; i < labelCounts.size(); i++) {
@@ -47,10 +48,6 @@ string DecisionTreeClassifier::predictClass() {
     return "TEMP";
 }
 
-double DecisionTreeClassifier::computeLoss() {
-    return 0.0;
-}
-
 //we need a vector of classes
 vector<int> DecisionTreeClassifier::countClasses(DataFrame* testData) {
     unordered_map<string, int> classes; //TEMP PLACEHOLDER
@@ -64,4 +61,9 @@ vector<int> DecisionTreeClassifier::countClasses(DataFrame* testData) {
         counts[classes[classname]]++;
     }
     return counts;
+}
+
+vector<double> DecisionTreeClassifier::getTruthVector(DataFrame*) {
+    vector<double> temp;
+    return temp;
 }

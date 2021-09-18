@@ -95,7 +95,7 @@ void DataFrame::sort(int sortIndex) {
 
 DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
     if (startIndex < 0 || endIndex < 0 || startIndex >= rows() || endIndex >= rows()
-            || (startIndex >= endIndex)) {
+            || (startIndex > endIndex)) {
         throw "INVALID START/END BOUNDARIES";
     }
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;

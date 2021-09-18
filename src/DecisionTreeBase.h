@@ -17,11 +17,12 @@ private:
     double maxFeatures;
     double minImpurityDecrease;
     int* featureImportance;
-    virtual double calculateLoss() = 0;
     void findSplit(DataFrame* testData, int& bestRow, int& bestCol, double minLoss);
     void fit(DataFrame* testData, DecisionNode*& node);
     void printTree(DecisionNode* node, int indents);
     void printTree();
+    virtual double computeLoss(std::vector<double>) = 0;
+    virtual std::vector<double> getTruthVector(DataFrame*) = 0;
 public:
     DecisionTreeBase(
         std::string lossCriterion,
@@ -31,10 +32,8 @@ public:
         int minSamplesLeaf,
         double minImpurityDecrease
     );
-    void fit(std::vector<std::vector<Generic*>>* testData);
     void fit(DataFrame* testData);
     virtual DataFrame* predict(DataFrame*) = 0;
-    virtual double computeLoss() = 0;
     std::string getLossCriterion() const;
 };
 
