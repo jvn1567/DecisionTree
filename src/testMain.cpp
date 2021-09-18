@@ -7,8 +7,7 @@
 using namespace std;
 
 int main() {
-    vector<string> colNames;
-    DataFrame testFrame("iris.csv", colNames);
+    DataFrame testFrame("iris.csv");
     cout << testFrame << endl;
     // MagicParent* mp = new MagicChild();
     // cout << mp->method2() << endl;

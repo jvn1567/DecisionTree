@@ -3,8 +3,9 @@
 #include "DataFrame.h"
 using namespace std;
 
-DataFrame::DataFrame(string filename, vector<string>& colNames) {
+DataFrame::DataFrame(string filename) {
     vector<vector<Generic*>>* dataset = new vector<vector<Generic*>>;
+    vector<string> colNames;
     ifstream input;
     input.open(filename);
     if (!input.good()) {
@@ -30,6 +31,7 @@ DataFrame::DataFrame(string filename, vector<string>& colNames) {
         dataset->push_back(row);
     }
     this->data = dataset;
+    this->colNames = colNames;
 }
 
 DataFrame::DataFrame(vector<vector<Generic*>>* data) {
@@ -102,7 +104,9 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
     for (int row = startIndex; row < endIndex; row++) {
         vec->push_back((*data)[row]);
     }
-    return new DataFrame(vec);
+    DataFrame* newDataFrame = new DataFrame(vec);
+    newDataFrame->colNames = colNames;
+    return newDataFrame;
 }
 
 void DataFrame::append(vector<Generic*> row) {
@@ -160,6 +164,52 @@ DataFrame::~DataFrame() {
     delete data;
 }
 
+Generic* DataFrame::parseFilterCondition(string condition) const {
+    int i = 0;
+    while (i < condition.size()) {
+        if (condition[i] != ' ') {
+            condition.erase(condition.begin() + i);
+        } else {
+            i++;
+        }
+    }
+}
+
+// DataFrame* filter(string condition) const {
+//     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+//     for (int row = 0; row < rows; row++) {
+//         Generic* currentValue = (data->get(row, colIndex));
+//         if (condition == "==") {
+//             if (currentValue->data == value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else if (condition == ">=") {
+//             if (currentValue->data >= value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else if (condition == "<=") {
+//             if (currentValue->data <= value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else if (condition == "<") {
+//             if (currentValue->data < value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else if (condition == ">") {
+//             if (currentValue->data > value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else if (condition == "<") {
+//             if (currentValue->data < value) {
+//                 vec->push_back((*data)[row]);
+//             }
+//         } else {
+//             throw "CONDITION " + condition + "NOT RECOGNIZED. TRY ==, >=, <=, >, <.";
+//         }
+//     }
+//     return new DataFrame(vec);
+// }
+
 double DataFrame::average(int col) const {
     if (rows() == 0 || cols() == 0) {
         throw "DATAFRAME IS EMPTY";
@@ -175,21 +225,66 @@ double DataFrame::average(int col) const {
     return total / rows();
 }
 
-ostream& operator <<(ostream& out, const DataFrame& DataFrame) {
-    out << "{" << endl;
-    for (int row = 0; row < DataFrame.rows(); row++) {
-        for (int col = 0; col < DataFrame.cols(); col++) {
-            Generic* generic = DataFrame.get(row, col);
+vector<string> DataFrame::getColNames() const {
+    return colNames;
+}
+
+std::vector<GenericType> DataFrame::getColTypes() const {
+    if (rows() == 0) {
+        throw "DATAFRAM IS EMPTY";
+    }
+    vector<GenericType> colTypes;
+    for (int col = 0; col < cols(); col++) {
+        colTypes.push_back(get(0, col)->type());
+    }
+    return colTypes;
+}
+
+GenericType DataFrame::getColType(int colIndex) const {
+    return getColTypes()[colIndex];
+}
+
+ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
+    vector<string> colNames = dataFrame.getColNames();
+    vector<int> maxWidth;
+    for (int i = 0; i < colNames.size(); i++) {
+        maxWidth.push_back(colNames[i].length());
+    }
+    for (int col = 0; col < dataFrame.cols(); col++) {
+        for (int row = 0; row < dataFrame.rows(); row++) {
+            Generic* currentValue = dataFrame.get(row, col);
+            int currentValueLength;
+            if (currentValue->type() == DOUBLE) {
+                currentValueLength = to_string(((Double*)currentValue)->data).length();
+            } else {
+                currentValueLength = (((String*)currentValue)->data).length();
+            }
+            if (currentValueLength > maxWidth[col]) {
+                maxWidth[col] = currentValueLength;
+            }
+        }
+    }
+    for (int i = 0; i < maxWidth.size(); i++) {
+        maxWidth[i] += 5;
+    }
+
+    for (int i = 0; i < colNames.size(); i++) {
+        out << left << setw(maxWidth[i]) << colNames[i];
+    }
+    out << endl;
+
+    for (int row = 0; row < dataFrame.rows(); row++) {
+        for (int col = 0; col < dataFrame.cols(); col++) {
+            Generic* generic = dataFrame.get(row, col);
+            out << left << setw(maxWidth[col]);
             if (generic->type() == DOUBLE) {
                 out << ((Double*)generic)->data;
             } else {
                 out << ((String*)generic)->data;
             }
-            out << " ";
         }
         out << endl;
     }
-    out << "}" << endl;
     return out;
 }
 
