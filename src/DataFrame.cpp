@@ -168,10 +168,13 @@ DataFrame::~DataFrame() {
     delete data;
 }
 
-Generic* DataFrame::parseFilterCondition(string condition) const {
-    if (condition.length() == 0) {
+DataFrame* DataFrame::filterStringParser(string condition) const {
+    if (rows() == 0 || cols() == 0) {
+        throw "EMPTY DATAFRAME, NOTHING TO FILTER";
+    } else if (condition.length() == 0) {
         throw "NO CONDITION GIVEN";
     }
+
     //remove spaces
     int i = 0;
     while (i < condition.size()) {
@@ -181,50 +184,89 @@ Generic* DataFrame::parseFilterCondition(string condition) const {
             i++;
         }
     }
-    //find comparison operators
     int lessThan = condition.find('<');
     int greaterThan = condition.find('>');
-    int equalTo = condition.find('=');
+    int greaterThanEqualTo = condition.find(">=");
+    int lessThanEqualTo = condition.find("<=");
+    int equalTo = condition.find("==");
+    int notEqualTo = condition.find("!=");
     bool noneFound = lessThan == string::npos && greaterThan == string::npos &&
-            equalTo == string::npos;
-    bool conflicting = greaterThan != string::npos && lessThan != string::npos;
-    if (noneFound || conflicting) {
+            equalTo == string::npos && greaterThanEqualTo == string::npos
+            && lessThanEqualTo == string::npos && notEqualTo == string::npos;
+
+    if (noneFound) {
         throw "INVALID COMPARISON CONDITIONS";
     }
-    //segment condition and grab
-    if (equalTo != string::npos) {
-        if (lessThan != string::npos) {
-            /* have to find min/max since there's two chars, have to make sure
-            they're next to each other, then for each of these six cases have to
-            check the column name and throw an error and make sure the right side
-            is a valid type, then throw another error if not. And then finally send
-            back to be actually filtered.*/
-        } else if (greaterThan != string::npos) {
 
-        } else {
+    int colIndex = -1;
+    string dataToCheck;
+    if (lessThan != string::npos) {
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                lessThan, condition, false);
+        return filterMax(colIndex, genericData, false);
 
-        }
-    } else {
-        if (lessThan != string::npos) {
-            
-        } else if (greaterThan != string::npos) {
+    } else if (greaterThan != string::npos) {
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                greaterThan, condition, false);
+        return filterMin(colIndex, genericData, false);
 
-        } else {
+    } else if (greaterThanEqualTo != string::npos) {
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                greaterThanEqualTo, condition, false);
+        return filterMin(colIndex, genericData, true);
 
+    } else if (lessThanEqualTo != string::npos) {
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                lessThanEqualTo, condition, false);
+        return filterMax(colIndex, genericData, true);
+        
+    } else if (equalTo != string::npos) {
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                equalTo, condition, false);
+        return filterEquals(colIndex, genericData, true);
+
+    } else { // != is the only condition left
+        Generic* genericData = parseCondition(colIndex, dataToCheck, 
+                equalTo, condition, false);
+        return filterEquals(colIndex, genericData, false);
+    }
+}
+
+Generic* DataFrame::parseCondition(
+    int& colIndex, 
+    std::string dataToCheck, 
+    int operatorIndex,
+    std::string condition,
+    bool inclusive
+) const {
+    string colNameToCheck = condition.substr(0, operatorIndex);
+    for (int i = 0; i < colNames.size(); i++) {
+        if (colNames[i] == colNameToCheck) {
+            colIndex = i;
         }
     }
-    /* return the type AND modify an integer so we know which column to compare
-    AND return or modify some indicator of what kind of comparison we have to
-    make*/
-    return new String("TEMP"); //TEMP
+    if (colIndex == -1) {
+        throw "COLUMN NAME DOES NOT EXIST";
+    }
+
+    if (inclusive) {
+        operatorIndex += 1;
+    }
+
+    dataToCheck = condition.substr(operatorIndex, condition.length());
+    Generic* genericData = Generic::wrapPrimitive(dataToCheck);
+    if (genericData->type() != get(0, colIndex)->type()) {
+        throw "THE PASSED VALUE MUST BE THE SAME TYPE AS THE COLUMN TO FILTER";
+    }
+    return genericData;
 }
 
 //helper for filtering
 DataFrame* DataFrame::filterMin(int col, Generic* min, bool inclusive) const {
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = 0; row < rows(); row++) {
-        bool greaterMin = get(row, col) > min;
-        bool equalMin = get(row, col) == min;
+        bool greaterMin = *get(row, col) > *min;
+        bool equalMin = *get(row, col) == *min;
         if ((inclusive && (greaterMin || equalMin)) || (!inclusive && greaterMin)) {
             vec->push_back(get(row));
         }
@@ -236,9 +278,21 @@ DataFrame* DataFrame::filterMin(int col, Generic* min, bool inclusive) const {
 DataFrame* DataFrame::filterMax(int col, Generic* max, bool inclusive) const {
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = 0; row < rows(); row++) {
-        bool lessMax = get(row, col) < max;
-        bool equalMax = get(row, col) == max;
+        bool lessMax = *get(row, col) < *max;
+        bool equalMax = *get(row, col) == *max;
         if ((inclusive && (lessMax || equalMax)) || (!inclusive && lessMax)) {
+            vec->push_back(get(row));
+        }
+    }
+    return new DataFrame(vec);
+}
+
+//helper for filtering
+DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
+    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    for (int row = 0; row < rows(); row++) {
+        bool equal = *get(row, col) == *value;
+        if ((equals && equal) || (!equals && !equal)) {
             vec->push_back(get(row));
         }
     }
@@ -272,40 +326,9 @@ DataFrame* DataFrame::filter(int col, string comparator, string value) const {
     }
 }
 
-/*DataFrame* filter(string condition) const {
-    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
-    for (int row = 0; row < rows; row++) {
-        Generic* currentValue = (data->get(row, colIndex));
-        if (condition == "==") {
-            if (currentValue->data == value) {
-                vec->push_back((*data)[row]);
-            }
-        } else if (condition == ">=") {
-            if (currentValue->data >= value) {
-                vec->push_back((*data)[row]);
-            }
-        } else if (condition == "<=") {
-            if (currentValue->data <= value) {
-                vec->push_back((*data)[row]);
-            }
-        } else if (condition == "<") {
-            if (currentValue->data < value) {
-                vec->push_back((*data)[row]);
-            }
-        } else if (condition == ">") {
-            if (currentValue->data > value) {
-                vec->push_back((*data)[row]);
-            }
-        } else if (condition == "<") {
-            if (currentValue->data < value) {
-                vec->push_back((*data)[row]);
-            }
-        } else {
-            throw "CONDITION " + condition + "NOT RECOGNIZED. TRY ==, >=, <=, >, <.";
-        }
-    }
-    return new DataFrame(vec);
-}*/
+DataFrame* DataFrame::filter(string condition) const {
+    return filterStringParser(condition);
+}
 
 double DataFrame::average(int col) const {
     if (rows() == 0 || cols() == 0) {
