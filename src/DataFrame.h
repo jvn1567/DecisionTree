@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iostream>
+#include <unordered_set>
 #include "GenericTypeWrapper.h"
 
 class DataFrame {
@@ -18,12 +19,17 @@ private:
         int sortIndex);
     void deleteMatrix(std::vector<std::vector<Generic*>>*& data);
     Generic* parseFilterCondition(std::string condition) const;
+    DataFrame* filterMin(int col, Generic* min, bool inclusive) const;
+    DataFrame* filterMax(int col, Generic* max, bool inclusive) const;
 public:
     DataFrame(std::string filename);
     DataFrame(std::vector<std::vector<Generic*>>* data);
     void sort(int sortindex);
     DataFrame* slice(int startIndex, int endIndex) const;
     DataFrame* filter(std::string condition) const;
+
+    DataFrame* filter(int col, std::string comparator, std::string value) const;
+
     void append(std::vector<Generic*> row);
     void append(DataFrame* other);
     void set(Generic* generic, int row, int col);
