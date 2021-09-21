@@ -174,7 +174,6 @@ DataFrame* DataFrame::filterStringParser(string condition) const {
     } else if (condition.length() == 0) {
         throw "NO CONDITION GIVEN";
     }
-
     //remove spaces
     int i = 0;
     while (i < condition.size()) {
@@ -184,50 +183,45 @@ DataFrame* DataFrame::filterStringParser(string condition) const {
             i++;
         }
     }
-    int lessThan = condition.find('<');
-    int greaterThan = condition.find('>');
-    int greaterThanEqualTo = condition.find(">=");
-    int lessThanEqualTo = condition.find("<=");
-    int equalTo = condition.find("==");
-    int notEqualTo = condition.find("!=");
-    bool noneFound = lessThan == string::npos && greaterThan == string::npos &&
-            equalTo == string::npos && greaterThanEqualTo == string::npos
-            && lessThanEqualTo == string::npos && notEqualTo == string::npos;
-
-    if (noneFound) {
-        throw "INVALID COMPARISON CONDITIONS";
+    //condition index
+    vector<string> comparators = {"<", ">", "<=", ">=", "==", "!="};
+    string comparator;
+    int comparatorIndex = string::npos;
+    int loopIndex = -1;
+    while (loopIndex < comparators.size() && comparatorIndex == string::npos) {
+        loopIndex++;
+        comparatorIndex = condition.find(comparators[loopIndex]);
     }
-
+    if (comparatorIndex == string::npos) {
+        throw "INVALID COMPARISON CONDITIONS";
+    } else {
+        comparator = comparators[loopIndex];
+    }
     int colIndex = -1;
     string dataToCheck;
-    if (lessThan != string::npos) {
+    if (comparator == "<") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                lessThan, condition, false);
-        return filterMax(colIndex, genericData, false);
-
-    } else if (greaterThan != string::npos) {
+                comparatorIndex, condition, false);
+        return filterLessthan(colIndex, genericData, false);
+    } else if (comparator == ">") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                greaterThan, condition, false);
-        return filterMin(colIndex, genericData, false);
-
-    } else if (greaterThanEqualTo != string::npos) {
+                comparatorIndex, condition, false);
+        return filterGreaterThan(colIndex, genericData, false);
+    } else if (comparator == ">=") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                greaterThanEqualTo, condition, false);
-        return filterMin(colIndex, genericData, true);
-
-    } else if (lessThanEqualTo != string::npos) {
+                comparatorIndex, condition, false);
+        return filterGreaterThan(colIndex, genericData, true);
+    } else if (comparator == "<=") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                lessThanEqualTo, condition, false);
-        return filterMax(colIndex, genericData, true);
-        
-    } else if (equalTo != string::npos) {
+                comparatorIndex, condition, false);
+        return filterLessthan(colIndex, genericData, true);
+    } else if (comparator == "==") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                equalTo, condition, false);
+                comparatorIndex, condition, false);
         return filterEquals(colIndex, genericData, true);
-
-    } else { // != is the only condition left
+    } else { // comparator == "!=" is the only condition left
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                equalTo, condition, false);
+                comparatorIndex, condition, false);
         return filterEquals(colIndex, genericData, false);
     }
 }
@@ -262,7 +256,7 @@ Generic* DataFrame::parseCondition(
 }
 
 //helper for filtering
-DataFrame* DataFrame::filterMin(int col, Generic* min, bool inclusive) const {
+DataFrame* DataFrame::filterGreaterThan(int col, Generic* min, bool inclusive) const {
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = 0; row < rows(); row++) {
         bool greaterMin = *get(row, col) > *min;
@@ -275,7 +269,7 @@ DataFrame* DataFrame::filterMin(int col, Generic* min, bool inclusive) const {
 }
 
 //helper for filtering
-DataFrame* DataFrame::filterMax(int col, Generic* max, bool inclusive) const {
+DataFrame* DataFrame::filterLessthan(int col, Generic* max, bool inclusive) const {
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = 0; row < rows(); row++) {
         bool lessMax = *get(row, col) < *max;
@@ -308,19 +302,17 @@ DataFrame* DataFrame::filter(int col, string comparator, string value) const {
         throw "THE PASSED VALUE MUST BE THE SAME TYPE AS THE COLUMN TO FILTER";
     }
     if (comparator == ">") {
-        return filterMin(col, generic, false);
+        return filterGreaterThan(col, generic, false);
     } else if (comparator == "<") {
-        return filterMax(col, generic, false);
+        return filterLessthan(col, generic, false);
     } else if (comparator == "==" || comparator == "=") {
-        //mega cheater temp version
-        DataFrame* partial = filterMin(col, generic, true);
-        DataFrame* equalOnly = filterMax(col, generic, true);
-        delete partial;
-        return equalOnly;
+        return filterEquals(col, generic, true);
+    } else if (comparator == "!=" || comparator == "=!") {
+        return filterEquals(col, generic, false);
     } else if (comparator == ">=" || comparator == "=>") {
-        return filterMin(col, generic, true);
+        return filterGreaterThan(col, generic, true);
     } else if (comparator == "<=" || comparator == "=<") {
-        return filterMax(col, generic, true);
+        return filterLessthan(col, generic, true);
     } else {
         throw "INVALID COMPARISON OPERATOR";
     }

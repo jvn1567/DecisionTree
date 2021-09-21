@@ -19,8 +19,8 @@ private:
         int sortIndex);
     void deleteMatrix(std::vector<std::vector<Generic*>>*& data);
     DataFrame* filterStringParser(std::string condition) const;
-    DataFrame* filterMin(int col, Generic* min, bool inclusive) const;
-    DataFrame* filterMax(int col, Generic* max, bool inclusive) const;
+    DataFrame* filterGreaterThan(int col, Generic* min, bool inclusive) const;
+    DataFrame* filterLessthan(int col, Generic* max, bool inclusive) const;
     DataFrame* filterEquals(int col, Generic* value, bool equals) const;
     Generic* parseCondition(
         int& colIndex, 
