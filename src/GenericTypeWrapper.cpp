@@ -1,5 +1,5 @@
-#include <stdexcept>
 #include "GenericTypeWrapper.h"
+#include <stdexcept>
 using namespace std;
 
 Generic* Generic::wrapPrimitive(std::string data) {
@@ -26,9 +26,9 @@ bool operator ==(const Generic& left, const Generic& right) {
     } else if (type == STRING) {
         return *((String*)&left) == *((String*)&right);
     } else if (type == INTEGER) {
-        return ((Integer*)&left)->data < ((Integer*)&right)->data;
+        return *((Integer*)&left) < *((Integer*)&right);
     } else { //only BOOL types remaining
-        return ((Bool*)&left)->data < ((Bool*)&right)->data;
+        return *((Bool*)&left) < *((Bool*)&right);
     }
 }
 
@@ -44,7 +44,7 @@ bool operator <(const Generic& left, const Generic& right) {
     } else if (type == STRING) {
         return *((String*)&left) < *((String*)&right);
     } else { //only INTEGER types remaining
-        return ((Integer*)&left)->data < ((Integer*)&right)->data;
+        return *((Integer*)&left) < *((Integer*)&right);
     }
 }
 
@@ -56,11 +56,11 @@ bool operator >(const Generic& left, const Generic& right) {
     }
     GenericType type = left.type();
     if (type == DOUBLE) {
-        return ((Double*)&left)->data > ((Double*)&right)->data;
+        return *((Double*)&left) > *((Double*)&right);
     } else if (type == STRING) {
-        return ((String*)&left)->data > ((String*)&right)->data;
+        return *((String*)&left) > *((String*)&right);
     } else { //only INTEGER types remaining
-        return ((Integer*)&left)->data > ((Integer*)&right)->data;
+        return *((Integer*)&left) > *((Integer*)&right);
     }
 }
 

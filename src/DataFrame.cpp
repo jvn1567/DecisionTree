@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <algorithm>
+#include <stdexcept>
 #include "DataFrame.h"
 using namespace std;
 
@@ -168,16 +169,15 @@ DataFrame::~DataFrame() {
     delete data;
 }
 
-DataFrame* DataFrame::filterStringParser(string condition) const {
-    if (rows() == 0 || cols() == 0) {
+DataFrame* DataFrame::filter(string condition) const {if (rows() == 0 || cols() == 0) {
         throw "EMPTY DATAFRAME, NOTHING TO FILTER";
     } else if (condition.length() == 0) {
         throw "NO CONDITION GIVEN";
     }
     //remove spaces
     int i = 0;
-    while (i < condition.size()) {
-        if (condition[i] != ' ') {
+    while (i < condition.length()) {
+        if (condition[i] == ' ') {
             condition.erase(condition.begin() + i);
         } else {
             i++;
@@ -188,17 +188,19 @@ DataFrame* DataFrame::filterStringParser(string condition) const {
     string comparator;
     int comparatorIndex = string::npos;
     int loopIndex = -1;
-    while (loopIndex < comparators.size() && comparatorIndex == string::npos) {
+    int size = comparators.size();
+    while (loopIndex < size && comparatorIndex == string::npos) {
         loopIndex++;
         comparatorIndex = condition.find(comparators[loopIndex]);
     }
     if (comparatorIndex == string::npos) {
-        throw "INVALID COMPARISON CONDITIONS";
+        throw invalid_argument("INVALID COMPARISON CONDITIONS");
     } else {
         comparator = comparators[loopIndex];
     }
     int colIndex = -1;
     string dataToCheck;
+    //filter calls by operator
     if (comparator == "<") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
                 comparatorIndex, condition, false);
@@ -240,17 +242,23 @@ Generic* DataFrame::parseCondition(
         }
     }
     if (colIndex == -1) {
-        throw "COLUMN NAME DOES NOT EXIST";
+        throw invalid_argument("COLUMN NAME DOES NOT EXIST");
     }
-
     if (inclusive) {
         operatorIndex += 1;
     }
-
-    dataToCheck = condition.substr(operatorIndex, condition.length());
+    //TODO make this not scuffed
+    if (operatorIndex + 1 >= condition.length()) {
+        throw invalid_argument("COMPARISON VALUE NOT VALID");
+    }
+    dataToCheck = condition.substr(operatorIndex + 1, condition.length());
     Generic* genericData = Generic::wrapPrimitive(dataToCheck);
     if (genericData->type() != get(0, colIndex)->type()) {
-        throw "THE PASSED VALUE MUST BE THE SAME TYPE AS THE COLUMN TO FILTER";
+        cout << genericData->type() << endl;
+        cout << get(0, colIndex)->type() << endl;
+        throw invalid_argument(
+            "THE PASSED VALUE MUST BE THE SAME TYPE AS THE COLUMN TO FILTER"
+        );
     }
     return genericData;
 }
@@ -265,7 +273,9 @@ DataFrame* DataFrame::filterGreaterThan(int col, Generic* min, bool inclusive) c
             vec->push_back(get(row));
         }
     }
-    return new DataFrame(vec);
+    DataFrame* newDataFrame = new DataFrame(vec);
+    newDataFrame->colNames = colNames;
+    return newDataFrame;
 }
 
 //helper for filtering
@@ -278,7 +288,9 @@ DataFrame* DataFrame::filterLessthan(int col, Generic* max, bool inclusive) cons
             vec->push_back(get(row));
         }
     }
-    return new DataFrame(vec);
+    DataFrame* newDataFrame = new DataFrame(vec);
+    newDataFrame->colNames = colNames;
+    return newDataFrame;
 }
 
 //helper for filtering
@@ -290,36 +302,9 @@ DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
             vec->push_back(get(row));
         }
     }
-    return new DataFrame(vec);
-}
-
-DataFrame* DataFrame::filter(int col, string comparator, string value) const {
-    if (rows() == 0 || cols() == 0) {
-        throw "EMPTY DATAFRAME, NOTHING TO FILTER";
-    }
-    Generic* generic = Generic::wrapPrimitive(value);
-    if (generic->type() != get(0, col)->type()) {
-        throw "THE PASSED VALUE MUST BE THE SAME TYPE AS THE COLUMN TO FILTER";
-    }
-    if (comparator == ">") {
-        return filterGreaterThan(col, generic, false);
-    } else if (comparator == "<") {
-        return filterLessthan(col, generic, false);
-    } else if (comparator == "==" || comparator == "=") {
-        return filterEquals(col, generic, true);
-    } else if (comparator == "!=" || comparator == "=!") {
-        return filterEquals(col, generic, false);
-    } else if (comparator == ">=" || comparator == "=>") {
-        return filterGreaterThan(col, generic, true);
-    } else if (comparator == "<=" || comparator == "=<") {
-        return filterLessthan(col, generic, true);
-    } else {
-        throw "INVALID COMPARISON OPERATOR";
-    }
-}
-
-DataFrame* DataFrame::filter(string condition) const {
-    return filterStringParser(condition);
+    DataFrame* newDataFrame = new DataFrame(vec);
+    newDataFrame->colNames = colNames;
+    return newDataFrame;
 }
 
 double DataFrame::average(int col) const {
@@ -343,7 +328,7 @@ vector<string> DataFrame::getColNames() const {
 
 std::vector<GenericType> DataFrame::getColTypes() const {
     if (rows() == 0) {
-        throw "DATAFRAM IS EMPTY";
+        throw range_error("DATAFRAME IS EMPTY");
     }
     vector<GenericType> colTypes;
     for (int col = 0; col < cols(); col++) {
@@ -357,6 +342,9 @@ GenericType DataFrame::getColType(int colIndex) const {
 }
 
 ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
+    if (dataFrame.rows() == 0) {
+        out << "DATAFRAME IS EMPTY" << endl;
+    }
     vector<string> colNames = dataFrame.getColNames();
     vector<int> maxWidth;
     for (int i = 0; i < colNames.size(); i++) {

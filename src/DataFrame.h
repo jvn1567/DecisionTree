@@ -18,7 +18,6 @@ private:
         std::vector<std::vector<Generic*>>* data,
         int sortIndex);
     void deleteMatrix(std::vector<std::vector<Generic*>>*& data);
-    DataFrame* filterStringParser(std::string condition) const;
     DataFrame* filterGreaterThan(int col, Generic* min, bool inclusive) const;
     DataFrame* filterLessthan(int col, Generic* max, bool inclusive) const;
     DataFrame* filterEquals(int col, Generic* value, bool equals) const;
@@ -35,9 +34,6 @@ public:
     void sort(int sortindex);
     DataFrame* slice(int startIndex, int endIndex) const;
     DataFrame* filter(std::string condition) const;
-
-    DataFrame* filter(int col, std::string comparator, std::string value) const;
-
     void append(std::vector<Generic*> row);
     void append(DataFrame* other);
     void set(Generic* generic, int row, int col);
