@@ -12,7 +12,7 @@ DataFrame::DataFrame(string filename) {
     ifstream input;
     input.open(filename);
     if (!input.good()) {
-        throw "INVALID FILE";
+        throw invalid_argument("INVALID FILE");
     }
     string line;
     getline(input, line);
@@ -39,7 +39,7 @@ DataFrame::DataFrame(string filename) {
 
 DataFrame::DataFrame(vector<vector<Generic*>>* data) {
     if (data == nullptr) {
-        throw "DATA MATRIX IS NULLPTR";
+        throw invalid_argument("DATA MATRIX IS NULLPTR");
     }
     this->data = data;
 }
@@ -95,7 +95,7 @@ vector<vector<Generic*>>* DataFrame::sortSplit(vector<vector<Generic*>>* data, i
 
 void DataFrame::sort(int sortIndex) {
     if (sortIndex < 0 || sortIndex >= cols()) {
-        throw "INDEX TO SORT OUT OF BOUNDS";
+        throw out_of_range("INDEX TO SORT OUT OF BOUNDS");
     }
     data = sortSplit(data, sortIndex);
 }
@@ -103,7 +103,7 @@ void DataFrame::sort(int sortIndex) {
 DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
     if (startIndex < 0 || endIndex < 0 || startIndex >= rows() || endIndex >= rows()
             || (startIndex > endIndex)) {
-        throw "INVALID START/END BOUNDARIES";
+        throw out_of_range("INVALID START/END BOUNDARIES");
     }
     vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
     for (int row = startIndex; row < endIndex; row++) {
@@ -116,16 +116,16 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
 
 void DataFrame::append(vector<Generic*> row) {
     if (row.size() != cols()) {
-        throw "ROW DOES NOT HAVE THE CORRECT COLUMN COUNT";
+        throw invalid_argument("ROW DOES NOT HAVE THE CORRECT COLUMN COUNT");
     }
     data->push_back(row);
 }
 
 void DataFrame::append(DataFrame* other) {
     if (other == nullptr) {
-        throw "DATAFRAME TO APPEND DOES NOT EXIST";
+        throw invalid_argument("DATAFRAME TO APPEND DOES NOT EXIST");
     } else if (other->cols() != cols()) {
-        throw "DATAFRAMES DO NOT HAVE MATCHING COLUMN COUNTS";
+        throw invalid_argument("DATAFRAMES DO NOT HAVE MATCHING COLUMN COUNTS");
     }
     for (int row = 0; row < other->rows(); row++) {
         data->push_back(other->get(row));
@@ -134,29 +134,27 @@ void DataFrame::append(DataFrame* other) {
 
 void DataFrame::set(Generic* generic, int row, int col) {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
-        throw "LOCATION OUT OF BOUNDS";
+        throw out_of_range("LOCATION OUT OF BOUNDS");
     }
     (*data)[row][col] = generic;
 }
 
 Generic* DataFrame::get(int row, int col) const {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
-        throw "LOCATION OUT OF BOUNDS";
+        throw out_of_range("LOCATION OUT OF BOUNDS");
     }
     return (*data)[row][col];
 }
 
 vector<Generic*> DataFrame::get(int row) const {
     if (row >= rows() || row < 0) {
-        throw "LOCATION OUT OF BOUNDS";
+        throw out_of_range("LOCATION OUT OF BOUNDS");
     }
     return (*data)[row];
 }
-
 int DataFrame::rows() const {
     return data->size();
 }
-
 int DataFrame::cols() const {
     if (data->size() == 0) {
         return 0;
@@ -169,10 +167,11 @@ DataFrame::~DataFrame() {
     delete data;
 }
 
-DataFrame* DataFrame::filter(string condition) const {if (rows() == 0 || cols() == 0) {
-        throw "EMPTY DATAFRAME, NOTHING TO FILTER";
+DataFrame* DataFrame::filter(string condition) const {
+    if (rows() == 0 || cols() == 0) {
+        throw domain_error("EMPTY DATAFRAME, NOTHING TO FILTER");
     } else if (condition.length() == 0) {
-        throw "NO CONDITION GIVEN";
+        throw invalid_argument("NO CONDITION GIVEN");
     }
     //remove spaces
     int i = 0;
@@ -309,11 +308,11 @@ DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
 
 double DataFrame::average(int col) const {
     if (rows() == 0 || cols() == 0) {
-        throw "DATAFRAME IS EMPTY";
+        throw domain_error("DATAFRAME IS EMPTY");
     } else if (col < 0 || col >= cols()) {
-        throw "COLUMN IS OUT OF BOUNDS";
+        throw out_of_range("COLUMN IS OUT OF BOUNDS");
     } else if (get(0, col)->type() != DOUBLE) {
-        throw "SPECIFIED COLUMN DOES NOT CONTAIN DOUBLE VALUES";
+        throw domain_error("SPECIFIED COLUMN DOES NOT CONTAIN DOUBLE VALUES");
     }
     double total = 0.0;
     for (int row = 0; row < rows(); row++) {
@@ -342,9 +341,7 @@ GenericType DataFrame::getColType(int colIndex) const {
 }
 
 ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
-    if (dataFrame.rows() == 0) {
-        out << "DATAFRAME IS EMPTY" << endl;
-    }
+    //feature labels row
     vector<string> colNames = dataFrame.getColNames();
     vector<int> maxWidth;
     for (int i = 0; i < colNames.size(); i++) {
@@ -364,15 +361,15 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
             }
         }
     }
+    //print spacing
     for (int i = 0; i < maxWidth.size(); i++) {
         maxWidth[i] += 5;
     }
-
     for (int i = 0; i < colNames.size(); i++) {
         out << left << setw(maxWidth[i]) << colNames[i];
     }
     out << endl;
-
+    //data matrix print
     for (int row = 0; row < dataFrame.rows(); row++) {
         for (int col = 0; col < dataFrame.cols(); col++) {
             Generic* generic = dataFrame.get(row, col);

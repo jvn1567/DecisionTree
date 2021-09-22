@@ -18,7 +18,7 @@ GenericType Generic::type() const {
 
 bool operator ==(const Generic& left, const Generic& right) {
     if (left.type() != right.type()) {
-        throw "DIFFERENT GENERIC TYPES CANNOT BE COMPARED";
+        throw invalid_argument("DIFFERENT GENERIC TYPES CANNOT BE COMPARED");
     }
     GenericType type = left.type();
     if (type == DOUBLE) {
@@ -34,9 +34,9 @@ bool operator ==(const Generic& left, const Generic& right) {
 
 bool operator <(const Generic& left, const Generic& right) {
     if (left.type() != right.type()) {
-        throw "DIFFERENT GENERIC TYPES CANNOT BE COMPARED";
+        throw invalid_argument("DIFFERENT GENERIC TYPES CANNOT BE COMPARED");
     } else if (left.type() == BOOL) {
-        throw "BOOLEANS CANNOT BE COMPARED";
+        throw invalid_argument("BOOLEANS CANNOT BE COMPARED");
     }
     GenericType type = left.type();
     if (type == DOUBLE) {
@@ -50,9 +50,9 @@ bool operator <(const Generic& left, const Generic& right) {
 
 bool operator >(const Generic& left, const Generic& right) {
     if (left.type() != right.type()) {
-        throw "DIFFERENT GENERIC TYPES CANNOT BE COMPARED";
+        throw invalid_argument("DIFFERENT GENERIC TYPES CANNOT BE COMPARED");
     } else if (left.type() == BOOL) {
-        throw "BOOLEANS CANNOT BE COMPARED";
+        throw invalid_argument("BOOLEANS CANNOT BE COMPARED");
     }
     GenericType type = left.type();
     if (type == DOUBLE) {
