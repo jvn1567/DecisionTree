@@ -2,6 +2,7 @@
 #define _DECISIONNODE_H
 
 #include "GenericTypeWrapper.h"
+#include <vector>
 
 struct DecisionNode {
     DecisionNode* left;
@@ -10,12 +11,12 @@ struct DecisionNode {
     Generic* splitValue;
     double splitLoss;
     int sampleSize;
-    double* values;
+    std::vector<double> values;
     
     DecisionNode(
         int sampleSize, 
         double splitLoss,
-        double* values, 
+        std::vector<double> values, 
         int splitColumn = 0, 
         Generic* splitValue = 0, 
         DecisionNode* left = nullptr,

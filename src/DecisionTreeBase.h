@@ -20,7 +20,6 @@ private:
     void findSplit(DataFrame* testData, int& bestRow, int& bestCol, double minLoss);
     void fit(DataFrame* testData, DecisionNode*& node);
     void printTree(DecisionNode* node, int indents);
-    void printTree();
     virtual double computeLoss(std::vector<double>) = 0;
     virtual std::vector<double> getTruthVector(DataFrame*) = 0;
 public:
@@ -32,9 +31,10 @@ public:
         int minSamplesLeaf,
         double minImpurityDecrease
     );
-    void fit(DataFrame* testData);
+    virtual void fit(DataFrame* testData);
     virtual DataFrame* predict(DataFrame*) = 0;
     std::string getLossCriterion() const;
+    void printTree();
 };
 
 #endif

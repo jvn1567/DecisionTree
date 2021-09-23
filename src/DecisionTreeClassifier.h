@@ -2,16 +2,16 @@
 #define _DECISIONTREECLASSIFIER_H
 
 #include "DecisionTreeBase.h"
+#include <unordered_set>
 
 class DecisionTreeClassifier : public DecisionTreeBase {
 private:
-    std::vector<std::string> labels;
+    std::unordered_set<std::string> labels;
+    void setLabels(DataFrame* testData);
     double computeLoss(std::vector<double> labelCounts);
-    std::vector<double> getTruthVector(DataFrame*);
-    std::vector<int> countClasses(DataFrame* testData);
+    std::vector<double> getTruthVector(DataFrame* testData);
 public:
     DecisionTreeClassifier(
-        std::vector<std::string> labels,
         std::string lossCriterion,
         double maxFeatures = 1.0,
         int minSamplesSplit = 2,
@@ -19,8 +19,8 @@ public:
         int minSamplesLeaf = 1,
         double minImpurityDecrease = 0.0
     );
-    std::vector<std::vector<double>> predict(
-        std::vector<std::vector<Generic*>>* validationData);
+    void fit(DataFrame* testData);
+    DataFrame* predict(DataFrame* validationData);
     std::string predictClass();
 };
 

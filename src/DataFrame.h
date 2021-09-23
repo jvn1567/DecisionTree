@@ -39,6 +39,7 @@ public:
     void set(Generic* generic, int row, int col);
     Generic* get(int row, int col) const;
     std::vector<std::string> getColNames() const;
+    std::string getColName(int colIndex) const;
     std::vector<GenericType> getColTypes() const;
     GenericType getColType(int colIndex) const;
     std::vector<Generic*> get(int row) const;

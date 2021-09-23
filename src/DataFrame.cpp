@@ -101,7 +101,8 @@ void DataFrame::sort(int sortIndex) {
 }
 
 DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
-    if (startIndex < 0 || endIndex < 0 || startIndex >= rows() || endIndex >= rows()
+    int myRow = rows();
+    if (startIndex < 0 || endIndex < 0 || startIndex > rows() || endIndex > rows()
             || (startIndex > endIndex)) {
         throw out_of_range("INVALID START/END BOUNDARIES");
     }
@@ -323,6 +324,10 @@ double DataFrame::average(int col) const {
 
 vector<string> DataFrame::getColNames() const {
     return colNames;
+}
+
+string DataFrame::getColName(int colIndex) const {
+    return getColNames()[colIndex];
 }
 
 std::vector<GenericType> DataFrame::getColTypes() const {

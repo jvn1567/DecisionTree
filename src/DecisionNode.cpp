@@ -5,7 +5,7 @@ using namespace std;
 DecisionNode::DecisionNode(
     int sampleSize,
     double splitLoss,
-    double* values, 
+    vector<double> values,
     int splitColumn,
     Generic* splitValue,
     DecisionNode* left,

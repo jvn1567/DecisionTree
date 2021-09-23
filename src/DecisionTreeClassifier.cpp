@@ -1,11 +1,10 @@
 #include <cmath>
-#include <unordered_map>
 #include "DecisionTreeClassifier.h"
+#include <unordered_map>
 
 using namespace std;
 
 DecisionTreeClassifier::DecisionTreeClassifier(
-    vector<string> labels,
     string lossCriterion,
     double maxFeatures,
     int minSamplesSplit,
@@ -19,7 +18,20 @@ DecisionTreeClassifier::DecisionTreeClassifier(
     maxDepth,
     minSamplesLeaf,
     minImpurityDecrease
-), labels(labels) {}
+) {
+    labels = unordered_set<string>();
+}
+
+void DecisionTreeClassifier::fit(DataFrame* testData) {
+    setLabels(testData);
+    DecisionTreeBase::fit(testData);
+}
+
+void DecisionTreeClassifier::setLabels(DataFrame* testData) {
+    for (int i = 0; i < testData->rows(); i++) {
+        labels.insert(((String*)testData->get(i, testData->cols() - 1))->data);
+    }
+}
 
 double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
     if (getLossCriterion() == "GINI") {
@@ -38,32 +50,27 @@ double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
     }
 }
 
-vector<vector<double>> DecisionTreeClassifier::predict(
-        vector<vector<Generic*>>* validationData) {
-    vector<vector<double>> temp;
-    return temp;
+DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
+    return nullptr;
 }
 
 string DecisionTreeClassifier::predictClass() {
     return "TEMP";
 }
 
-//we need a vector of classes
-vector<int> DecisionTreeClassifier::countClasses(DataFrame* testData) {
-    unordered_map<string, int> classes; //TEMP PLACEHOLDER
-    vector<int> counts;
-    for (int i = 0; i < classes.size(); i++) {
-        counts.push_back(0);
+vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
+    vector<double> counts(labels.size(), 0);
+    unordered_map<string, int> labelIndices;
+    
+    int i = 0;
+    for (string label : labels) {
+        labelIndices[label] = i;
+        i++;
     }
+
     for (int row = 0; row < testData->rows(); row++) {
-        //assumes class is the last column
-        string classname = ((String*)testData->get(row, testData->cols()))->data;
-        counts[classes[classname]]++;
+        string className = ((String*)testData->get(row, testData->cols() - 1))->data;
+        counts[labelIndices[className]]++;
     }
     return counts;
-}
-
-vector<double> DecisionTreeClassifier::getTruthVector(DataFrame*) {
-    vector<double> temp;
-    return temp;
 }
