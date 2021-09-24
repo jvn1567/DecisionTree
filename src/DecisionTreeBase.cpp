@@ -71,10 +71,10 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
 }
 
 void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
+    vector<double> truthVector = getTruthVector(testData);
+    double nodeLoss = computeLoss(truthVector);
     if (testData->rows() >= minSamplesSplit) {
         //split data
-        vector<double> truthVector = getTruthVector(testData);
-        double nodeLoss = computeLoss(truthVector);
         int bestSplitRow = 0;
         int splitColumn; // If splittable, this should be populated by findSplit()
         findSplit(testData, bestSplitRow, splitColumn, nodeLoss);
@@ -82,12 +82,25 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
         bool splitable = bestSplitRow > minSamplesLeaf && rightCount > minSamplesLeaf;
         //make branch node
         if (splitable) {
-            // testData->sort(splitColumn);
-            DataFrame* half1 = testData->slice(0, bestSplitRow); // + 1, slice is exclusive
+            testData->sort(splitColumn);
+
+            cout << "Split Index: " << bestSplitRow << endl;
+            
+            double left = ((Double*)testData->get(bestSplitRow - 1, splitColumn))->data;
+            double right = ((Double*)testData->get(bestSplitRow, splitColumn))->data;
+            while (right == left && bestSplitRow < testData->rows() - 1) {
+                bestSplitRow++;
+                right = ((Double*)testData->get(bestSplitRow, splitColumn))->data;
+            }
+
+            DataFrame* half1 = testData->slice(0, bestSplitRow);
             DataFrame* half2 = testData->slice(bestSplitRow, testData->rows());
-            double left = ((Double*)half1->get(half1->rows() - 1, splitColumn))->data;
-            double right = ((Double*)half2->get(0, splitColumn))->data;
+
+            cout << left << ", " << right << endl;
+            cout << *testData << endl;
+
             double splitValue = (left + right) / 2.0;
+
             node = new DecisionNode(testData->rows(), nodeLoss, truthVector,
                 splitColumn, Generic::wrapPrimitive(to_string(splitValue)));
             fit(half1, node->left);
@@ -99,6 +112,8 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
         // TODO: Causes free error
         // delete testData;
         // testData = nullptr;
+    } else {
+        node = new DecisionNode(testData->rows(), nodeLoss, truthVector);
     }
 }
 
@@ -123,6 +138,9 @@ void DecisionTreeBase::printTree(DecisionNode* node, int indents) {
         if (node->splitValue != nullptr) {
             printSpaces(indents);
             cout << ((Double*)node->splitValue)->data << endl;
+
+            printSpaces(indents);
+            cout << node->splitColumn << endl;
         }
 
         printSpaces(indents);

@@ -184,7 +184,7 @@ DataFrame* DataFrame::filter(string condition) const {
         }
     }
     //condition index
-    vector<string> comparators = {"<", ">", "<=", ">=", "==", "!="};
+    vector<string> comparators = {"<=", ">=", "<", ">", "==", "!="};
     string comparator;
     int comparatorIndex = string::npos;
     int loopIndex = -1;
@@ -211,19 +211,19 @@ DataFrame* DataFrame::filter(string condition) const {
         return filterGreaterThan(colIndex, genericData, false);
     } else if (comparator == ">=") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                comparatorIndex, condition, false);
+                comparatorIndex, condition, true);
         return filterGreaterThan(colIndex, genericData, true);
     } else if (comparator == "<=") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                comparatorIndex, condition, false);
+                comparatorIndex, condition, true);
         return filterLessthan(colIndex, genericData, true);
     } else if (comparator == "==") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                comparatorIndex, condition, false);
+                comparatorIndex, condition, true);
         return filterEquals(colIndex, genericData, true);
     } else { // comparator == "!=" is the only condition left
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
-                comparatorIndex, condition, false);
+                comparatorIndex, condition, true);
         return filterEquals(colIndex, genericData, false);
     }
 }
@@ -245,7 +245,7 @@ Generic* DataFrame::parseCondition(
         throw invalid_argument("COLUMN NAME DOES NOT EXIST");
     }
     if (inclusive) {
-        operatorIndex += 1;
+        operatorIndex++;
     }
     //TODO make this not scuffed
     if (operatorIndex + 1 >= condition.length()) {
@@ -348,6 +348,7 @@ GenericType DataFrame::getColType(int colIndex) const {
 ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
     //feature labels row
     vector<string> colNames = dataFrame.getColNames();
+    colNames.insert(colNames.begin(), "Index");
     vector<int> maxWidth;
     for (int i = 0; i < colNames.size(); i++) {
         maxWidth.push_back(colNames[i].length());
@@ -361,8 +362,8 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
             } else {
                 currentValueLength = (((String*)currentValue)->data).length();
             }
-            if (currentValueLength > maxWidth[col]) {
-                maxWidth[col] = currentValueLength;
+            if (currentValueLength > maxWidth[col + 1]) {
+                maxWidth[col + 1] = currentValueLength;
             }
         }
     }
@@ -376,9 +377,10 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
     out << endl;
     //data matrix print
     for (int row = 0; row < dataFrame.rows(); row++) {
+        out << left << setw(maxWidth[0]) << row;
         for (int col = 0; col < dataFrame.cols(); col++) {
             Generic* generic = dataFrame.get(row, col);
-            out << left << setw(maxWidth[col]);
+            out << left << setw(maxWidth[col + 1]);
             if (generic->type() == DOUBLE) {
                 out << ((Double*)generic)->data;
             } else {

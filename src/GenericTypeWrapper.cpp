@@ -2,6 +2,8 @@
 #include <stdexcept>
 using namespace std;
 
+#include <iostream>
+
 Generic* Generic::wrapPrimitive(std::string data) {
     Generic* genericData;
     try {

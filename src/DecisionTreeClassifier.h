@@ -17,7 +17,7 @@ public:
         double maxFeatures = 1.0,
         int minSamplesSplit = 2,
         int maxDepth = -1,
-        int minSamplesLeaf = 1,
+        int minSamplesLeaf = 0,
         double minImpurityDecrease = 0.0
     );
     void fit(DataFrame* testData);
