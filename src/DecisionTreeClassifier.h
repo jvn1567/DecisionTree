@@ -10,6 +10,7 @@ private:
     void setLabels(DataFrame* testData);
     double computeLoss(std::vector<double> labelCounts);
     std::vector<double> getTruthVector(DataFrame* testData);
+    void printTruthVector(std::vector<double> truthVector);
 public:
     DecisionTreeClassifier(
         std::string lossCriterion,

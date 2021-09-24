@@ -38,7 +38,7 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
                 double lossLeft = computeLoss(getTruthVector(left));
                 double lossRight = computeLoss(getTruthVector(right));
                 int totalRows = left->rows() + right->rows();
-                double weightedLoss = (lossLeft * left->rows() / totalRows) / 
+                double weightedLoss = (lossLeft * left->rows() / totalRows) +
                         (lossRight * right->rows() / totalRows);              
                 if (weightedLoss < minLoss) {
                     minLoss = weightedLoss;
@@ -51,14 +51,14 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
         //ew
         } else {
             testData->sort(col);
-            for (int row = 0; row < testData->rows(); row++) {
+            for (int row = 1; row < testData->rows(); row++) {
                 //TODO the actual loss calculation
                 DataFrame* left = testData->slice(0, row);
                 DataFrame* right = testData->slice(row, testData->rows());
                 double lossLeft = computeLoss(getTruthVector(left));
                 double lossRight = computeLoss(getTruthVector(right));
                 int totalRows = left->rows() + right->rows();
-                double weightedLoss = (lossLeft * left->rows() / totalRows) / 
+                double weightedLoss = (lossLeft * left->rows() / totalRows) + 
                         (lossRight * right->rows() / totalRows);
                 if (weightedLoss < minLoss) {
                     minLoss = weightedLoss;
@@ -82,8 +82,9 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
         bool splitable = bestSplitRow > minSamplesLeaf && rightCount > minSamplesLeaf;
         //make branch node
         if (splitable) {
-            DataFrame* half1 = testData->slice(0, bestSplitRow + 1); // + 1, slice is exclusive
-            DataFrame* half2 = testData->slice(bestSplitRow + 1, testData->rows());
+            // testData->sort(splitColumn);
+            DataFrame* half1 = testData->slice(0, bestSplitRow); // + 1, slice is exclusive
+            DataFrame* half2 = testData->slice(bestSplitRow, testData->rows());
             double left = ((Double*)half1->get(half1->rows() - 1, splitColumn))->data;
             double right = ((Double*)half2->get(0, splitColumn))->data;
             double splitValue = (left + right) / 2.0;
@@ -109,19 +110,32 @@ string DecisionTreeBase::getLossCriterion() const {
     return lossCriterion;
 }
 
+void DecisionTreeBase::printSpaces(int indents) {
+    for (int i = 0; i < indents; i++) {
+        cout << "            ";
+    }
+}
+
 void DecisionTreeBase::printTree(DecisionNode* node, int indents) {
-    if (node->isLeaf()) {
-        for (int i = 0; i < indents; i++) {
-            cout << "    ";
-        }
-        cout << "splitLoss: " << node->splitLoss;
-        for (int i = 0; i < indents; i++) {
-            cout << "    ";
-        }        
-        cout << "sampleSize: " << node->sampleSize;
-    } else {
-        printTree(node->left, indents + 1);
+    if (node != nullptr) {
         printTree(node->right, indents + 1);
+        
+        if (node->splitValue != nullptr) {
+            printSpaces(indents);
+            cout << ((Double*)node->splitValue)->data << endl;
+        }
+
+        printSpaces(indents);
+        printTruthVector(node->values);
+        cout << endl;
+
+        printSpaces(indents);
+        cout << "splitLoss: " << node->splitLoss << endl;
+
+        printSpaces(indents);
+        cout << "sampleSize: " << node->sampleSize << endl << endl;
+        
+        printTree(node->left, indents + 1);
     }
 }
 

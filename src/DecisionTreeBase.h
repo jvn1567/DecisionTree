@@ -22,6 +22,8 @@ private:
     void printTree(DecisionNode* node, int indents);
     virtual double computeLoss(std::vector<double>) = 0;
     virtual std::vector<double> getTruthVector(DataFrame*) = 0;
+    virtual void printTruthVector(std::vector<double> truthVector) = 0;
+    void printSpaces(int indents);
 public:
     DecisionTreeBase(
         std::string lossCriterion,

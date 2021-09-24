@@ -74,3 +74,12 @@ vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
     }
     return counts;
 }
+
+void DecisionTreeClassifier::printTruthVector(std::vector<double> truthVector) {
+    cout << "[";
+    int i;
+    for (i = 0; i < truthVector.size() - 1; i++) {
+        cout << truthVector[i] << ", ";
+    }
+    cout << truthVector[i] << "]";
+}
