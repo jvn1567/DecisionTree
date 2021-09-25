@@ -7,7 +7,7 @@
 using namespace std;
 
 DataFrame::DataFrame(string filename) {
-    vector<vector<Generic*>>* dataset = new vector<vector<Generic*>>;
+    data = new vector<vector<Generic*>>;
     vector<string> colNames;
     ifstream input;
     input.open(filename);
@@ -24,16 +24,15 @@ DataFrame::DataFrame(string filename) {
     }
     //grab remaining dataset
     while (getline(input, line)) {
-        string data;
+        string value;
         vector<Generic*> row;
         istringstream inputstring(line);
-        while (getline(inputstring, data, ',')) {
-            Generic* genericData = Generic::wrapPrimitive(data);
+        while (getline(inputstring, value, ',')) {
+            Generic* genericData = Generic::wrapPrimitive(value);
             row.push_back(genericData);
         }
-        dataset->push_back(row);
+        data->push_back(row);
     }
-    this->data = dataset;
     this->colNames = colNames;
 }
 
@@ -42,6 +41,15 @@ DataFrame::DataFrame(vector<vector<Generic*>>* data) {
         throw invalid_argument("DATA MATRIX IS NULLPTR");
     }
     this->data = data;
+}
+
+DataFrame::DataFrame() {
+   data = new vector<vector<Generic*>>;
+}
+
+DataFrame::DataFrame(vector<string> colNames) {
+   data = new vector<vector<Generic*>>;
+   this->colNames = colNames;
 }
 
 vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
@@ -53,7 +61,7 @@ vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
     while (index1 < half1->size() && index2 < half2->size()) {
         double value1 = ((Double*)(*half1)[index1][sortIndex])->data;
         double value2 = ((Double*)(*half2)[index2][sortIndex])->data;
-        if (value1 < value2) {
+        if (value1 <= value2) {
             merged->push_back((*half1)[index1]);
             index1++;
         } else {

@@ -9,7 +9,6 @@
 
 class DecisionTreeBase {
 private:
-    DecisionNode* root;
     std::string lossCriterion;
     int maxDepth;
     int minSamplesSplit;
@@ -37,6 +36,9 @@ public:
     virtual DataFrame* predict(DataFrame*) = 0;
     std::string getLossCriterion() const;
     void printTree();
+
+protected:
+    DecisionNode* root;
 };
 
 #endif

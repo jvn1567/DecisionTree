@@ -50,12 +50,32 @@ double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
     }
 }
 
-DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
-    return nullptr;
+Generic* DecisionTreeClassifier::predict(vector<Generic*>, DecisionNode* node) {
+    if (node->isLeaf()) {
+        double max = 0;
+        int maxIndex;
+        vector<double> labelCounts = node->values;
+        for (int i = 0; labelCounts.size(); i++) {
+            if (labelCounts[i] < max) {
+                maxIndex = i;
+            }
+        }
+        // TODO: Finish returning prediction
+        // return labels[maxIndex];
+    } else {
+        // TODO:: Finish traversal
+    }
 }
 
-string DecisionTreeClassifier::predictClass() {
-    return "TEMP";
+DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
+    vector<string> colNames {"predictions"};
+    DataFrame* predictions = new DataFrame(colNames);
+    for (int row = 0; row < validationData->rows(); row++) {
+        vector<Generic*> prediction;
+        prediction.push_back(predict(validationData->get(row), root));
+        predictions->append(prediction);
+    }
+    return predictions;
 }
 
 vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {

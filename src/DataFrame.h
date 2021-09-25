@@ -31,6 +31,8 @@ private:
 public:
     DataFrame(std::string filename);
     DataFrame(std::vector<std::vector<Generic*>>* data);
+    DataFrame();
+    DataFrame(std::vector<std::string> colNames);
     void sort(int sortindex);
     DataFrame* slice(int startIndex, int endIndex) const;
     DataFrame* filter(std::string condition) const;

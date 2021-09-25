@@ -11,6 +11,7 @@ private:
     double computeLoss(std::vector<double> labelCounts);
     std::vector<double> getTruthVector(DataFrame* testData);
     void printTruthVector(std::vector<double> truthVector);
+    Generic* predict(vector<Generic*>, DecisionNode* node);
 public:
     DecisionTreeClassifier(
         std::string lossCriterion,
@@ -22,7 +23,6 @@ public:
     );
     void fit(DataFrame* testData);
     DataFrame* predict(DataFrame* validationData);
-    std::string predictClass();
 };
 
 #endif

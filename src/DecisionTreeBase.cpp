@@ -83,21 +83,12 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
         //make branch node
         if (splitable) {
             testData->sort(splitColumn);
-
-            cout << "Split Index: " << bestSplitRow << endl;
             
             double left = ((Double*)testData->get(bestSplitRow - 1, splitColumn))->data;
             double right = ((Double*)testData->get(bestSplitRow, splitColumn))->data;
-            while (right == left && bestSplitRow < testData->rows() - 1) {
-                bestSplitRow++;
-                right = ((Double*)testData->get(bestSplitRow, splitColumn))->data;
-            }
 
             DataFrame* half1 = testData->slice(0, bestSplitRow);
             DataFrame* half2 = testData->slice(bestSplitRow, testData->rows());
-
-            cout << left << ", " << right << endl;
-            cout << *testData << endl;
 
             double splitValue = (left + right) / 2.0;
 
