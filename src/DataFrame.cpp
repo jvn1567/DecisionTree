@@ -59,8 +59,8 @@ vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
     int index1 = 0;
     int index2 = 0;
     while (index1 < half1->size() && index2 < half2->size()) {
-        double value1 = ((Double*)(*half1)[index1][sortIndex])->data;
-        double value2 = ((Double*)(*half2)[index2][sortIndex])->data;
+        double value1 = (*half1)[index1][sortIndex]->getDouble();
+        double value2 = (*half1)[index2][sortIndex]->getDouble();
         if (value1 <= value2) {
             merged->push_back((*half1)[index1]);
             index1++;
@@ -366,9 +366,9 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
             Generic* currentValue = dataFrame.get(row, col);
             int currentValueLength;
             if (currentValue->type() == DOUBLE) {
-                currentValueLength = to_string(((Double*)currentValue)->data).length();
+                currentValueLength = to_string(currentValue->getDouble()).length();
             } else {
-                currentValueLength = (((String*)currentValue)->data).length();
+                currentValueLength = (currentValue->getString()).length();
             }
             if (currentValueLength > maxWidth[col + 1]) {
                 maxWidth[col + 1] = currentValueLength;
@@ -390,9 +390,9 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
             Generic* generic = dataFrame.get(row, col);
             out << left << setw(maxWidth[col + 1]);
             if (generic->type() == DOUBLE) {
-                out << ((Double*)generic)->data;
+                out << generic->getDouble();
             } else {
-                out << ((String*)generic)->data;
+                out << generic->getString();
             }
         }
         out << endl;

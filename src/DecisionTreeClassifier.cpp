@@ -1,6 +1,7 @@
 #include <cmath>
-#include "DecisionTreeClassifier.h"
+#include <set>
 #include <unordered_map>
+#include "DecisionTreeClassifier.h"
 
 using namespace std;
 
@@ -18,9 +19,7 @@ DecisionTreeClassifier::DecisionTreeClassifier(
     maxDepth,
     minSamplesLeaf,
     minImpurityDecrease
-) {
-    labels = unordered_set<string>();
-}
+) {}
 
 void DecisionTreeClassifier::fit(DataFrame* testData) {
     setLabels(testData);
@@ -28,8 +27,12 @@ void DecisionTreeClassifier::fit(DataFrame* testData) {
 }
 
 void DecisionTreeClassifier::setLabels(DataFrame* testData) {
+    set<string> labelSet;
     for (int i = 0; i < testData->rows(); i++) {
-        labels.insert(((String*)testData->get(i, testData->cols() - 1))->data);
+        labelSet.insert(testData->get(i, testData->cols() - 1)->getString());
+    }
+    for (string label : labelSet) {
+        labels.push_back(label);
     }
 }
 
@@ -50,7 +53,7 @@ double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
     }
 }
 
-Generic* DecisionTreeClassifier::predict(vector<Generic*>, DecisionNode* node) {
+Generic* DecisionTreeClassifier::predict(const vector<Generic*>& row, DecisionNode* node) {
     if (node->isLeaf()) {
         double max = 0;
         int maxIndex;
@@ -60,10 +63,13 @@ Generic* DecisionTreeClassifier::predict(vector<Generic*>, DecisionNode* node) {
                 maxIndex = i;
             }
         }
-        // TODO: Finish returning prediction
-        // return labels[maxIndex];
+        return Generic::wrapPrimitive(labels[maxIndex]);
     } else {
-        // TODO:: Finish traversal
+        if (row[node->splitColumn] < node->splitValue) {
+            return predict(row, node->left);
+        } else {
+            return predict(row, node->right);
+        }
     }
 }
 
@@ -81,15 +87,13 @@ DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
 vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
     vector<double> counts(labels.size(), 0);
     unordered_map<string, int> labelIndices;
-    
     int i = 0;
     for (string label : labels) {
         labelIndices[label] = i;
         i++;
     }
-
     for (int row = 0; row < testData->rows(); row++) {
-        string className = ((String*)testData->get(row, testData->cols() - 1))->data;
+        string className = testData->get(row, testData->cols() - 1)->getString();
         counts[labelIndices[className]]++;
     }
     return counts;

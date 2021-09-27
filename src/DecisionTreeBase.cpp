@@ -128,7 +128,7 @@ void DecisionTreeBase::printTree(DecisionNode* node, int indents) {
         
         if (node->splitValue != nullptr) {
             printSpaces(indents);
-            cout << ((Double*)node->splitValue)->data << endl;
+            cout << (node->splitValue)->getDouble() << endl;
 
             printSpaces(indents);
             cout << node->splitColumn << endl;

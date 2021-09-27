@@ -18,6 +18,20 @@ GenericType Generic::type() const {
     return GENERIC;
 }
 
+double Generic::getDouble() const {
+    if (type() != DOUBLE) {
+        throw invalid_argument(GenericTypeName[type()] + " CANNOT BE EXTRACTED AS DOUBLE");
+    }
+    return ((Double*)this)->data;
+}
+
+string Generic::getString() const {
+    if (type() != STRING) {
+        throw invalid_argument(GenericTypeName[type()] + " CANNOT BE EXTRACTED AS STRING");
+    }
+    return ((String*)this)->data;
+}
+
 bool operator ==(const Generic& left, const Generic& right) {
     if (left.type() != right.type()) {
         throw invalid_argument("DIFFERENT GENERIC TYPES CANNOT BE COMPARED");

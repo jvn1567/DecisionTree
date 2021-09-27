@@ -2,12 +2,17 @@
 #define _GENERICTYPEWRAPPER_H
 
 #include <string>
+#include <vector>
 
 enum GenericType {GENERIC, INTEGER, DOUBLE, STRING, BOOL};
+static const std::vector<std::string> GenericTypeName = {
+        "GENERIC", "INTEGER", "DOUBLE", "STRING", "BOOL"};
 
 struct Generic {
     virtual GenericType type() const;
     static Generic* wrapPrimitive(std::string data);
+    double getDouble() const;
+    std::string getString() const;
 };
 bool operator ==(const Generic& left, const Generic& right);
 bool operator <(const Generic& left, const Generic& right);
