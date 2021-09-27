@@ -56,7 +56,7 @@ double DecisionTreeClassifier::computeLoss(vector<double> labelCounts) {
 Generic* DecisionTreeClassifier::predict(const vector<Generic*>& row, DecisionNode* node) {
     if (node->isLeaf()) {
         double max = 0;
-        int maxIndex;
+        int maxIndex = 0;
         vector<double> labelCounts = node->values;
         for (int i = 0; i < labelCounts.size(); i++) {
             if (labelCounts[i] > max) {
@@ -65,7 +65,7 @@ Generic* DecisionTreeClassifier::predict(const vector<Generic*>& row, DecisionNo
         }
         return Generic::wrapPrimitive(labels[maxIndex]);
     } else {
-        if (row[node->splitColumn] < node->splitValue) {
+        if (*row[node->splitColumn] < *node->splitValue) {
             return predict(row, node->left);
         } else {
             return predict(row, node->right);

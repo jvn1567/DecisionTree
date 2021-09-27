@@ -60,7 +60,7 @@ vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
     int index2 = 0;
     while (index1 < half1->size() && index2 < half2->size()) {
         double value1 = (*half1)[index1][sortIndex]->getDouble();
-        double value2 = (*half1)[index2][sortIndex]->getDouble();
+        double value2 = (*half2)[index2][sortIndex]->getDouble();
         if (value1 <= value2) {
             merged->push_back((*half1)[index1]);
             index1++;
@@ -124,9 +124,9 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
 }
 
 void DataFrame::append(vector<Generic*> row) {
-    if (row.size() != cols()) {
+    /*if (row.size() != cols()) {
         throw invalid_argument("ROW DOES NOT HAVE THE CORRECT COLUMN COUNT");
-    }
+    }*/
     data->push_back(row);
 }
 
@@ -143,21 +143,21 @@ void DataFrame::append(DataFrame* other) {
 
 void DataFrame::set(Generic* generic, int row, int col) {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
-        throw out_of_range("LOCATION OUT OF BOUNDS");
+        throw out_of_range("SET LOCATION OUT OF BOUNDS");
     }
     (*data)[row][col] = generic;
 }
 
 Generic* DataFrame::get(int row, int col) const {
     if (row >= rows() || row < 0 || col >= cols() || col < 0) {
-        throw out_of_range("LOCATION OUT OF BOUNDS");
+        throw out_of_range("GET LOCATION OUT OF BOUNDS");
     }
     return (*data)[row][col];
 }
 
 vector<Generic*> DataFrame::get(int row) const {
     if (row >= rows() || row < 0) {
-        throw out_of_range("LOCATION OUT OF BOUNDS");
+        throw out_of_range("ROW GET LOCATION OUT OF BOUNDS");
     }
     return (*data)[row];
 }

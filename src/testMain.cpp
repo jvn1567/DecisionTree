@@ -8,17 +8,31 @@ using namespace std;
 
 int main() {
     DataFrame testFrame("iris.csv");
-    cout << "DATAFRAME READ" << endl;
+    
+    DataFrame* even = testFrame.slice(0, 0);
+    DataFrame* odd = testFrame.slice(0, 0);
+
+    for (int row = 0; row < testFrame.rows(); row++) {
+        if (row % 2 == 0) {
+            even->append(testFrame.get(row));
+        } else {
+            odd->append(testFrame.get(row));
+        }
+    }
+
+    cout << "FRAMES MADE" << endl;
 
     DecisionTreeClassifier treeModel("GINI");
-    treeModel.fit(&testFrame);
+    treeModel.fit(even);
     treeModel.printTree();
     cout << endl;
-    DataFrame* newData = testFrame.slice(20, 50);
+
     cout << "NEW DATA..." << endl;
-    cout << *newData << endl;
+    cout << *odd << endl;
+
     cout << "MAKING PREDICTIONS..." << endl;
-    DataFrame* predictions = treeModel.predict(newData);
+    DataFrame* predictions = treeModel.predict(odd);
+
     cout << "PREDICTIONS PRINTED..." << endl;
     cout << *predictions << endl;
 }

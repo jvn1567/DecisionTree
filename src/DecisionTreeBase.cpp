@@ -29,7 +29,7 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
         if (type == STRING) {
             unordered_map<string, int> counts;
             for (int row = 0; row < testData->rows(); row++) {
-                counts[((String*)(testData->get(row, col)))->data]++;
+                counts[testData->get(row, col)->getString()]++;
             }
             for (auto pair : counts) {
                 string colName = testData->getColName(col);
@@ -39,7 +39,7 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
                 double lossRight = computeLoss(getTruthVector(right));
                 int totalRows = left->rows() + right->rows();
                 double weightedLoss = (lossLeft * left->rows() / totalRows) +
-                        (lossRight * right->rows() / totalRows);              
+                        (lossRight * right->rows() / totalRows);
                 if (weightedLoss < minLoss) {
                     minLoss = weightedLoss;
                     bestRow = pair.second; // i think??? this is the count for "this item"
@@ -91,7 +91,7 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
             DataFrame* half2 = testData->slice(bestSplitRow, testData->rows());
 
             double splitValue = (left + right) / 2.0;
-
+            
             node = new DecisionNode(testData->rows(), nodeLoss, truthVector,
                 splitColumn, Generic::wrapPrimitive(to_string(splitValue)));
             fit(half1, node->left);
