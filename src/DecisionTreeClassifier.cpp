@@ -1,6 +1,6 @@
 #include <cmath>
 #include <set>
-#include <unordered_map>
+#include <map>
 #include "DecisionTreeClassifier.h"
 
 using namespace std;
@@ -58,8 +58,8 @@ Generic* DecisionTreeClassifier::predict(const vector<Generic*>& row, DecisionNo
         double max = 0;
         int maxIndex;
         vector<double> labelCounts = node->values;
-        for (int i = 0; labelCounts.size(); i++) {
-            if (labelCounts[i] < max) {
+        for (int i = 0; i < labelCounts.size(); i++) {
+            if (labelCounts[i] > max) {
                 maxIndex = i;
             }
         }
@@ -86,7 +86,7 @@ DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
 
 vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
     vector<double> counts(labels.size(), 0);
-    unordered_map<string, int> labelIndices;
+    map<string, int> labelIndices;
     int i = 0;
     for (string label : labels) {
         labelIndices[label] = i;

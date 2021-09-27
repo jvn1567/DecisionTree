@@ -18,7 +18,7 @@ struct DecisionNode {
         double splitLoss,
         std::vector<double> values, 
         int splitColumn = 0, 
-        Generic* splitValue = 0, 
+        Generic* splitValue = nullptr, 
         DecisionNode* left = nullptr,
         DecisionNode* right = nullptr
     );

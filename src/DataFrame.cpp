@@ -165,11 +165,7 @@ int DataFrame::rows() const {
     return data->size();
 }
 int DataFrame::cols() const {
-    if (data->size() == 0) {
-        return 0;
-    } else {
-        return (*data)[0].size();
-    }
+    return colNames.size();
 }
 
 DataFrame::~DataFrame() {
