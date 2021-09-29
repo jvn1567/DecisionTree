@@ -46,5 +46,22 @@ int main() {
 }
 ```
 
+```
+MAKING PREDICTIONS...
+PREDICTIONS PRINTED...
+Index     predictions     
+0         setosa          
+1         setosa          
+2         setosa          
+3         setosa          
+4         setosa          
+5         setosa          
+6         setosa          
+7         setosa          
+8         setosa          
+9         setosa          
+10        setosa
+```
+
 # Dependencies
 This implementation relies heavily on the DataFrame class included in this repository.
