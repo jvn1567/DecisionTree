@@ -1,8 +1,8 @@
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include "DecisionTreeClassifier.h"
-// #include "magictest.h"
 
 using namespace std;
 

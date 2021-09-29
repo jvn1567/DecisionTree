@@ -1,3 +1,16 @@
+/**
+ * @file GenericTypeWrapper.cpp
+ * @author John Nguyen (jvn1567@gmail.com)
+ * @author Joshua Goldberg (joshgoldbergcode@gmail.com)
+ * @brief Implementation of GenericTypeWrapper.h.
+ * @version 0.1
+ * @date 2021-09-28
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
+
 #include "GenericTypeWrapper.h"
 #include <stdexcept>
 using namespace std;

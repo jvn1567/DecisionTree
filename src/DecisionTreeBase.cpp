@@ -92,19 +92,19 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
 
             double splitValue = (left + right) / 2.0;
             
-            node = new DecisionNode(testData->rows(), nodeLoss, truthVector,
-                splitColumn, Generic::wrapPrimitive(to_string(splitValue)));
+            node = new DecisionNode(nodeLoss, truthVector, splitColumn, 
+                Generic::wrapPrimitive(to_string(splitValue)));
             fit(half1, node->left);
             fit(half2, node->right);
         //make leaf node
         } else {
-            node = new DecisionNode(testData->rows(), nodeLoss, truthVector);
+            node = new DecisionNode(nodeLoss, truthVector);
         }
         // TODO: Causes free error
         // delete testData;
         // testData = nullptr;
     } else {
-        node = new DecisionNode(testData->rows(), nodeLoss, truthVector);
+        node = new DecisionNode(nodeLoss, truthVector);
     }
 }
 
