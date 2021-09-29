@@ -14,9 +14,9 @@ int main() {
 
     for (int row = 0; row < testFrame.rows(); row++) {
         if (row % 2 == 0) {
-            even->append(testFrame.get(row));
+            even->appendRow(testFrame.getRow(row));
         } else {
-            odd->append(testFrame.get(row));
+            odd->appendRow(testFrame.getRow(row));
         }
     }
 

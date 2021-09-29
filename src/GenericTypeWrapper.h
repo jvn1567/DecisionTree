@@ -16,6 +16,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 enum GenericType {GENERIC, INTEGER, DOUBLE, STRING, BOOL};
 
@@ -92,11 +93,56 @@ bool operator <(const Generic& left, const Generic& right);
  * @param left 
  * @param right 
  * @return true greater than.
- * @return false greater than.
+ * @return false not greater than.
  * @throw invalid_argument if the generics are not the same type, they cannot
  * be compared.
  */
 bool operator >(const Generic& left, const Generic& right);
+
+/**
+ * @brief Compares two Generics for less than or equal to (<=).
+ * 
+ * @param left 
+ * @param right 
+ * @return true less than or equal to.
+ * @return false not less than or equal to.
+ * @throw invalid_argument if the generics are not the same type, they cannot
+ * be compared.
+ */
+bool operator <=(const Generic& left, const Generic& right);
+
+/**
+ * @brief Compares two Generics for greater than or equal to (>=).
+ * 
+ * @param left 
+ * @param right 
+ * @return true greater than or equal to.
+ * @return false not greater than or equal to.
+ * @throw invalid_argument if the generics are not the same type, they cannot
+ * be compared.
+ */
+bool operator >=(const Generic& left, const Generic& right);
+
+/**
+ * @brief Compares two Generics for inequality (!=).
+ * 
+ * @param left 
+ * @param right 
+ * @return true not equal.
+ * @return false  equal.
+ * @throw invalid_argument if the generics are not the same type, they cannot
+ * be compared.
+ */
+bool operator !=(const Generic& left, const Generic& right);
+
+/**
+ * @brief Overrides the output (<<) operator.
+ * 
+ * @param out the output stream
+ * @param generic the generic to output
+ * @return ostream& the output stream
+ */
+std::ostream& operator <<(std::ostream& out, const Generic& generic);
 
 /**
  * @brief Wrapper class for integer.
@@ -120,6 +166,10 @@ struct Integer : public Generic {
 bool operator ==(const Integer& left, const Integer& right);
 bool operator <(const Integer& left, const Integer& right);
 bool operator >(const Integer& left, const Integer& right);
+bool operator !=(const Integer& left, const Integer& right);
+bool operator <=(const Integer& left, const Integer& right);
+bool operator >=(const Integer& left, const Integer& right);
+std::ostream& operator <<(std::ostream& out, const Integer& generic);
 
 /**
  * @brief Wrapper class for double.
@@ -143,6 +193,10 @@ struct Double : public Generic {
 bool operator ==(const Double& left, const Double& right);
 bool operator <(const Double& left, const Double& right);
 bool operator >(const Double& left, const Double& right);
+bool operator !=(const Double& left, const Double& right);
+bool operator <=(const Double& left, const Double& right);
+bool operator >=(const Double& left, const Double& right);
+std::ostream& operator <<(std::ostream& out, const Double& generic);
 
 /**
  * @brief Wrapper class for string.
@@ -166,6 +220,10 @@ struct String : public Generic {
 bool operator ==(const String& left, const String& right);
 bool operator <(const String& left, const String& right);
 bool operator >(const String& left, const String& right);
+bool operator !=(const String& left, const String& right);
+bool operator <=(const String& left, const String& right);
+bool operator >=(const String& left, const String& right);
+std::ostream& operator <<(std::ostream& out, const String& generic);
 
 /**
  * @brief Wrapper class for bool.
@@ -187,6 +245,8 @@ struct Bool : public Generic {
     GenericType type() const;
 };
 bool operator ==(const Bool& left, const Bool& right);
+bool operator !=(const Bool& left, const Bool& right);
+std::ostream& operator <<(std::ostream& out, const Bool& generic);
 
 #endif
 

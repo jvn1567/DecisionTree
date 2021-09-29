@@ -78,8 +78,8 @@ DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
     DataFrame* predictions = new DataFrame(colNames);
     for (int row = 0; row < validationData->rows(); row++) {
         vector<Generic*> prediction;
-        prediction.push_back(predict(validationData->get(row), root));
-        predictions->append(prediction);
+        prediction.push_back(predict(validationData->getRow(row), root));
+        predictions->appendRow(prediction);
     }
     return predictions;
 }

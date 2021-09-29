@@ -29,22 +29,22 @@ private:
         bool inclusive
     ) const;
 public:
-    DataFrame(std::string filename);
-    DataFrame(std::vector<std::vector<Generic*>>* data);
     DataFrame();
     DataFrame(std::vector<std::string> colNames);
+    DataFrame(std::string filename);
+    DataFrame(std::vector<std::vector<Generic*>>* data);
     void sort(int sortindex);
     DataFrame* slice(int startIndex, int endIndex) const;
     DataFrame* filter(std::string condition) const;
-    void append(std::vector<Generic*> row);
-    void append(DataFrame* other);
+    void appendRow(std::vector<Generic*> row);
+    void appendRows(DataFrame* other);
     void set(Generic* generic, int row, int col);
     Generic* get(int row, int col) const;
-    std::vector<std::string> getColNames() const;
+    std::vector<Generic*> getRow(int row) const;
     std::string getColName(int colIndex) const;
-    std::vector<GenericType> getColTypes() const;
+    std::vector<std::string> getColNames() const;
     GenericType getColType(int colIndex) const;
-    std::vector<Generic*> get(int row) const;
+    std::vector<GenericType> getColTypes() const;
     int rows() const;
     int cols() const;
     double average(int col) const;

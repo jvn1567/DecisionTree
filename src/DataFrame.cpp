@@ -6,6 +6,15 @@
 #include "DataFrame.h"
 using namespace std;
 
+DataFrame::DataFrame() {
+   data = new vector<vector<Generic*>>;
+}
+
+DataFrame::DataFrame(vector<string> colNames) {
+   data = new vector<vector<Generic*>>;
+   this->colNames = colNames;
+}
+
 DataFrame::DataFrame(string filename) {
     data = new vector<vector<Generic*>>;
     vector<string> colNames;
@@ -41,15 +50,6 @@ DataFrame::DataFrame(vector<vector<Generic*>>* data) {
         throw invalid_argument("DATA MATRIX IS NULLPTR");
     }
     this->data = data;
-}
-
-DataFrame::DataFrame() {
-   data = new vector<vector<Generic*>>;
-}
-
-DataFrame::DataFrame(vector<string> colNames) {
-   data = new vector<vector<Generic*>>;
-   this->colNames = colNames;
 }
 
 vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
@@ -109,7 +109,6 @@ void DataFrame::sort(int sortIndex) {
 }
 
 DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
-    int myRow = rows();
     if (startIndex < 0 || endIndex < 0 || startIndex > rows() || endIndex > rows()
             || (startIndex > endIndex)) {
         throw out_of_range("INVALID START/END BOUNDARIES");
@@ -123,21 +122,21 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
     return newDataFrame;
 }
 
-void DataFrame::append(vector<Generic*> row) {
+void DataFrame::appendRow(vector<Generic*> row) {
     /*if (row.size() != cols()) {
         throw invalid_argument("ROW DOES NOT HAVE THE CORRECT COLUMN COUNT");
     }*/
     data->push_back(row);
 }
 
-void DataFrame::append(DataFrame* other) {
+void DataFrame::appendRows(DataFrame* other) {
     if (other == nullptr) {
         throw invalid_argument("DATAFRAME TO APPEND DOES NOT EXIST");
     } else if (other->cols() != cols()) {
         throw invalid_argument("DATAFRAMES DO NOT HAVE MATCHING COLUMN COUNTS");
     }
     for (int row = 0; row < other->rows(); row++) {
-        data->push_back(other->get(row));
+        data->push_back(other->getRow(row));
     }
 }
 
@@ -155,15 +154,40 @@ Generic* DataFrame::get(int row, int col) const {
     return (*data)[row][col];
 }
 
-vector<Generic*> DataFrame::get(int row) const {
+vector<Generic*> DataFrame::getRow(int row) const {
     if (row >= rows() || row < 0) {
         throw out_of_range("ROW GET LOCATION OUT OF BOUNDS");
     }
     return (*data)[row];
 }
+
+vector<string> DataFrame::getColNames() const {
+    return colNames;
+}
+
+string DataFrame::getColName(int colIndex) const {
+    return getColNames()[colIndex];
+}
+
+std::vector<GenericType> DataFrame::getColTypes() const {
+    if (rows() == 0) {
+        throw range_error("DATAFRAME IS EMPTY");
+    }
+    vector<GenericType> colTypes;
+    for (int col = 0; col < cols(); col++) {
+        colTypes.push_back(get(0, col)->type());
+    }
+    return colTypes;
+}
+
+GenericType DataFrame::getColType(int colIndex) const {
+    return getColTypes()[colIndex];
+}
+
 int DataFrame::rows() const {
     return data->size();
 }
+
 int DataFrame::cols() const {
     return colNames.size();
 }
@@ -274,7 +298,7 @@ DataFrame* DataFrame::filterGreaterThan(int col, Generic* min, bool inclusive) c
         bool greaterMin = *get(row, col) > *min;
         bool equalMin = *get(row, col) == *min;
         if ((inclusive && (greaterMin || equalMin)) || (!inclusive && greaterMin)) {
-            vec->push_back(get(row));
+            vec->push_back(getRow(row));
         }
     }
     DataFrame* newDataFrame = new DataFrame(vec);
@@ -289,7 +313,7 @@ DataFrame* DataFrame::filterLessthan(int col, Generic* max, bool inclusive) cons
         bool lessMax = *get(row, col) < *max;
         bool equalMax = *get(row, col) == *max;
         if ((inclusive && (lessMax || equalMax)) || (!inclusive && lessMax)) {
-            vec->push_back(get(row));
+            vec->push_back(getRow(row));
         }
     }
     DataFrame* newDataFrame = new DataFrame(vec);
@@ -303,7 +327,7 @@ DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
     for (int row = 0; row < rows(); row++) {
         bool equal = *get(row, col) == *value;
         if ((equals && equal) || (!equals && !equal)) {
-            vec->push_back(get(row));
+            vec->push_back(getRow(row));
         }
     }
     DataFrame* newDataFrame = new DataFrame(vec);
@@ -324,29 +348,6 @@ double DataFrame::average(int col) const {
         total += ((Double*)get(row, col))->data;
     }
     return total / rows();
-}
-
-vector<string> DataFrame::getColNames() const {
-    return colNames;
-}
-
-string DataFrame::getColName(int colIndex) const {
-    return getColNames()[colIndex];
-}
-
-std::vector<GenericType> DataFrame::getColTypes() const {
-    if (rows() == 0) {
-        throw range_error("DATAFRAME IS EMPTY");
-    }
-    vector<GenericType> colTypes;
-    for (int col = 0; col < cols(); col++) {
-        colTypes.push_back(get(0, col)->type());
-    }
-    return colTypes;
-}
-
-GenericType DataFrame::getColType(int colIndex) const {
-    return getColTypes()[colIndex];
 }
 
 ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
@@ -384,12 +385,7 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
         out << left << setw(maxWidth[0]) << row;
         for (int col = 0; col < dataFrame.cols(); col++) {
             Generic* generic = dataFrame.get(row, col);
-            out << left << setw(maxWidth[col + 1]);
-            if (generic->type() == DOUBLE) {
-                out << generic->getDouble();
-            } else {
-                out << generic->getString();
-            }
+            out << left << setw(maxWidth[col + 1]) << *generic;
         }
         out << endl;
     }
