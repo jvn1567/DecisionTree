@@ -2,7 +2,7 @@
 Authors: John Nguyen, Joshua Goldberg
 
 # Overview
-Decision tree is a popular, yet simple, machine learning algorithm. This was inspired by sklearn's [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html).
+Decision tree is a popular, yet simple, machine learning algorithm. This C++ implementationwas inspired by sklearn's [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html).
 
 # Usage
 ```cpp
