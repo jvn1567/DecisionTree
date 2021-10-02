@@ -1,3 +1,15 @@
+/**
+ * @file DecisionNode.h
+ * @author John Nguyen (jvn1567@gmail.com)
+ * @author Joshua Goldberg (joshgoldbergcode@gmail.com)
+ * @brief This file implements the functions of DecisionNode.h.
+ * @version 0.1
+ * @date 2021-10-01
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <sstream>
 #include <fstream>
 #include <iomanip>
@@ -123,9 +135,9 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
 }
 
 void DataFrame::appendRow(vector<Generic*> row) {
-    /*if (row.size() != cols()) {
+    if (row.size() != cols() && rows() != 0) {
         throw invalid_argument("ROW DOES NOT HAVE THE CORRECT COLUMN COUNT");
-    }*/
+    }
     data->push_back(row);
 }
 
@@ -166,10 +178,15 @@ vector<string> DataFrame::getColNames() const {
 }
 
 string DataFrame::getColName(int colIndex) const {
+    if (colNames.size() == 0) {
+        throw domain_error("NO COLUMN NAMES STORED");
+    } else if (colIndex < 0 || colIndex >= colNames.size()) {
+        throw out_of_range("COLUMN NAME LOCATION OUT OF BOUNDS");
+    }
     return getColNames()[colIndex];
 }
 
-std::vector<GenericType> DataFrame::getColTypes() const {
+vector<GenericType> DataFrame::getColTypes() const {
     if (rows() == 0) {
         throw range_error("DATAFRAME IS EMPTY");
     }
@@ -181,7 +198,11 @@ std::vector<GenericType> DataFrame::getColTypes() const {
 }
 
 GenericType DataFrame::getColType(int colIndex) const {
-    return getColTypes()[colIndex];
+    vector<GenericType> types = getColTypes();
+    if (types.size() <= colIndex || colIndex < 0) {
+        throw out_of_range("COLUMN TYPE INDEX OUT OF BOUNDS");
+    }
+    return types[colIndex];
 }
 
 int DataFrame::rows() const {
