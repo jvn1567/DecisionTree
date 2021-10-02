@@ -21,15 +21,15 @@ DecisionTreeClassifier::DecisionTreeClassifier(
     minImpurityDecrease
 ) {}
 
-void DecisionTreeClassifier::fit(DataFrame* testData) {
-    setLabels(testData);
-    DecisionTreeBase::fit(testData);
+void DecisionTreeClassifier::fit(DataFrame* trainData) {
+    setLabels(trainData);
+    DecisionTreeBase::fit(trainData);
 }
 
-void DecisionTreeClassifier::setLabels(DataFrame* testData) {
+void DecisionTreeClassifier::setLabels(DataFrame* trainData) {
     set<string> labelSet;
-    for (int i = 0; i < testData->rows(); i++) {
-        labelSet.insert(testData->get(i, testData->cols() - 1)->getString());
+    for (int i = 0; i < trainData->rows(); i++) {
+        labelSet.insert(trainData->get(i, trainData->cols() - 1)->getString());
     }
     for (string label : labelSet) {
         labels.push_back(label);
@@ -84,7 +84,7 @@ DataFrame* DecisionTreeClassifier::predict(DataFrame* validationData) {
     return predictions;
 }
 
-vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
+vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* data) {
     vector<double> counts(labels.size(), 0);
     map<string, int> labelIndices;
     int i = 0;
@@ -92,8 +92,8 @@ vector<double> DecisionTreeClassifier::getTruthVector(DataFrame* testData) {
         labelIndices[label] = i;
         i++;
     }
-    for (int row = 0; row < testData->rows(); row++) {
-        string className = testData->get(row, testData->cols() - 1)->getString();
+    for (int row = 0; row < data->rows(); row++) {
+        string className = data->get(row, data->cols() - 1)->getString();
         counts[labelIndices[className]]++;
     }
     return counts;

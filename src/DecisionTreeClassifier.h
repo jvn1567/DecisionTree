@@ -8,7 +8,7 @@ private:
     std::vector<std::string> labels;
     void setLabels(DataFrame* testData);
     double computeLoss(std::vector<double> labelCounts);
-    std::vector<double> getTruthVector(DataFrame* testData);
+    std::vector<double> getTruthVector(DataFrame*);
     void printTruthVector(std::vector<double> truthVector);
     Generic* predict(const std::vector<Generic*>& row, DecisionNode* node);
 public:
@@ -20,8 +20,8 @@ public:
         int minSamplesLeaf = 0,
         double minImpurityDecrease = 0.0
     );
-    void fit(DataFrame* testData);
-    DataFrame* predict(DataFrame* validationData);
+    void fit(DataFrame* trainData);
+    DataFrame* predict(DataFrame* testData);
 };
 
 #endif

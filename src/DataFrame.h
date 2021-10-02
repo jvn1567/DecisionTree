@@ -2,9 +2,9 @@
  * @file DecisionNode.h
  * @author John Nguyen (jvn1567@gmail.com)
  * @author Joshua Goldberg (joshgoldbergcode@gmail.com)
- * @brief DataFrame is a data class containing a vector of entries (one per row)
- * and their characteristics (in each column). The DataFrame also contains
- * an additional vector for the names of each characteristic/column.
+ * @brief DataFrame is a data class containing a vector of observations 
+ * (one per row) and their characteristics (in each column). The DataFrame also 
+ * contains an additional vector for the names of each characteristic/column.
  * @version 0.1
  * @date 2021-10-01
  * 

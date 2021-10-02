@@ -1,3 +1,15 @@
+/**
+ * @file DecisionTreeBase.h
+ * @author John Nguyen (jvn1567@gmail.com)
+ * @author Joshua Goldberg (joshgoldbergcode@gmail.com)
+ * @brief This file implements the functions of DecisionTreeBase.h.
+ * @version 0.1
+ * @date 2021-10-01
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <iostream>
 #include <unordered_map>
 #include "DecisionTreeBase.h"
@@ -21,20 +33,20 @@ DecisionTreeBase::DecisionTreeBase(
     this->minImpurityDecrease = minImpurityDecrease;
 }
 
-void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol,
+void DecisionTreeBase::findSplit(DataFrame* trainData, int& bestRow, int& bestCol,
         double minLoss) {
-    for (int col = 0; col < testData->cols() - 1; col++) {
-        GenericType type = testData->get(0, col)->type();
+    for (int col = 0; col < trainData->cols() - 1; col++) {
+        GenericType type = trainData->get(0, col)->type();
         //probably separate functions
         if (type == STRING) {
             unordered_map<string, int> counts;
-            for (int row = 0; row < testData->rows(); row++) {
-                counts[testData->get(row, col)->getString()]++;
+            for (int row = 0; row < trainData->rows(); row++) {
+                counts[trainData->get(row, col)->getString()]++;
             }
             for (auto pair : counts) {
-                string colName = testData->getColName(col);
-                DataFrame* left = testData->filter(colName + "==" + pair.first);
-                DataFrame* right = testData->filter(colName + "!=" + pair.first);
+                string colName = trainData->getColName(col);
+                DataFrame* left = trainData->filter(colName + "==" + pair.first);
+                DataFrame* right = trainData->filter(colName + "!=" + pair.first);
                 double lossLeft = computeLoss(getTruthVector(left));
                 double lossRight = computeLoss(getTruthVector(right));
                 int totalRows = left->rows() + right->rows();
@@ -50,11 +62,11 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
             }
         //ew
         } else {
-            testData->sort(col);
-            for (int row = 1; row < testData->rows(); row++) {
+            trainData->sort(col);
+            for (int row = 1; row < trainData->rows(); row++) {
                 //TODO the actual loss calculation
-                DataFrame* left = testData->slice(0, row);
-                DataFrame* right = testData->slice(row, testData->rows());
+                DataFrame* left = trainData->slice(0, row);
+                DataFrame* right = trainData->slice(row, trainData->rows());
                 double lossLeft = computeLoss(getTruthVector(left));
                 double lossRight = computeLoss(getTruthVector(right));
                 int totalRows = left->rows() + right->rows();
@@ -70,25 +82,25 @@ void DecisionTreeBase::findSplit(DataFrame* testData, int& bestRow, int& bestCol
     }
 }
 
-void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
-    vector<double> truthVector = getTruthVector(testData);
+void DecisionTreeBase::fit(DataFrame* trainData, DecisionNode*& node) {
+    vector<double> truthVector = getTruthVector(trainData);
     double nodeLoss = computeLoss(truthVector);
-    if (testData->rows() >= minSamplesSplit) {
+    if (trainData->rows() >= minSamplesSplit) {
         //split data
         int bestSplitRow = 0;
         int splitColumn; // If splittable, this should be populated by findSplit()
-        findSplit(testData, bestSplitRow, splitColumn, nodeLoss);
-        int rightCount = testData->rows() - bestSplitRow;
+        findSplit(trainData, bestSplitRow, splitColumn, nodeLoss);
+        int rightCount = trainData->rows() - bestSplitRow;
         bool splitable = bestSplitRow > minSamplesLeaf && rightCount > minSamplesLeaf;
         //make branch node
         if (splitable) {
-            testData->sort(splitColumn);
+            trainData->sort(splitColumn);
             
-            double left = ((Double*)testData->get(bestSplitRow - 1, splitColumn))->data;
-            double right = ((Double*)testData->get(bestSplitRow, splitColumn))->data;
+            double left = ((Double*)trainData->get(bestSplitRow - 1, splitColumn))->data;
+            double right = ((Double*)trainData->get(bestSplitRow, splitColumn))->data;
 
-            DataFrame* half1 = testData->slice(0, bestSplitRow);
-            DataFrame* half2 = testData->slice(bestSplitRow, testData->rows());
+            DataFrame* half1 = trainData->slice(0, bestSplitRow);
+            DataFrame* half2 = trainData->slice(bestSplitRow, trainData->rows());
 
             double splitValue = (left + right) / 2.0;
             
@@ -101,15 +113,15 @@ void DecisionTreeBase::fit(DataFrame* testData, DecisionNode*& node) {
             node = new DecisionNode(nodeLoss, truthVector);
         }
         // TODO: Causes free error
-        // delete testData;
-        // testData = nullptr;
+        // delete trainData;
+        // trainData = nullptr;
     } else {
         node = new DecisionNode(nodeLoss, truthVector);
     }
 }
 
-void DecisionTreeBase::fit(DataFrame* testData) {
-    fit(testData, root);
+void DecisionTreeBase::fit(DataFrame* trainData) {
+    fit(trainData, root);
 }
 
 string DecisionTreeBase::getLossCriterion() const {
