@@ -7,31 +7,29 @@
 using namespace std;
 
 int main() {
-    DataFrame testFrame("iris.csv");
-    
-    DataFrame* even = testFrame.slice(0, 0);
-    DataFrame* odd = testFrame.slice(0, 0);
+    // DataFrame dataFrame("iris.csv"); // testing using numeric columns
+    DataFrame dataFrame("mushrooms.csv"); // testing using string columns
+    int totalRows = dataFrame.rows();
+    double trainingSetProportion = .75;
 
-    for (int row = 0; row < testFrame.rows(); row++) {
-        if (row % 2 == 0) {
-            even->appendRow(testFrame.getRow(row));
-        } else {
-            odd->appendRow(testFrame.getRow(row));
-        }
-    }
+    int trainSetLength = dataFrame.rows() * trainingSetProportion;
+    
+    // Split train and test data (non-random currently)
+    DataFrame* train = dataFrame.slice(0, trainSetLength);
+    DataFrame* test = dataFrame.slice(trainSetLength, totalRows);
 
     cout << "FRAMES MADE" << endl;
 
     DecisionTreeClassifier treeModel("GINI");
-    treeModel.fit(even);
+    treeModel.fit(train);
     treeModel.printTree();
     cout << endl;
 
     cout << "NEW DATA..." << endl;
-    cout << *odd << endl;
+    cout << *test << endl;
 
     cout << "MAKING PREDICTIONS..." << endl;
-    DataFrame* predictions = treeModel.predict(odd);
+    DataFrame* predictions = treeModel.predict(test);
 
     cout << "PREDICTIONS PRINTED..." << endl;
     cout << *predictions << endl;

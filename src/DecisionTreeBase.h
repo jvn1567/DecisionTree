@@ -34,8 +34,33 @@ private:
     double maxFeatures;
     double minImpurityDecrease;
     int* featureImportance;
-    void findSplit(DataFrame* trainData, int& bestRow, int& bestCol, double minLoss);
-    void fit(DataFrame* trainData, DecisionNode*& node);
+    void fit(DataFrame* trainData, DecisionNode*& node);    
+    void findSplit(
+        DataFrame* trainData,
+        int& bestCol, 
+        double minLoss,
+        int& leftCount,
+        int& rightCount,
+        Generic*& splitValue
+    );
+    void findRowSplitString(
+        int col,
+        DataFrame*& trainData,
+        int& bestCol,
+        double& minLoss,
+        int& leftCount, 
+        int& rightCount, 
+        Generic*& splitValue
+    );
+    void findRowSplitDouble(
+        int col,
+        DataFrame*& trainData,
+        int& bestCol,
+        double& minLoss,
+        int& leftCount, 
+        int& rightCount, 
+        Generic*& splitValue
+    );
     void printTree(DecisionNode* node, int indents);
     virtual double computeLoss(std::vector<double>) = 0;
     virtual std::vector<double> getTruthVector(DataFrame*) = 0;

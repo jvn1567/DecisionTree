@@ -1,3 +1,15 @@
+/**
+ * @file DecisionTreeClassifier.cpp
+ * @author John Nguyen (jvn1567@gmail.com)
+ * @author Joshua Goldberg (joshgoldbergcode@gmail.com)
+ * @brief Implementation of DecisionTreeClassifier.h.
+ * @version 0.1
+ * @date 2021-10-01
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+
 #include <cmath>
 #include <set>
 #include <map>
