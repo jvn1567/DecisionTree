@@ -17,30 +17,27 @@ using namespace std;
 int main() {
     DataFrame dataFrame("iris.csv"); // testing using numeric columns
     // DataFrame dataFrame("mushrooms.csv"); // testing using string columns
-    int totalRows = dataFrame.rows();
     double trainingSetProportion = .75;
-
     int trainSetLength = dataFrame.rows() * trainingSetProportion;
     
-    // Split train and test data (non-random currently)
+    // Split train and test data
     DataFrame* train = dataFrame.slice(0, trainSetLength);
-    DataFrame* test = dataFrame.slice(trainSetLength, totalRows);
+    DataFrame* test = dataFrame.slice(trainSetLength, dataFrame.rows());
 
-    cout << "FRAMES MADE" << endl;
+    cout << "Train/test datasets created." << endl;
 
     DecisionTreeClassifier treeModel("GINI");
     treeModel.fit(train);
     treeModel.printTree();
     cout << endl;
 
-    cout << "NEW DATA..." << endl;
-    cout << *test << endl;
+    cout << "Test data:" << endl;
+    cout << test << endl;
 
-    cout << "MAKING PREDICTIONS..." << endl;
+    cout << "Making predictions..." << endl;
     DataFrame* predictions = treeModel.predict(test);
 
-    cout << "PREDICTIONS PRINTED..." << endl;
-    cout << *predictions << endl;
+    cout << predictions << endl;
 }
 ```
 
