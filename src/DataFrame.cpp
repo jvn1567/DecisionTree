@@ -15,6 +15,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <stdexcept>
+#include <random>
 #include "DataFrame.h"
 using namespace std;
 
@@ -37,13 +38,13 @@ DataFrame::DataFrame(string filename) {
     }
     string line;
     getline(input, line);
-    //grab variables line
+    // grab variables line
     istringstream inputstring(line);
     string variable;
     while (getline(inputstring, variable, ',')) {
         colNames.push_back(variable);
     }
-    //grab remaining dataset
+    // grab remaining dataset
     while (getline(input, line)) {
         string value;
         vector<Generic*> row;
@@ -67,7 +68,7 @@ DataFrame::DataFrame(vector<vector<Generic*>>* data) {
 vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
         vector<vector<Generic*>>* half2, int sortIndex) {
     vector<vector<Generic*>>* merged = new vector<vector<Generic*>>;
-    //merge until end of one half
+    // merge until end of one half
     int index1 = 0;
     int index2 = 0;
     while (index1 < half1->size() && index2 < half2->size()) {
@@ -125,17 +126,16 @@ DataFrame* DataFrame::slice(int startIndex, int endIndex) const {
             || (startIndex > endIndex)) {
         throw out_of_range("INVALID START/END BOUNDARIES");
     }
-    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    DataFrame* newDataFrame = new DataFrame();
     for (int row = startIndex; row < endIndex; row++) {
-        vec->push_back((*data)[row]);
+        newDataFrame->appendRow(getRow(row));
     }
-    DataFrame* newDataFrame = new DataFrame(vec);
     newDataFrame->colNames = colNames;
     return newDataFrame;
 }
 
 void DataFrame::appendRow(vector<Generic*> row) {
-    if (row.size() != cols() && rows() != 0) {
+    if (row.size() != cols() && rows() != 0 && cols() != 0) {
         throw invalid_argument("ROW DOES NOT HAVE THE CORRECT COLUMN COUNT");
     }
     data->push_back(row);
@@ -223,7 +223,7 @@ DataFrame* DataFrame::filter(string condition) const {
     } else if (condition.length() == 0) {
         throw invalid_argument("NO CONDITION GIVEN");
     }
-    //remove spaces
+    // remove spaces
     int i = 0;
     while (i < condition.length()) {
         if (condition[i] == ' ') {
@@ -232,7 +232,7 @@ DataFrame* DataFrame::filter(string condition) const {
             i++;
         }
     }
-    //condition index
+    // condition index
     vector<string> comparators = {"<=", ">=", "<", ">", "==", "!="};
     string comparator;
     int comparatorIndex = string::npos;
@@ -249,7 +249,7 @@ DataFrame* DataFrame::filter(string condition) const {
     }
     int colIndex = -1;
     string dataToCheck;
-    //filter calls by operator
+    // filter calls by operator
     if (comparator == "<") {
         Generic* genericData = parseCondition(colIndex, dataToCheck, 
                 comparatorIndex, condition, false);
@@ -296,7 +296,7 @@ Generic* DataFrame::parseCondition(
     if (inclusive) {
         operatorIndex++;
     }
-    //TODO make this not scuffed
+    // TODO: make this not scuffed
     if (operatorIndex + 1 >= condition.length()) {
         throw invalid_argument("COMPARISON VALUE NOT VALID");
     }
@@ -312,49 +312,84 @@ Generic* DataFrame::parseCondition(
     return genericData;
 }
 
-//helper for filtering
+// Helper for filtering
 DataFrame* DataFrame::filterGreaterThan(int col, Generic* min, bool inclusive) const {
-    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    DataFrame* newDataFrame = new DataFrame();
     for (int row = 0; row < rows(); row++) {
         bool greaterMin = *get(row, col) > *min;
         bool equalMin = *get(row, col) == *min;
         if ((inclusive && (greaterMin || equalMin)) || (!inclusive && greaterMin)) {
-            vec->push_back(getRow(row));
+            newDataFrame->appendRow(getRow(row));
         }
     }
-    DataFrame* newDataFrame = new DataFrame(vec);
     newDataFrame->colNames = colNames;
     return newDataFrame;
 }
 
-//helper for filtering
+// Helper for filter
 DataFrame* DataFrame::filterLessthan(int col, Generic* max, bool inclusive) const {
-    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    DataFrame* newDataFrame = new DataFrame();
     for (int row = 0; row < rows(); row++) {
         bool lessMax = *get(row, col) < *max;
         bool equalMax = *get(row, col) == *max;
         if ((inclusive && (lessMax || equalMax)) || (!inclusive && lessMax)) {
-            vec->push_back(getRow(row));
+            newDataFrame->appendRow(getRow(row));
         }
     }
-    DataFrame* newDataFrame = new DataFrame(vec);
     newDataFrame->colNames = colNames;
     return newDataFrame;
 }
 
-//helper for filtering
+// Helper for filter
 DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
-    vector<vector<Generic*>>* vec = new vector<vector<Generic*>>;
+    DataFrame* newDataFrame = new DataFrame();
     for (int row = 0; row < rows(); row++) {
         bool equal = *get(row, col) == *value;
         if ((equals && equal) || (!equals && !equal)) {
-            vec->push_back(getRow(row));
+            newDataFrame->appendRow(getRow(row));
         }
     }
-    DataFrame* newDataFrame = new DataFrame(vec);
     newDataFrame->colNames = colNames;
     return newDataFrame;
 }
+
+std::vector<int> DataFrame::generateRandomIndices(int n) {
+    // generate vector of indices to shuffle
+    vector<int> indices;
+    for (int i = 0; i < rows(); i++) {
+        indices.push_back(i);
+    }
+
+    std::random_device random_dev;
+    std::mt19937 generator(random_dev());
+    std::shuffle(indices.begin(), indices.end(), generator);
+    
+    // only return n indices
+    vector<int> indicesN;
+    for (int i = 0; i < n; i++) {
+        indicesN.push_back(indices[i]);
+    }    
+    return indicesN;
+}
+
+DataFrame* DataFrame::shuffle() {
+    DataFrame* newDataFrame = new DataFrame();
+    vector<int> indices = generateRandomIndices(rows());
+
+    for (int row = 0; row < rows(); row++) {
+        newDataFrame->appendRow(getRow(indices[row]));
+    }
+    newDataFrame->colNames = colNames;
+    return newDataFrame;
+}
+
+// DataFrame* sampleN(int n) {
+//     vector<int> indices = generateRandomIndices(n);
+// }
+
+// DataFrame* sampleFrac(double fraction) {
+
+// }
 
 double DataFrame::average(int col) const {
     if (rows() == 0 || cols() == 0) {
@@ -372,7 +407,7 @@ double DataFrame::average(int col) const {
 }
 
 ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
-    //feature labels row
+    // feature labels row
     vector<string> colNames = dataFrame.getColNames();
     colNames.insert(colNames.begin(), "Index");
     vector<int> maxWidth;
@@ -393,7 +428,7 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
             }
         }
     }
-    //print spacing
+    // print spacing
     for (int i = 0; i < maxWidth.size(); i++) {
         maxWidth[i] += 5;
     }
@@ -401,7 +436,7 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
         out << left << setw(maxWidth[i]) << colNames[i];
     }
     out << endl;
-    //data matrix print
+    // data matrix print
     for (int row = 0; row < dataFrame.rows(); row++) {
         out << left << setw(maxWidth[0]) << row;
         for (int col = 0; col < dataFrame.cols(); col++) {
@@ -410,6 +445,11 @@ ostream& operator <<(ostream& out, const DataFrame& dataFrame) {
         }
         out << endl;
     }
+    return out;
+}
+
+ostream& operator <<(ostream& out, const DataFrame* dataFrame) {
+    out << *dataFrame;
     return out;
 }
 

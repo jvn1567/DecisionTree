@@ -48,7 +48,7 @@ private:
     /**
      * Deletes a pointer to a 2D vector and assigns nullptr to it.
      */
-    void deleteMatrix(std::vector<std::vector<Generic*>>*& data);
+    void deleteFrame(std::vector<std::vector<Generic*>>*& data);
 
     /**
      * Returns a new DataFrame* containing all rows where the stored Generic*
@@ -84,6 +84,8 @@ private:
         std::string condition,
         bool inclusive
     ) const;
+
+    std::vector<int> generateRandomIndices(int n);
 
 public:
     /**
@@ -205,6 +207,20 @@ public:
      * @throw out_of_range if the row is out of bounds
      */
     std::vector<Generic*> getRow(int row) const;
+    
+    /**
+     * @brief Shuffles dataframe with a C++ std uniform distribution random 
+     * number generator.
+     * 
+     * @return DataFrame* 
+     */
+    DataFrame* shuffle();
+    DataFrame* sampleN(int n);
+    DataFrame* sampleFrac(double fraction);
+
+    // Most efficient way to do this is to create and indices member variable
+    // And check for indices
+    DataFrame* notIN(DataFrame* dataFrame2);
 
     /**
      * @brief Returns the column name at the specified column index.
@@ -286,5 +302,6 @@ public:
  * @return std::ostream& the output stream with the output data
  */
 std::ostream& operator <<(std::ostream& out, const DataFrame& data);
+std::ostream& operator <<(std::ostream& out, const DataFrame* data);
 
 #endif
