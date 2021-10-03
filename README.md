@@ -15,31 +15,29 @@ Decision tree is a popular, yet simple, machine learning algorithm. This C++ imp
 using namespace std;
 
 int main() {
-    DataFrame testFrame("iris.csv");
-    
-    DataFrame* even = testFrame.slice(0, 0);
-    DataFrame* odd = testFrame.slice(0, 0);
+    DataFrame dataFrame("iris.csv"); // testing using numeric columns
+    // DataFrame dataFrame("mushrooms.csv"); // testing using string columns
+    int totalRows = dataFrame.rows();
+    double trainingSetProportion = .75;
 
-    for (int row = 0; row < testFrame.rows(); row++) {
-        if (row % 2 == 0) {
-            even->append(testFrame.get(row));
-        } else {
-            odd->append(testFrame.get(row));
-        }
-    }
+    int trainSetLength = dataFrame.rows() * trainingSetProportion;
+    
+    // Split train and test data (non-random currently)
+    DataFrame* train = dataFrame.slice(0, trainSetLength);
+    DataFrame* test = dataFrame.slice(trainSetLength, totalRows);
 
     cout << "FRAMES MADE" << endl;
 
     DecisionTreeClassifier treeModel("GINI");
-    treeModel.fit(even);
+    treeModel.fit(train);
     treeModel.printTree();
     cout << endl;
 
     cout << "NEW DATA..." << endl;
-    cout << *odd << endl;
+    cout << *test << endl;
 
     cout << "MAKING PREDICTIONS..." << endl;
-    DataFrame* predictions = treeModel.predict(odd);
+    DataFrame* predictions = treeModel.predict(test);
 
     cout << "PREDICTIONS PRINTED..." << endl;
     cout << *predictions << endl;
@@ -50,17 +48,44 @@ int main() {
 MAKING PREDICTIONS...
 PREDICTIONS PRINTED...
 Index     predictions     
-0         setosa          
-1         setosa          
-2         setosa          
-3         setosa          
-4         setosa          
-5         setosa          
-6         setosa          
-7         setosa          
-8         setosa          
-9         setosa          
-10        setosa
+0         virginica       
+1         virginica       
+2         virginica       
+3         virginica       
+4         virginica       
+5         virginica       
+6         virginica       
+7         versicolor      
+8         virginica       
+9         virginica       
+10        virginica       
+11        virginica       
+12        virginica       
+13        virginica       
+14        virginica       
+15        virginica       
+16        virginica       
+17        virginica       
+18        virginica       
+19        virginica       
+20        virginica       
+21        versicolor      
+22        virginica       
+23        virginica       
+24        virginica       
+25        virginica       
+26        virginica       
+27        virginica       
+28        virginica       
+29        virginica       
+30        virginica       
+31        virginica       
+32        virginica       
+33        virginica       
+34        virginica       
+35        virginica       
+36        virginica       
+37        virginica
 ```
 
 # Dependencies
