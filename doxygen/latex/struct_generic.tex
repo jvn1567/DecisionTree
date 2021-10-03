@@ -1,0 +1,114 @@
+\hypertarget{struct_generic}{}\doxysection{Generic Struct Reference}
+\label{struct_generic}\index{Generic@{Generic}}
+
+
+\mbox{\hyperlink{struct_generic}{Generic}} is used to capture type string and the following primitives\+: double, integer, bool. Once captured, it has methods to convert to the appropriate type. Currently only \mbox{\hyperlink{struct_generic_ab080c422cfac7c3cd57937ad0b75aa82}{get\+Double()}} and \mbox{\hyperlink{struct_generic_a97ec591929d0dee34a65345dfb6d68ca}{get\+String()}} are implemented. \mbox{\hyperlink{struct_generic}{Generic}} is not instantiable and is used for polymorphic behaviors. Only sub-\/classes can be constructed.  
+
+
+
+
+{\ttfamily \#include $<$Generic\+Type\+Wrapper.\+h$>$}
+
+Inheritance diagram for Generic\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{struct_generic}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Generic\+Type \mbox{\hyperlink{struct_generic_a735fcd5f7193736a5e321eeeefb7eb59}{type}} () const
+\begin{DoxyCompactList}\small\item\em Returns the type the generic is storing. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{struct_generic_ab080c422cfac7c3cd57937ad0b75aa82}{get\+Double}} () const
+\begin{DoxyCompactList}\small\item\em Get double from \mbox{\hyperlink{struct_generic}{Generic}}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{struct_generic_a97ec591929d0dee34a65345dfb6d68ca}{get\+String}} () const
+\begin{DoxyCompactList}\small\item\em Get string from \mbox{\hyperlink{struct_generic}{Generic}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ \mbox{\hyperlink{struct_generic_af2c54ecb33c1d8a080ab0e0749787244}{wrap\+Primitive}} (std\+::string data)
+\begin{DoxyCompactList}\small\item\em Parses string data and subsequently constructs a sub-\/class instance on the heap of the parsed type (string, double, integer, bool). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{struct_generic}{Generic}} is used to capture type string and the following primitives\+: double, integer, bool. Once captured, it has methods to convert to the appropriate type. Currently only \mbox{\hyperlink{struct_generic_ab080c422cfac7c3cd57937ad0b75aa82}{get\+Double()}} and \mbox{\hyperlink{struct_generic_a97ec591929d0dee34a65345dfb6d68ca}{get\+String()}} are implemented. \mbox{\hyperlink{struct_generic}{Generic}} is not instantiable and is used for polymorphic behaviors. Only sub-\/classes can be constructed. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_generic_ab080c422cfac7c3cd57937ad0b75aa82}\label{struct_generic_ab080c422cfac7c3cd57937ad0b75aa82}} 
+\index{Generic@{Generic}!getDouble@{getDouble}}
+\index{getDouble@{getDouble}!Generic@{Generic}}
+\doxysubsubsection{\texorpdfstring{getDouble()}{getDouble()}}
+{\footnotesize\ttfamily double Generic\+::get\+Double (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get double from \mbox{\hyperlink{struct_generic}{Generic}}. 
+
+\begin{DoxyReturn}{Returns}
+double the double stored. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if data cannot be converted to double. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{struct_generic_a97ec591929d0dee34a65345dfb6d68ca}\label{struct_generic_a97ec591929d0dee34a65345dfb6d68ca}} 
+\index{Generic@{Generic}!getString@{getString}}
+\index{getString@{getString}!Generic@{Generic}}
+\doxysubsubsection{\texorpdfstring{getString()}{getString()}}
+{\footnotesize\ttfamily string Generic\+::get\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get string from \mbox{\hyperlink{struct_generic}{Generic}}. 
+
+\begin{DoxyReturn}{Returns}
+string the string stored. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if data cannot be converted to string. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{struct_generic_a735fcd5f7193736a5e321eeeefb7eb59}\label{struct_generic_a735fcd5f7193736a5e321eeeefb7eb59}} 
+\index{Generic@{Generic}!type@{type}}
+\index{type@{type}!Generic@{Generic}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily Generic\+Type Generic\+::type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the type the generic is storing. 
+
+\begin{DoxyReturn}{Returns}
+enum STRING, DOUBLE, INTEGER, BOOL. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{struct_bool_a9d69db86312f7c6c63d0e6f461d5c821}{Bool}}, \mbox{\hyperlink{struct_string_a1aba2f66bacafada09e74dfaeae5397a}{String}}, \mbox{\hyperlink{struct_double_a3bf094fb4d0941f3966d41f393c4aef5}{Double}}, and \mbox{\hyperlink{struct_integer_a868945faefaa37692da065d02585cae6}{Integer}}.
+
+\mbox{\Hypertarget{struct_generic_af2c54ecb33c1d8a080ab0e0749787244}\label{struct_generic_af2c54ecb33c1d8a080ab0e0749787244}} 
+\index{Generic@{Generic}!wrapPrimitive@{wrapPrimitive}}
+\index{wrapPrimitive@{wrapPrimitive}!Generic@{Generic}}
+\doxysubsubsection{\texorpdfstring{wrapPrimitive()}{wrapPrimitive()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ Generic\+::wrap\+Primitive (\begin{DoxyParamCaption}\item[{std\+::string}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Parses string data and subsequently constructs a sub-\/class instance on the heap of the parsed type (string, double, integer, bool). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data, as a string, to be parsed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Generic$\ast$ 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_generic_type_wrapper_8h}{Generic\+Type\+Wrapper.\+h}}\item 
+\mbox{\hyperlink{_generic_type_wrapper_8cpp}{Generic\+Type\+Wrapper.\+cpp}}\end{DoxyCompactItemize}

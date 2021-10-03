@@ -1,0 +1,113 @@
+\hypertarget{_event_handler_8cpp}{}\doxysection{Event\+Handler.\+cpp File Reference}
+\label{_event_handler_8cpp}\index{EventHandler.cpp@{EventHandler.cpp}}
+{\ttfamily \#include \char`\"{}Event\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Class\+Filter.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_event_handler_8cpp_a71665927f75d3f1d8f6a88b22b413dd4}{interact\+Space\+Object}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$space\+Object, \mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$ship)
+\begin{DoxyCompactList}\small\item\em Facilitates colonization of a planet. There are three scenarios that can occur while a spaceship is exploring\+: 1) spaceship encounters empty planet\+: immediately colonizes. 2) spaceship encounters occupied enemy planet\+: battle occurs between the two aliens; if the spaceship wins, it colonizes the planet, otherwise the occupants remain on the planet and the spaceship explodes. 3) spaceship encounters friendly planet or star\+: no action occurs. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_event_handler_8cpp_ae45a3939c0c91efd57eb8164e47df737}{interact\+Ships}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$ship1, \mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$ship2)
+\begin{DoxyCompactList}\small\item\em Facilitates battle between two spaceships. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_event_handler_8cpp_af3ce683f37c732f1b1f5be42912ab067}{update\+Population}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$space\+Object, \mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$occupant)
+\begin{DoxyCompactList}\small\item\em Increases population of a planet until it reaches the max capacity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_event_handler_8cpp_a0f95693b5102da773cd278a05ad5cd33}{send\+Ship}} (\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$occupant, \mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$$\ast$spaceship)
+\begin{DoxyCompactList}\small\item\em Spawns a spaceship if planet has reached max population. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+John Nguyen, Joshua Goldberg (\href{mailto:jvn1567@gmail.com}{\texttt{ jvn1567@gmail.\+com}}, \href{mailto:J.GOLDBERG4674@edmail.edcc.edu}{\texttt{ J.\+GOLDBERG4674@edmail.\+edcc.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/06-\/12
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_event_handler_8cpp_ae45a3939c0c91efd57eb8164e47df737}\label{_event_handler_8cpp_ae45a3939c0c91efd57eb8164e47df737}} 
+\index{EventHandler.cpp@{EventHandler.cpp}!interactShips@{interactShips}}
+\index{interactShips@{interactShips}!EventHandler.cpp@{EventHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{interactShips()}{interactShips()}}
+{\footnotesize\ttfamily int interact\+Ships (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{ship1,  }\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{ship2 }\end{DoxyParamCaption})}
+
+
+
+Facilitates battle between two spaceships. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ship1} & \\
+\hline
+{\em ship2} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 = no fight, 1 = ship1 wins, 2 = ship2 wins. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_event_handler_8cpp_a71665927f75d3f1d8f6a88b22b413dd4}\label{_event_handler_8cpp_a71665927f75d3f1d8f6a88b22b413dd4}} 
+\index{EventHandler.cpp@{EventHandler.cpp}!interactSpaceObject@{interactSpaceObject}}
+\index{interactSpaceObject@{interactSpaceObject}!EventHandler.cpp@{EventHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{interactSpaceObject()}{interactSpaceObject()}}
+{\footnotesize\ttfamily int interact\+Space\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{space\+Object,  }\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{ship }\end{DoxyParamCaption})}
+
+
+
+Facilitates colonization of a planet. There are three scenarios that can occur while a spaceship is exploring\+: 1) spaceship encounters empty planet\+: immediately colonizes. 2) spaceship encounters occupied enemy planet\+: battle occurs between the two aliens; if the spaceship wins, it colonizes the planet, otherwise the occupants remain on the planet and the spaceship explodes. 3) spaceship encounters friendly planet or star\+: no action occurs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em space\+Object} & A \mbox{\hyperlink{class_space_object}{Space\+Object}}, which can be a planet or star. \\
+\hline
+{\em ship} & The ship that is encountering the \mbox{\hyperlink{class_space_object}{Space\+Object}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 = no action, 1 = planet occupants win, 2 = ship colonizes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_event_handler_8cpp_a0f95693b5102da773cd278a05ad5cd33}\label{_event_handler_8cpp_a0f95693b5102da773cd278a05ad5cd33}} 
+\index{EventHandler.cpp@{EventHandler.cpp}!sendShip@{sendShip}}
+\index{sendShip@{sendShip}!EventHandler.cpp@{EventHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{sendShip()}{sendShip()}}
+{\footnotesize\ttfamily void send\+Ship (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$}]{occupant,  }\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$$\ast$}]{spaceship }\end{DoxyParamCaption})}
+
+
+
+Spawns a spaceship if planet has reached max population. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupant} & The alien occupying the planet. \\
+\hline
+{\em spaceship} & The spaceship, to be generated by the alien. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_event_handler_8cpp_af3ce683f37c732f1b1f5be42912ab067}\label{_event_handler_8cpp_af3ce683f37c732f1b1f5be42912ab067}} 
+\index{EventHandler.cpp@{EventHandler.cpp}!updatePopulation@{updatePopulation}}
+\index{updatePopulation@{updatePopulation}!EventHandler.cpp@{EventHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{updatePopulation()}{updatePopulation()}}
+{\footnotesize\ttfamily bool update\+Population (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{space\+Object,  }\item[{\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$}]{occupant }\end{DoxyParamCaption})}
+
+
+
+Increases population of a planet until it reaches the max capacity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em space\+Object} & \mbox{\hyperlink{class_planet}{Planet}}. \\
+\hline
+{\em occupant} & Aliens occupying planet. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true Full planet. 
+
+false Not full planet. 
+\end{DoxyReturn}

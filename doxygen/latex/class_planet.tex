@@ -1,0 +1,178 @@
+\hypertarget{class_planet}{}\doxysection{Planet Class Reference}
+\label{class_planet}\index{Planet@{Planet}}
+Inheritance diagram for Planet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_planet}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_planet_a869b3c7f4cb0398d28dc25664bc45073}{Planet}} (Movesets moveset)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_planet}{Planet}} object. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{class_planet_a8a99d7aa6cf6ae17b3557f284aa0b983}{get\+Capacity}} () const
+\begin{DoxyCompactList}\small\item\em Get the population capacity of the planet. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_planet_a59c5ec990d712d68e0eac74e63ee2d8c}{get\+Temperature}} () const
+\begin{DoxyCompactList}\small\item\em Get the Temperature object. Currently not used. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_planet_a3e80a10130f33b5e74b869f73f108f68}{is\+Habitable}} () const
+\begin{DoxyCompactList}\small\item\em Determines if a planet is habitable, which is always true. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_planet_ad75da2be32f572291190b1f6e0b9988d}{set\+Occupant}} (\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$occupant)
+\begin{DoxyCompactList}\small\item\em Set the alien occupants of the planet. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$ \mbox{\hyperlink{class_planet_a391e4a6fba35535c7bdf9e60a69acdf0}{get\+Occupant}} () const
+\begin{DoxyCompactList}\small\item\em Get the alien occupants of the planet. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_planet_a2bb1e03e4889ec74d09d4172535b253f}{get\+Hazard}} () const
+\begin{DoxyCompactList}\small\item\em Get the hazard of the planet, which reduces population growth of the occupants on the planet. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{class_planet_afca216f7779d94e5cff0e731cfd8e22d}{get\+Bonus}} () const
+\begin{DoxyCompactList}\small\item\em Get the bonus of the planet, which increases population growth of the occupants on the planet. \end{DoxyCompactList}\item 
+virtual string \mbox{\hyperlink{class_planet_a71b53477ffa0201f2096bcd9f30f9d79}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Get the name of the class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_planet_a869b3c7f4cb0398d28dc25664bc45073}\label{class_planet_a869b3c7f4cb0398d28dc25664bc45073}} 
+\index{Planet@{Planet}!Planet@{Planet}}
+\index{Planet@{Planet}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{Planet()}{Planet()}}
+{\footnotesize\ttfamily Planet\+::\+Planet (\begin{DoxyParamCaption}\item[{Movesets}]{moveset }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_planet}{Planet}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em moveset} & Orbital path. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_planet_afca216f7779d94e5cff0e731cfd8e22d}\label{class_planet_afca216f7779d94e5cff0e731cfd8e22d}} 
+\index{Planet@{Planet}!getBonus@{getBonus}}
+\index{getBonus@{getBonus}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getBonus()}{getBonus()}}
+{\footnotesize\ttfamily int Planet\+::get\+Bonus (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the bonus of the planet, which increases population growth of the occupants on the planet. 
+
+\begin{DoxyReturn}{Returns}
+int Bonus. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_planet_a8a99d7aa6cf6ae17b3557f284aa0b983}\label{class_planet_a8a99d7aa6cf6ae17b3557f284aa0b983}} 
+\index{Planet@{Planet}!getCapacity@{getCapacity}}
+\index{getCapacity@{getCapacity}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getCapacity()}{getCapacity()}}
+{\footnotesize\ttfamily long Planet\+::get\+Capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the population capacity of the planet. 
+
+\begin{DoxyReturn}{Returns}
+long Population capacity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_planet_a2bb1e03e4889ec74d09d4172535b253f}\label{class_planet_a2bb1e03e4889ec74d09d4172535b253f}} 
+\index{Planet@{Planet}!getHazard@{getHazard}}
+\index{getHazard@{getHazard}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getHazard()}{getHazard()}}
+{\footnotesize\ttfamily int Planet\+::get\+Hazard (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the hazard of the planet, which reduces population growth of the occupants on the planet. 
+
+\begin{DoxyReturn}{Returns}
+int Hazard. 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_toxic_wasteland_a31348fcce53153d23247b10b0eeab666}{Toxic\+Wasteland}}, \mbox{\hyperlink{class_rock_slide_a16c75d8d4b3644ec9f41f9c481f2461a}{Rock\+Slide}}, \mbox{\hyperlink{class_purple_gas_a9e236a0e424af52c43ee9fdbdf619f9d}{Purple\+Gas}}, \mbox{\hyperlink{class_ice_world_a5c31d6fe79c6db4d059abe288e1958d8}{Ice\+World}}, and \mbox{\hyperlink{class_greenhouse_a4c0d2f82f67a65f16932648392558f05}{Greenhouse}}.
+
+\mbox{\Hypertarget{class_planet_a71b53477ffa0201f2096bcd9f30f9d79}\label{class_planet_a71b53477ffa0201f2096bcd9f30f9d79}} 
+\index{Planet@{Planet}!getName@{getName}}
+\index{getName@{getName}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Planet\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the name of the class. 
+
+\begin{DoxyReturn}{Returns}
+string Name of the class. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_space_object_a13f951c4ab7a033c6bf023e469304381}{Space\+Object}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_toxic_wasteland_a2a818c25226021411ecaced84923e018}{Toxic\+Wasteland}}, \mbox{\hyperlink{class_rock_slide_a3cdfe346bb2a6bd142e46e3777107274}{Rock\+Slide}}, \mbox{\hyperlink{class_purple_gas_ae0d987946a535897c4734a045477e909}{Purple\+Gas}}, \mbox{\hyperlink{class_ice_world_ae07dc2d281358a0ea33560374dc892a6}{Ice\+World}}, and \mbox{\hyperlink{class_greenhouse_a0ec819d4b5b627b8a7fe7fa4c0a9129b}{Greenhouse}}.
+
+\mbox{\Hypertarget{class_planet_a391e4a6fba35535c7bdf9e60a69acdf0}\label{class_planet_a391e4a6fba35535c7bdf9e60a69acdf0}} 
+\index{Planet@{Planet}!getOccupant@{getOccupant}}
+\index{getOccupant@{getOccupant}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getOccupant()}{getOccupant()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$ Planet\+::get\+Occupant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the alien occupants of the planet. 
+
+\begin{DoxyReturn}{Returns}
+Alien\+Base$\ast$ Alien. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_planet_a59c5ec990d712d68e0eac74e63ee2d8c}\label{class_planet_a59c5ec990d712d68e0eac74e63ee2d8c}} 
+\index{Planet@{Planet}!getTemperature@{getTemperature}}
+\index{getTemperature@{getTemperature}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{getTemperature()}{getTemperature()}}
+{\footnotesize\ttfamily int Planet\+::get\+Temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the Temperature object. Currently not used. 
+
+\begin{DoxyReturn}{Returns}
+int Temperature. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_planet_a3e80a10130f33b5e74b869f73f108f68}\label{class_planet_a3e80a10130f33b5e74b869f73f108f68}} 
+\index{Planet@{Planet}!isHabitable@{isHabitable}}
+\index{isHabitable@{isHabitable}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{isHabitable()}{isHabitable()}}
+{\footnotesize\ttfamily bool Planet\+::is\+Habitable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Determines if a planet is habitable, which is always true. 
+
+\begin{DoxyReturn}{Returns}
+true Habitable. 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_space_object_aa687c78e50a36b439d529d294fe5a753}{Space\+Object}}.
+
+\mbox{\Hypertarget{class_planet_ad75da2be32f572291190b1f6e0b9988d}\label{class_planet_ad75da2be32f572291190b1f6e0b9988d}} 
+\index{Planet@{Planet}!setOccupant@{setOccupant}}
+\index{setOccupant@{setOccupant}!Planet@{Planet}}
+\doxysubsubsection{\texorpdfstring{setOccupant()}{setOccupant()}}
+{\footnotesize\ttfamily void Planet\+::set\+Occupant (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_alien_base}{Alien\+Base}} $\ast$}]{occupant }\end{DoxyParamCaption})}
+
+
+
+Set the alien occupants of the planet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em occupant} & Alien. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_planet_8h}{Planet.\+h}}\item 
+\mbox{\hyperlink{_planet_8cpp}{Planet.\+cpp}}\end{DoxyCompactItemize}

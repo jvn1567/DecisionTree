@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_bool" kind="struct" language="C++" prot="public">
+    <compoundname>Bool</compoundname>
+    <basecompoundref refid="struct_generic" prot="public" virt="non-virtual">Generic</basecompoundref>
+    <includes refid="_generic_type_wrapper_8h" local="no">GenericTypeWrapper.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_bool_1ab2a68433c68a983b9c773c1146540e3a" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Bool::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="233" column="10" bodyfile="GenericTypeWrapper.h" bodystart="233" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_bool_1a7760b8036bfea8e3ab8eff293c051105" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Bool::Bool</definition>
+        <argsstring>(bool data)</argsstring>
+        <name>Bool</name>
+        <param>
+          <type>bool</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="struct_bool" kindref="compound">Bool</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="239" column="5" bodyfile="GenericTypeWrapper.h" bodystart="239" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_bool_1a9d69db86312f7c6c63d0e6f461d5c821" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>GenericType</type>
+        <definition>GenericType Bool::type</definition>
+        <argsstring>() const</argsstring>
+        <name>type</name>
+        <reimplements refid="struct_generic_1a735fcd5f7193736a5e321eeeefb7eb59">type</reimplements>
+        <briefdescription>
+<para>Returns data type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>enum BOOL. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="245" column="17" bodyfile="GenericTypeWrapper.cpp" bodystart="229" bodyend="231"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Wrapper class for bool. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Generic</label>
+        <link refid="struct_generic"/>
+      </node>
+      <node id="1">
+        <label>Bool</label>
+        <link refid="struct_bool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Generic</label>
+        <link refid="struct_generic"/>
+      </node>
+      <node id="1">
+        <label>Bool</label>
+        <link refid="struct_bool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="GenericTypeWrapper.h" line="232" column="1" bodyfile="GenericTypeWrapper.h" bodystart="232" bodyend="246"/>
+    <listofallmembers>
+      <member refid="struct_bool_1a7760b8036bfea8e3ab8eff293c051105" prot="public" virt="non-virtual"><scope>Bool</scope><name>Bool</name></member>
+      <member refid="struct_bool_1ab2a68433c68a983b9c773c1146540e3a" prot="public" virt="non-virtual"><scope>Bool</scope><name>data</name></member>
+      <member refid="struct_generic_1ab080c422cfac7c3cd57937ad0b75aa82" prot="public" virt="non-virtual"><scope>Bool</scope><name>getDouble</name></member>
+      <member refid="struct_generic_1a97ec591929d0dee34a65345dfb6d68ca" prot="public" virt="non-virtual"><scope>Bool</scope><name>getString</name></member>
+      <member refid="struct_bool_1a9d69db86312f7c6c63d0e6f461d5c821" prot="public" virt="virtual"><scope>Bool</scope><name>type</name></member>
+      <member refid="struct_generic_1af2c54ecb33c1d8a080ab0e0749787244" prot="public" virt="non-virtual"><scope>Bool</scope><name>wrapPrimitive</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

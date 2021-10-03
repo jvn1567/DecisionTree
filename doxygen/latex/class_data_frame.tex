@@ -1,0 +1,461 @@
+\hypertarget{class_data_frame}{}\doxysection{Data\+Frame Class Reference}
+\label{class_data_frame}\index{DataFrame@{DataFrame}}
+
+
+The \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is a matrix where each row corresponds to a data entry and each column of that row representing a characteristic of that data entry.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Frame.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_data_frame_a69a9dc47b7506b8062fd34aedacbf579}\label{class_data_frame_a69a9dc47b7506b8062fd34aedacbf579}} 
+\mbox{\hyperlink{class_data_frame_a69a9dc47b7506b8062fd34aedacbf579}{Data\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Constructs and empty \mbox{\hyperlink{class_data_frame}{Data\+Frame}} with no column names. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_frame_a7c496a98d37bd4f31f7e2f9b10620d4b}{Data\+Frame}} (std\+::vector$<$ std\+::string $>$ col\+Names)
+\begin{DoxyCompactList}\small\item\em Constructs an empty \mbox{\hyperlink{class_data_frame}{Data\+Frame}} with the specified column names. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_frame_a6374c082b9e08b06f54bb88c2816e832}{Data\+Frame}} (std\+::string filename)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{class_data_frame}{Data\+Frame}} from a file. The format must be a comma separated list, with each row corresponding to a data entry, or \mbox{\hyperlink{class_data_frame}{Data\+Frame}} row. The first row contains the column names. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_frame_ae5a6d2433e452dd6ef4bb416c30d0e17}{Data\+Frame}} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$$>$ $\ast$data)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{class_data_frame}{Data\+Frame}} with no column names containing the passed-\/in data in a 2D vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_frame_ad5ef91c537539c5b39dded6723e747e4}{sort}} (int sortindex)
+\begin{DoxyCompactList}\small\item\em Sorts this \mbox{\hyperlink{class_data_frame}{Data\+Frame}} on the specified column index. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$ \mbox{\hyperlink{class_data_frame_a8f2b84aac6eb64b519d4ba980e55adac}{slice}} (int start\+Index, int end\+Index) const
+\begin{DoxyCompactList}\small\item\em Returns a new Data\+Frame$\ast$ containing all rows of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}, from the start index to end index, exclusive. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$ \mbox{\hyperlink{class_data_frame_a9a8fe147711bd6b95337677d25f8e429}{filter}} (std\+::string condition) const
+\begin{DoxyCompactList}\small\item\em Returns a new Data\+Frame$\ast$ containing all rows where the specified condition is met. The format is \char`\"{}\+COLUMN\+\_\+\+NAME $<$ VALUE\char`\"{}, where $<$ can be any comparator operator ($<$, $<$=, $>$, $>$=, ==, !=). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_frame_a354aa4562f15654a670a577229437cce}{append\+Row}} (std\+::vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$ row)
+\begin{DoxyCompactList}\small\item\em Appends a row to the \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_frame_acc0cd13c06311cbc5791c2096def5521}{append\+Rows}} (\mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$other)
+\begin{DoxyCompactList}\small\item\em Appends all rows of the passed-\/in Data\+Frame$\ast$ to the end of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_data_frame_a1812706a2c39333650f460293c78151f}{set}} (\mbox{\hyperlink{struct_generic}{Generic}} $\ast$generic, int row, int col)
+\begin{DoxyCompactList}\small\item\em Sets the value at the passed-\/in row and column. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_generic}{Generic}} $\ast$ \mbox{\hyperlink{class_data_frame_a33ded23b6ee55488aa1f7f012a133b5d}{get}} (int row, int col) const
+\begin{DoxyCompactList}\small\item\em Returns the value at the passed-\/in row and column. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$ \mbox{\hyperlink{class_data_frame_a9496a8c4ea99bcd31782e7104bdfb19e}{get\+Row}} (int row) const
+\begin{DoxyCompactList}\small\item\em Returns row at the specified index. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_data_frame_a48671d2f0fa73075cee90ea452037548}{get\+Col\+Name}} (int col\+Index) const
+\begin{DoxyCompactList}\small\item\em Returns the column name at the specified column index. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_data_frame_a3dbf592f17efce18a49f99c36fb94f09}{get\+Col\+Names}} () const
+\begin{DoxyCompactList}\small\item\em Returns a vector containing all column names. \end{DoxyCompactList}\item 
+Generic\+Type \mbox{\hyperlink{class_data_frame_a595964bbcc2dfad458da5575282541bb}{get\+Col\+Type}} (int col\+Index) const
+\begin{DoxyCompactList}\small\item\em Returns the Generic\+Type of data on the specified column. \end{DoxyCompactList}\item 
+std\+::vector$<$ Generic\+Type $>$ \mbox{\hyperlink{class_data_frame_a8df1e3be23793ccc53540a9280921160}{get\+Col\+Types}} () const
+\begin{DoxyCompactList}\small\item\em Returns a vector containing the Generic\+Type of data in each column. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_data_frame_a94e911e4e9bae2a33bd60cb94533682a}{rows}} () const
+\begin{DoxyCompactList}\small\item\em Counts the number of rows of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_data_frame_a44f9cedce4a7aff87a7afe842e82d022}{cols}} () const
+\begin{DoxyCompactList}\small\item\em Counts the number of columns of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_data_frame_af290fe8f0aa424b715d12f03bcc088e3}{average}} (int col) const
+\begin{DoxyCompactList}\small\item\em Returns the average of all values in the specified row. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_data_frame_ae8baea1e0005895e8b18870befe21112}\label{class_data_frame_ae8baea1e0005895e8b18870befe21112}} 
+\mbox{\hyperlink{class_data_frame_ae8baea1e0005895e8b18870befe21112}{$\sim$\+Data\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em Destructor, deletes the outer vector of \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is a matrix where each row corresponds to a data entry and each column of that row representing a characteristic of that data entry. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_data_frame_a7c496a98d37bd4f31f7e2f9b10620d4b}\label{class_data_frame_a7c496a98d37bd4f31f7e2f9b10620d4b}} 
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{DataFrame()}{DataFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Data\+Frame\+::\+Data\+Frame (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$}]{col\+Names }\end{DoxyParamCaption})}
+
+
+
+Constructs an empty \mbox{\hyperlink{class_data_frame}{Data\+Frame}} with the specified column names. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+Names} & a vector containing the names of the \mbox{\hyperlink{class_data_frame}{Data\+Frame}}\textquotesingle{}s columns \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_data_frame_a6374c082b9e08b06f54bb88c2816e832}\label{class_data_frame_a6374c082b9e08b06f54bb88c2816e832}} 
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{DataFrame()}{DataFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Data\+Frame\+::\+Data\+Frame (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{class_data_frame}{Data\+Frame}} from a file. The format must be a comma separated list, with each row corresponding to a data entry, or \mbox{\hyperlink{class_data_frame}{Data\+Frame}} row. The first row contains the column names. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & the name of the file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+assumes proper file format 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_data_frame_ae5a6d2433e452dd6ef4bb416c30d0e17}\label{class_data_frame_ae5a6d2433e452dd6ef4bb416c30d0e17}} 
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\index{DataFrame@{DataFrame}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{DataFrame()}{DataFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Data\+Frame\+::\+Data\+Frame (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$$>$ $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{class_data_frame}{Data\+Frame}} with no column names containing the passed-\/in data in a 2D vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & the \mbox{\hyperlink{class_data_frame}{Data\+Frame}} data \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if passed a nullptr \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_data_frame_a354aa4562f15654a670a577229437cce}\label{class_data_frame_a354aa4562f15654a670a577229437cce}} 
+\index{DataFrame@{DataFrame}!appendRow@{appendRow}}
+\index{appendRow@{appendRow}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{appendRow()}{appendRow()}}
+{\footnotesize\ttfamily void Data\+Frame\+::append\+Row (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$}]{row }\end{DoxyParamCaption})}
+
+
+
+Appends a row to the \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & a vector to append as a row to the \mbox{\hyperlink{class_data_frame}{Data\+Frame}} data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+assumes the passed-\/in row contains the same columns as this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}, and contains valid data 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the column count for this \mbox{\hyperlink{class_data_frame}{Data\+Frame}} and the the row to append are not the same \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_acc0cd13c06311cbc5791c2096def5521}\label{class_data_frame_acc0cd13c06311cbc5791c2096def5521}} 
+\index{DataFrame@{DataFrame}!appendRows@{appendRows}}
+\index{appendRows@{appendRows}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{appendRows()}{appendRows()}}
+{\footnotesize\ttfamily void Data\+Frame\+::append\+Rows (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$}]{other }\end{DoxyParamCaption})}
+
+
+
+Appends all rows of the passed-\/in Data\+Frame$\ast$ to the end of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & the \mbox{\hyperlink{class_data_frame}{Data\+Frame}} to append to this one \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if passed a nullptr or the Data\+Frames do not contain the same number of columns. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_af290fe8f0aa424b715d12f03bcc088e3}\label{class_data_frame_af290fe8f0aa424b715d12f03bcc088e3}} 
+\index{DataFrame@{DataFrame}!average@{average}}
+\index{average@{average}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{average()}{average()}}
+{\footnotesize\ttfamily double Data\+Frame\+::average (\begin{DoxyParamCaption}\item[{int}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Returns the average of all values in the specified row. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col} & the index of the column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double the average 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+the column must contain numeric data 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em domain\+\_\+error} & if \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is empty \\
+\hline
+{\em out\+\_\+of\+\_\+range} & if column index is out of bounds \\
+\hline
+{\em domain\+\_\+error} & if the column does not contain double values \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a44f9cedce4a7aff87a7afe842e82d022}\label{class_data_frame_a44f9cedce4a7aff87a7afe842e82d022}} 
+\index{DataFrame@{DataFrame}!cols@{cols}}
+\index{cols@{cols}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily int Data\+Frame\+::cols (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Counts the number of columns of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. 
+
+\begin{DoxyReturn}{Returns}
+int the column count 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+assumes every row contains the same number of columns 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{class_data_frame_a9a8fe147711bd6b95337677d25f8e429}\label{class_data_frame_a9a8fe147711bd6b95337677d25f8e429}} 
+\index{DataFrame@{DataFrame}!filter@{filter}}
+\index{filter@{filter}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$ Data\+Frame\+::filter (\begin{DoxyParamCaption}\item[{std\+::string}]{condition }\end{DoxyParamCaption}) const}
+
+
+
+Returns a new Data\+Frame$\ast$ containing all rows where the specified condition is met. The format is \char`\"{}\+COLUMN\+\_\+\+NAME $<$ VALUE\char`\"{}, where $<$ can be any comparator operator ($<$, $<$=, $>$, $>$=, ==, !=). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em condition} & the condition to filter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame$\ast$ a new \mbox{\hyperlink{class_data_frame}{Data\+Frame}} containing the filtered rows 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+assumes the passed in condition has a valid operator, valid column name, and valid condition of the same type (double, string, etc) as the Generic$\ast$ values stored in the \mbox{\hyperlink{class_data_frame}{Data\+Frame}}\textquotesingle{}s column 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em domain\+\_\+error} & if the \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is empty \\
+\hline
+{\em invalid\+\_\+argument} & if an invalid condition is given \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a33ded23b6ee55488aa1f7f012a133b5d}\label{class_data_frame_a33ded23b6ee55488aa1f7f012a133b5d}} 
+\index{DataFrame@{DataFrame}!get@{get}}
+\index{get@{get}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ Data\+Frame\+::get (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption}) const}
+
+
+
+Returns the value at the passed-\/in row and column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the row \\
+\hline
+{\em col} & the column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Generic$\ast$ the value at the passed-\/in row and column 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em out\+\_\+of\+\_\+range} & if the row or column is out of bounds \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a48671d2f0fa73075cee90ea452037548}\label{class_data_frame_a48671d2f0fa73075cee90ea452037548}} 
+\index{DataFrame@{DataFrame}!getColName@{getColName}}
+\index{getColName@{getColName}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{getColName()}{getColName()}}
+{\footnotesize\ttfamily string Data\+Frame\+::get\+Col\+Name (\begin{DoxyParamCaption}\item[{int}]{col\+Index }\end{DoxyParamCaption}) const}
+
+
+
+Returns the column name at the specified column index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+Index} & the index of the column \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string the column\textquotesingle{}s name 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em domain\+\_\+error} & if no column names are stored for this \mbox{\hyperlink{class_data_frame}{Data\+Frame}} \\
+\hline
+{\em out\+\_\+of\+\_\+range} & if the column index is out of bounds \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a3dbf592f17efce18a49f99c36fb94f09}\label{class_data_frame_a3dbf592f17efce18a49f99c36fb94f09}} 
+\index{DataFrame@{DataFrame}!getColNames@{getColNames}}
+\index{getColNames@{getColNames}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{getColNames()}{getColNames()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Data\+Frame\+::get\+Col\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector containing all column names. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::string$>$ the column names 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_data_frame_a595964bbcc2dfad458da5575282541bb}\label{class_data_frame_a595964bbcc2dfad458da5575282541bb}} 
+\index{DataFrame@{DataFrame}!getColType@{getColType}}
+\index{getColType@{getColType}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{getColType()}{getColType()}}
+{\footnotesize\ttfamily Generic\+Type Data\+Frame\+::get\+Col\+Type (\begin{DoxyParamCaption}\item[{int}]{col\+Index }\end{DoxyParamCaption}) const}
+
+
+
+Returns the Generic\+Type of data on the specified column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em col\+Index} & the column index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Generic\+Type the type stored at the column 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+assumes the entire column stores the same data type 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em range\+\_\+error} & if \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is empty \\
+\hline
+{\em out\+\_\+of\+\_\+range} & if column index is out of bounds \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a8df1e3be23793ccc53540a9280921160}\label{class_data_frame_a8df1e3be23793ccc53540a9280921160}} 
+\index{DataFrame@{DataFrame}!getColTypes@{getColTypes}}
+\index{getColTypes@{getColTypes}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{getColTypes()}{getColTypes()}}
+{\footnotesize\ttfamily vector$<$ Generic\+Type $>$ Data\+Frame\+::get\+Col\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector containing the Generic\+Type of data in each column. 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Generic\+Type$>$ the column types 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+assumes each column of the \mbox{\hyperlink{class_data_frame}{Data\+Frame}} contains data of a single type 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em range\+\_\+error} & if \mbox{\hyperlink{class_data_frame}{Data\+Frame}} is empty \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a9496a8c4ea99bcd31782e7104bdfb19e}\label{class_data_frame_a9496a8c4ea99bcd31782e7104bdfb19e}} 
+\index{DataFrame@{DataFrame}!getRow@{getRow}}
+\index{getRow@{getRow}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{getRow()}{getRow()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{struct_generic}{Generic}} $\ast$ $>$ Data\+Frame\+::get\+Row (\begin{DoxyParamCaption}\item[{int}]{row }\end{DoxyParamCaption}) const}
+
+
+
+Returns row at the specified index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the index of the row \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$\+Generic$\ast$$>$ the row 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em out\+\_\+of\+\_\+range} & if the row is out of bounds \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a94e911e4e9bae2a33bd60cb94533682a}\label{class_data_frame_a94e911e4e9bae2a33bd60cb94533682a}} 
+\index{DataFrame@{DataFrame}!rows@{rows}}
+\index{rows@{rows}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily int Data\+Frame\+::rows (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Counts the number of rows of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}. 
+
+\begin{DoxyReturn}{Returns}
+int the row count 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_data_frame_a1812706a2c39333650f460293c78151f}\label{class_data_frame_a1812706a2c39333650f460293c78151f}} 
+\index{DataFrame@{DataFrame}!set@{set}}
+\index{set@{set}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void Data\+Frame\+::set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_generic}{Generic}} $\ast$}]{generic,  }\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Sets the value at the passed-\/in row and column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em generic} & the value to set \\
+\hline
+{\em row} & the row to set the value \\
+\hline
+{\em col} & the column to set the value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+assumes the passed-\/in value is the same type as all other values in the \mbox{\hyperlink{class_data_frame}{Data\+Frame}}\textquotesingle{}s column 
+\end{DoxyPrecond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em out\+\_\+of\+\_\+range} & if the row or column is out of bounds \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_a8f2b84aac6eb64b519d4ba980e55adac}\label{class_data_frame_a8f2b84aac6eb64b519d4ba980e55adac}} 
+\index{DataFrame@{DataFrame}!slice@{slice}}
+\index{slice@{slice}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{slice()}{slice()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_data_frame}{Data\+Frame}} $\ast$ Data\+Frame\+::slice (\begin{DoxyParamCaption}\item[{int}]{start\+Index,  }\item[{int}]{end\+Index }\end{DoxyParamCaption}) const}
+
+
+
+Returns a new Data\+Frame$\ast$ containing all rows of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}}, from the start index to end index, exclusive. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Index} & the starting row index \\
+\hline
+{\em end\+Index} & the ending row index, exclusive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data\+Frame$\ast$ containing the specified rows of this \mbox{\hyperlink{class_data_frame}{Data\+Frame}} 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em out\+\_\+of\+\_\+range} & if start index is greater than end index, or either index is negative or greater than maximum row index \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{class_data_frame_ad5ef91c537539c5b39dded6723e747e4}\label{class_data_frame_ad5ef91c537539c5b39dded6723e747e4}} 
+\index{DataFrame@{DataFrame}!sort@{sort}}
+\index{sort@{sort}!DataFrame@{DataFrame}}
+\doxysubsubsection{\texorpdfstring{sort()}{sort()}}
+{\footnotesize\ttfamily void Data\+Frame\+::sort (\begin{DoxyParamCaption}\item[{int}]{sortindex }\end{DoxyParamCaption})}
+
+
+
+Sorts this \mbox{\hyperlink{class_data_frame}{Data\+Frame}} on the specified column index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sortindex} & the column index to sort on \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em out\+\_\+of\+\_\+range} & if the passed-\/in column is negative or greater than the maximum column index \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Data\+Frame.\+h\item 
+\mbox{\hyperlink{_data_frame_8cpp}{Data\+Frame.\+cpp}}\end{DoxyCompactItemize}

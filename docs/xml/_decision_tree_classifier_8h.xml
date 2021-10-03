@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="_decision_tree_classifier_8h" kind="file" language="C++">
+    <compoundname>DecisionTreeClassifier.h</compoundname>
+    <includes refid="_decision_tree_base_8h" local="yes">DecisionTreeBase.h</includes>
+    <includedby refid="_decision_tree_classifier_8cpp" local="yes">DecisionTreeClassifier.cpp</includedby>
+    <includedby refid="test_main_8cpp" local="yes">testMain.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>DecisionTreeBase.h</label>
+        <link refid="_decision_tree_base_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>unordered_set</label>
+      </node>
+      <node id="5">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h_source"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>GenericTypeWrapper.h</label>
+        <link refid="_generic_type_wrapper_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DecisionTreeClassifier.h</label>
+        <link refid="_decision_tree_classifier_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>DecisionNode.h</label>
+        <link refid="_decision_node_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="class_decision_tree_classifier" prot="public">DecisionTreeClassifier</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DecisionTreeClassifier.h"/>
+  </compounddef>
+</doxygen>

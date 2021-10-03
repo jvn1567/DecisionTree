@@ -1,0 +1,73 @@
+\hypertarget{_orbits_8cpp}{}\doxysection{Orbits.\+cpp File Reference}
+\label{_orbits_8cpp}\index{Orbits.cpp@{Orbits.cpp}}
+{\ttfamily \#include \char`\"{}Orbits.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Moves \mbox{\hyperlink{_orbits_8cpp_a6a6a522373b50b4ae018aee15659dcf9}{get\+Move}} (long current\+Turn, Movesets move\+Set)
+\begin{DoxyCompactList}\small\item\em Get the move direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_orbits_8cpp_af419f555abd9e28a8579376cb84f2ecc}{update\+Coordinates}} (int \&row, int \&col, Moves move, int grid\+Size)
+\begin{DoxyCompactList}\small\item\em Updates the coordinates based on the specified move. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+John Nguyen, Joshua Goldberg (\href{mailto:jvn1567@gmail.com}{\texttt{ jvn1567@gmail.\+com}}, \href{mailto:J.GOLDBERG4674@edmail.edcc.edu}{\texttt{ J.\+GOLDBERG4674@edmail.\+edcc.\+edu}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/06-\/12
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_orbits_8cpp_a6a6a522373b50b4ae018aee15659dcf9}\label{_orbits_8cpp_a6a6a522373b50b4ae018aee15659dcf9}} 
+\index{Orbits.cpp@{Orbits.cpp}!getMove@{getMove}}
+\index{getMove@{getMove}!Orbits.cpp@{Orbits.cpp}}
+\doxysubsubsection{\texorpdfstring{getMove()}{getMove()}}
+{\footnotesize\ttfamily Moves get\+Move (\begin{DoxyParamCaption}\item[{long}]{current\+Turn,  }\item[{Movesets}]{move\+Set }\end{DoxyParamCaption})}
+
+
+
+Get the move direction. 
+
+\begin{DoxyPrecond}{Precondition}
+Planets are placed in the top right corner of their orbits.
+\end{DoxyPrecond}
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Turn} & Current iteration in the simulation. \\
+\hline
+{\em move\+Set} & Characterizes orbit path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Moves Direction. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_orbits_8cpp_af419f555abd9e28a8579376cb84f2ecc}\label{_orbits_8cpp_af419f555abd9e28a8579376cb84f2ecc}} 
+\index{Orbits.cpp@{Orbits.cpp}!updateCoordinates@{updateCoordinates}}
+\index{updateCoordinates@{updateCoordinates}!Orbits.cpp@{Orbits.cpp}}
+\doxysubsubsection{\texorpdfstring{updateCoordinates()}{updateCoordinates()}}
+{\footnotesize\ttfamily void update\+Coordinates (\begin{DoxyParamCaption}\item[{int \&}]{row,  }\item[{int \&}]{col,  }\item[{Moves}]{move,  }\item[{int}]{grid\+Size }\end{DoxyParamCaption})}
+
+
+
+Updates the coordinates based on the specified move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rows} & Vertical positioning in the simulation window. \\
+\hline
+{\em cols} & Horizontal positioning in the simulation window. \\
+\hline
+{\em move} & Direction. \\
+\hline
+{\em grid\+Size} & Size of grid to handle off-\/mapping (when an object moves past the boundaries, it appears on the other side of the grid). \\
+\hline
+\end{DoxyParams}

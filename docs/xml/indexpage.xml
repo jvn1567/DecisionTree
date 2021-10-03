@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>DecisionTree</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_decision_tree_classifier" kindref="compound">DecisionTreeClassifier</ref> is a C++ implementation of a decision tree. A simple dataframe class is implemented to aide the construction of the tree and data processing.</para>
+<sect1 id="index_1mainpage-links">
+<title>Links</title>
+<para><itemizedlist>
+<listitem><para>Project homepage <mdash/> <ulink url="https://github.com/jvn1567/DecisionTree">https://github.com/jvn1567/DecisionTree</ulink></para>
+</listitem><listitem><para>GitHub <mdash/> <ulink url="https://github.com/jvn1567">https://github.com/jvn1567</ulink>, <ulink url="https://github.com/GoldbergData">https://github.com/GoldbergData</ulink></para>
+</listitem><listitem><para>Twitter <mdash/> <ulink url="https://twitter.com/GoldbergData">https://twitter.com/GoldbergData</ulink></para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="index_1mainpage-license">
+<title>License</title>
+<para>DecisionTree is licensed under the MIT/Expat license:</para>
+<para><blockquote><para>Copyright © 2021 John Nguyen and Joshua Goldberg</para>
+<para>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</para>
+<para>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</para>
+<para>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</para>
+<para></para>
+</blockquote></para>
+</sect1>
+    </detaileddescription>
+    <location file="mainpage.dox"/>
+  </compounddef>
+</doxygen>

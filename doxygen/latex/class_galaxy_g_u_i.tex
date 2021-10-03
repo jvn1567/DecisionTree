@@ -1,0 +1,178 @@
+\hypertarget{class_galaxy_g_u_i}{}\doxysection{Galaxy\+GUI Class Reference}
+\label{class_galaxy_g_u_i}\index{GalaxyGUI@{GalaxyGUI}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_galaxy_g_u_i_abe98bc182652186248dc55385ec6a5f2}{Galaxy\+GUI}} (int window\+Size, int square\+Size)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_galaxy}{Galaxy}} GUI object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_ac37f8c9ec31ce172870eeee1791ca152}\label{class_galaxy_g_u_i_ac37f8c9ec31ce172870eeee1791ca152}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_ac37f8c9ec31ce172870eeee1791ca152}{set\+Map\+File}} ()
+\begin{DoxyCompactList}\small\item\em Set the Map File to load from for initial \mbox{\hyperlink{class_galaxy}{Galaxy}} state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_a703991a6b66717767f51b381f7d45859}\label{class_galaxy_g_u_i_a703991a6b66717767f51b381f7d45859}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a703991a6b66717767f51b381f7d45859}{check\+Image}} ()
+\begin{DoxyCompactList}\small\item\em Checks which radio button is selected, sets the background image, and calls \mbox{\hyperlink{class_galaxy_g_u_i_a0d39db7c51cd1c20f9912e3020346b9e}{set\+Image()}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a0d39db7c51cd1c20f9912e3020346b9e}{set\+Image}} (string image\+File)
+\begin{DoxyCompactList}\small\item\em Set the background image and redraws the simulation window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_a9d5b08aac681145115c3e2be23aedfa2}\label{class_galaxy_g_u_i_a9d5b08aac681145115c3e2be23aedfa2}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a9d5b08aac681145115c3e2be23aedfa2}{create\+Buttons}} ()
+\begin{DoxyCompactList}\small\item\em Create Button objects and click/timer listeners for each button. The buttons created include\+: SET MAP, START, STOP, and RESET. Certain buttons are disabled when appropriate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a77e802fceefeee81ea6af362e9c1496a}{create\+Single\+Radio}} (string text, GRadio\+Button $\ast$$\ast$name\+Out)
+\begin{DoxyCompactList}\small\item\em Create a single radio button object to control the background image. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_a2520d2e558b23f560caaa85c8ce6dfbf}\label{class_galaxy_g_u_i_a2520d2e558b23f560caaa85c8ce6dfbf}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a2520d2e558b23f560caaa85c8ce6dfbf}{create\+Radio\+Buttons}} ()
+\begin{DoxyCompactList}\small\item\em Create radio button objects to control the background image. This method also sets up a timer listener to check which radio button (background) is selected. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_a089cbe5ad71bc5a93b40dc31b144091d}\label{class_galaxy_g_u_i_a089cbe5ad71bc5a93b40dc31b144091d}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a089cbe5ad71bc5a93b40dc31b144091d}{create\+Map\+Chooser}} ()
+\begin{DoxyCompactList}\small\item\em Create a dropdown menu object that allows to change the map file used to initialize the grid on start. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_a1e3a116b30b5f9b4b3704086848125de}\label{class_galaxy_g_u_i_a1e3a116b30b5f9b4b3704086848125de}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_a1e3a116b30b5f9b4b3704086848125de}{tick}} ()
+\begin{DoxyCompactList}\small\item\em Iterates the simulation by one move. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_galaxy_g_u_i_ae40bcb104b8d3e4d4fbadf397e2c457f}\label{class_galaxy_g_u_i_ae40bcb104b8d3e4d4fbadf397e2c457f}} 
+void \mbox{\hyperlink{class_galaxy_g_u_i_ae40bcb104b8d3e4d4fbadf397e2c457f}{redraw}} ()
+\begin{DoxyCompactList}\small\item\em Redraws the objects of the simulation window. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_galaxy_g_u_i_ab899eada60b91c71ec3c16a429e94126}{draw\+Space\+Object}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$space\+Object, int row, int col)
+\begin{DoxyCompactList}\small\item\em Draws a single \mbox{\hyperlink{class_space_object}{Space\+Object}} (planet or star) and the the occupants. Occupants are represented by the first letter of their alien race name and a percentage representing fullness of the planet with respect to max population of the planet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_galaxy_g_u_i_acf1af1bd9cafbe92b292b2c9add38b66}{draw\+Spaceship}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$spaceship, int row, int col)
+\begin{DoxyCompactList}\small\item\em Draws a single \mbox{\hyperlink{class_spaceship}{Spaceship}} facing the direction of its last move. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_galaxy_g_u_i_aace9dad5be305079aae489e17985bb50}{draw\+Explosion}} (\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$explosion, int row, int col)
+\begin{DoxyCompactList}\small\item\em Draws an explosion, which occurs when a spaceship loses a battle. Explosions start at a peak stage (image size) and reduce in stage (image size) over nine simulation iterations. This results in an \char`\"{}animated\char`\"{} explosion. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_galaxy_g_u_i_a3c636ca27dc27dd5d44d07acc06c7537}{get\+Ship\+Image}} (string name, Moves last\+Move) const
+\begin{DoxyCompactList}\small\item\em Get the filename for the image of a spaceship. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_galaxy_g_u_i_abe98bc182652186248dc55385ec6a5f2}\label{class_galaxy_g_u_i_abe98bc182652186248dc55385ec6a5f2}} 
+\index{GalaxyGUI@{GalaxyGUI}!GalaxyGUI@{GalaxyGUI}}
+\index{GalaxyGUI@{GalaxyGUI}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{GalaxyGUI()}{GalaxyGUI()}}
+{\footnotesize\ttfamily Galaxy\+GUI\+::\+Galaxy\+GUI (\begin{DoxyParamCaption}\item[{int}]{window\+Size,  }\item[{int}]{square\+Size }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{class_galaxy}{Galaxy}} GUI object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em window\+Size} & Width/height of grid area, assuming a square. \\
+\hline
+{\em square\+Size} & Number of pixel per grid location. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_galaxy_g_u_i_a77e802fceefeee81ea6af362e9c1496a}\label{class_galaxy_g_u_i_a77e802fceefeee81ea6af362e9c1496a}} 
+\index{GalaxyGUI@{GalaxyGUI}!createSingleRadio@{createSingleRadio}}
+\index{createSingleRadio@{createSingleRadio}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{createSingleRadio()}{createSingleRadio()}}
+{\footnotesize\ttfamily void Galaxy\+GUI\+::create\+Single\+Radio (\begin{DoxyParamCaption}\item[{string}]{text,  }\item[{GRadio\+Button $\ast$$\ast$}]{name\+Out }\end{DoxyParamCaption})}
+
+
+
+Create a single radio button object to control the background image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Label of radio\+Button. \\
+\hline
+{\em name\+Out} & An address of a pointer to a radio button. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_galaxy_g_u_i_aace9dad5be305079aae489e17985bb50}\label{class_galaxy_g_u_i_aace9dad5be305079aae489e17985bb50}} 
+\index{GalaxyGUI@{GalaxyGUI}!drawExplosion@{drawExplosion}}
+\index{drawExplosion@{drawExplosion}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{drawExplosion()}{drawExplosion()}}
+{\footnotesize\ttfamily void Galaxy\+GUI\+::draw\+Explosion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{explosion,  }\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Draws an explosion, which occurs when a spaceship loses a battle. Explosions start at a peak stage (image size) and reduce in stage (image size) over nine simulation iterations. This results in an \char`\"{}animated\char`\"{} explosion. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em explosion} & An explosion. \\
+\hline
+{\em rows} & Vertical positioning in the simulation window. \\
+\hline
+{\em cols} & Horizontal positioning in the simulation window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_galaxy_g_u_i_ab899eada60b91c71ec3c16a429e94126}\label{class_galaxy_g_u_i_ab899eada60b91c71ec3c16a429e94126}} 
+\index{GalaxyGUI@{GalaxyGUI}!drawSpaceObject@{drawSpaceObject}}
+\index{drawSpaceObject@{drawSpaceObject}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{drawSpaceObject()}{drawSpaceObject()}}
+{\footnotesize\ttfamily void Galaxy\+GUI\+::draw\+Space\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{space\+Object,  }\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Draws a single \mbox{\hyperlink{class_space_object}{Space\+Object}} (planet or star) and the the occupants. Occupants are represented by the first letter of their alien race name and a percentage representing fullness of the planet with respect to max population of the planet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em space\+Object} & Either a star or planet. \\
+\hline
+{\em rows} & Vertical positioning in the simulation window. \\
+\hline
+{\em cols} & Horizontal positioning in the simulation window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_galaxy_g_u_i_acf1af1bd9cafbe92b292b2c9add38b66}\label{class_galaxy_g_u_i_acf1af1bd9cafbe92b292b2c9add38b66}} 
+\index{GalaxyGUI@{GalaxyGUI}!drawSpaceship@{drawSpaceship}}
+\index{drawSpaceship@{drawSpaceship}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{drawSpaceship()}{drawSpaceship()}}
+{\footnotesize\ttfamily void Galaxy\+GUI\+::draw\+Spaceship (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_space_object}{Space\+Object}} $\ast$}]{spaceship,  }\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Draws a single \mbox{\hyperlink{class_spaceship}{Spaceship}} facing the direction of its last move. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spaceship} & A spaceship. \\
+\hline
+{\em rows} & Vertical positioning in the simulation window. \\
+\hline
+{\em cols} & Horizontal positioning in the simulation window. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_galaxy_g_u_i_a3c636ca27dc27dd5d44d07acc06c7537}\label{class_galaxy_g_u_i_a3c636ca27dc27dd5d44d07acc06c7537}} 
+\index{GalaxyGUI@{GalaxyGUI}!getShipImage@{getShipImage}}
+\index{getShipImage@{getShipImage}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{getShipImage()}{getShipImage()}}
+{\footnotesize\ttfamily string Galaxy\+GUI\+::get\+Ship\+Image (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{Moves}]{last\+Move }\end{DoxyParamCaption}) const}
+
+
+
+Get the filename for the image of a spaceship. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Alien type. \\
+\hline
+{\em last\+Move} & The last move of a spaceship used to determine which spaceship image to draw. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string A filename. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_galaxy_g_u_i_a0d39db7c51cd1c20f9912e3020346b9e}\label{class_galaxy_g_u_i_a0d39db7c51cd1c20f9912e3020346b9e}} 
+\index{GalaxyGUI@{GalaxyGUI}!setImage@{setImage}}
+\index{setImage@{setImage}!GalaxyGUI@{GalaxyGUI}}
+\doxysubsubsection{\texorpdfstring{setImage()}{setImage()}}
+{\footnotesize\ttfamily void Galaxy\+GUI\+::set\+Image (\begin{DoxyParamCaption}\item[{string}]{image\+File }\end{DoxyParamCaption})}
+
+
+
+Set the background image and redraws the simulation window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+File} & The file name of a background image. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_galaxy_g_u_i_8h}{Galaxy\+GUI.\+h}}\item 
+\mbox{\hyperlink{_galaxy_g_u_i_8cpp}{Galaxy\+GUI.\+cpp}}\end{DoxyCompactItemize}

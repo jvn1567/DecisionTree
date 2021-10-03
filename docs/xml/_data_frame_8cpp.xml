@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="_data_frame_8cpp" kind="file" language="C++">
+    <compoundname>DataFrame.cpp</compoundname>
+    <includes local="no">sstream</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">algorithm</includes>
+    <includes local="no">stdexcept</includes>
+    <includes refid="_data_frame_8h" local="yes">DataFrame.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>iomanip</label>
+      </node>
+      <node id="6">
+        <label>stdexcept</label>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>unordered_set</label>
+      </node>
+      <node id="3">
+        <label>fstream</label>
+      </node>
+      <node id="7">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h_source"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>sstream</label>
+      </node>
+      <node id="9">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>algorithm</label>
+      </node>
+      <node id="11">
+        <label>GenericTypeWrapper.h</label>
+        <link refid="_generic_type_wrapper_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DataFrame.cpp</label>
+        <link refid="_data_frame_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespacestd">std</innernamespace>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_data_frame_8cpp_1a5ed1203e28c0f58ecc3bb2a4a2a48422" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ostream &amp;</type>
+        <definition>ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(ostream &amp;out, const DataFrame &amp;dataFrame)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_data_frame" kindref="compound">DataFrame</ref> &amp;</type>
+          <declname>dataFrame</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DataFrame.cpp" line="374" column="1" bodyfile="DataFrame.cpp" bodystart="374" bodyend="414"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This file implements the functions of <ref refid="_data_frame_8h_source" kindref="compound">DataFrame.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>John Nguyen (<ulink url="mailto:jvn1567@gmail.com">jvn1567@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="author"><para>Joshua Goldberg (<ulink url="mailto:joshgoldbergcode@gmail.com">joshgoldbergcode@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="version"><para>0.1 </para>
+</simplesect>
+<simplesect kind="date"><para>2021-10-01</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2021 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="DataFrame.cpp"/>
+  </compounddef>
+</doxygen>

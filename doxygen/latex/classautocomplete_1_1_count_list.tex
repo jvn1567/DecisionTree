@@ -1,0 +1,166 @@
+\hypertarget{classautocomplete_1_1_count_list}{}\doxysection{autocomplete\+::Count\+List Class Reference}
+\label{classautocomplete_1_1_count_list}\index{autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_a1fba8c6d2a4d3a829eb4136cf2652562}\label{classautocomplete_1_1_count_list_a1fba8c6d2a4d3a829eb4136cf2652562}} 
+\mbox{\hyperlink{classautocomplete_1_1_count_list_a1fba8c6d2a4d3a829eb4136cf2652562}{Count\+List}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Count List\+:\+: Count List object without a dictionary file. Use .\mbox{\hyperlink{classautocomplete_1_1_count_list_a4d921f760a29cf6bafd402767893577e}{add()}} to add to the empty object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classautocomplete_1_1_count_list_aa9027253e91cf5686add7c946aeeae29}{Count\+List}} (string file\+Name)
+\begin{DoxyCompactList}\small\item\em Construct a new Count List\+:\+: Count List object with a dictionary file. A Count List stores the words found in the dictionary file ordered by how many times each word appears. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classautocomplete_1_1_count_list_a4d921f760a29cf6bafd402767893577e}{add}} (\mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} word\+Count)
+\begin{DoxyCompactList}\small\item\em Adds a Word Count object to a \mbox{\hyperlink{classautocomplete_1_1_count_list}{Count\+List}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} \mbox{\hyperlink{classautocomplete_1_1_count_list_aa5d13e68b31200fcc0560767180f6c0b}{get}} (int index) const
+\begin{DoxyCompactList}\small\item\em Gets a Word Count object at a particular index. Assumes Count List has at least one Word Count. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classautocomplete_1_1_count_list_a25490beb37ffd61d6e5ac47b43c4a0f8}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Gets the size of Count List. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classautocomplete_1_1_count_list_adea9ad1bfa66dad36aa557c02eaf0588}{get\+Total\+Count}} () const
+\begin{DoxyCompactList}\small\item\em Gets the sum of all the frequencies of words. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ \mbox{\hyperlink{classautocomplete_1_1_count_list_af1527a27a5da1536571b7932099f19d8}{get\+Top}} (int amount) const
+\begin{DoxyCompactList}\small\item\em Gets the top n Word Counts sorted in the same order as they appear in Count List. Assumes Count List has at least one Word Count. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ \mbox{\hyperlink{classautocomplete_1_1_count_list_ae498802737804fbb5e2ca98282095368}{get\+Starting\+With}} (string prefix) const
+\begin{DoxyCompactList}\small\item\em Gets the Word Counts that begin with a prefix. Assumes Count List has at least one Word Count. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ \mbox{\hyperlink{classautocomplete_1_1_count_list_ad54500357e173a0b922f0606b89da92b}{get\+Starting\+With}} (string prefix, int max) const
+\begin{DoxyCompactList}\small\item\em Gets the top n Word Counts that begin with a prefix. Assumes Count List has at least one Word Count. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_aa9027253e91cf5686add7c946aeeae29}\label{classautocomplete_1_1_count_list_aa9027253e91cf5686add7c946aeeae29}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!CountList@{CountList}}
+\index{CountList@{CountList}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{CountList()}{CountList()}}
+{\footnotesize\ttfamily autocomplete\+::\+Count\+List\+::\+Count\+List (\begin{DoxyParamCaption}\item[{string}]{file\+Name }\end{DoxyParamCaption})}
+
+
+
+Construct a new Count List\+:\+: Count List object with a dictionary file. A Count List stores the words found in the dictionary file ordered by how many times each word appears. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & a file name to a dictionary file. The file is assumed to have space separated values\+: count phrase. For example, rows should appear in this format\+: 5 cat 2 dog 1 lizard \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_a4d921f760a29cf6bafd402767893577e}\label{classautocomplete_1_1_count_list_a4d921f760a29cf6bafd402767893577e}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!add@{add}}
+\index{add@{add}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void autocomplete\+::\+Count\+List\+::add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}}}]{word\+Count }\end{DoxyParamCaption})}
+
+
+
+Adds a Word Count object to a \mbox{\hyperlink{classautocomplete_1_1_count_list}{Count\+List}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word\+Count} & An object that stores an individual word and the frequency of the word. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_aa5d13e68b31200fcc0560767180f6c0b}\label{classautocomplete_1_1_count_list_aa5d13e68b31200fcc0560767180f6c0b}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!get@{get}}
+\index{get@{get}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} autocomplete\+::\+Count\+List\+::get (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Gets a Word Count object at a particular index. Assumes Count List has at least one Word Count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_a25490beb37ffd61d6e5ac47b43c4a0f8}\label{classautocomplete_1_1_count_list_a25490beb37ffd61d6e5ac47b43c4a0f8}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!getSize@{getSize}}
+\index{getSize@{getSize}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{getSize()}{getSize()}}
+{\footnotesize\ttfamily int autocomplete\+::\+Count\+List\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the size of Count List. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_ae498802737804fbb5e2ca98282095368}\label{classautocomplete_1_1_count_list_ae498802737804fbb5e2ca98282095368}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!getStartingWith@{getStartingWith}}
+\index{getStartingWith@{getStartingWith}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{getStartingWith()}{getStartingWith()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ autocomplete\+::\+Count\+List\+::get\+Starting\+With (\begin{DoxyParamCaption}\item[{string}]{prefix }\end{DoxyParamCaption}) const}
+
+
+
+Gets the Word Counts that begin with a prefix. Assumes Count List has at least one Word Count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & A string to filter by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+Word\+Count$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_ad54500357e173a0b922f0606b89da92b}\label{classautocomplete_1_1_count_list_ad54500357e173a0b922f0606b89da92b}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!getStartingWith@{getStartingWith}}
+\index{getStartingWith@{getStartingWith}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{getStartingWith()}{getStartingWith()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ autocomplete\+::\+Count\+List\+::get\+Starting\+With (\begin{DoxyParamCaption}\item[{string}]{prefix,  }\item[{int}]{max }\end{DoxyParamCaption}) const}
+
+
+
+Gets the top n Word Counts that begin with a prefix. Assumes Count List has at least one Word Count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em prefix} & A string to filter by. \\
+\hline
+{\em max} & Limits the number of Word Counts. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+Word\+Count$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_af1527a27a5da1536571b7932099f19d8}\label{classautocomplete_1_1_count_list_af1527a27a5da1536571b7932099f19d8}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!getTop@{getTop}}
+\index{getTop@{getTop}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{getTop()}{getTop()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classautocomplete_1_1_word_count}{Word\+Count}} $>$ autocomplete\+::\+Count\+List\+::get\+Top (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption}) const}
+
+
+
+Gets the top n Word Counts sorted in the same order as they appear in Count List. Assumes Count List has at least one Word Count. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & Specifies how many Word Counts to return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+Word\+Count$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classautocomplete_1_1_count_list_adea9ad1bfa66dad36aa557c02eaf0588}\label{classautocomplete_1_1_count_list_adea9ad1bfa66dad36aa557c02eaf0588}} 
+\index{autocomplete::CountList@{autocomplete::CountList}!getTotalCount@{getTotalCount}}
+\index{getTotalCount@{getTotalCount}!autocomplete::CountList@{autocomplete::CountList}}
+\doxysubsubsection{\texorpdfstring{getTotalCount()}{getTotalCount()}}
+{\footnotesize\ttfamily int autocomplete\+::\+Count\+List\+::get\+Total\+Count (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the sum of all the frequencies of words. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Count\+List.\+h\item 
+Count\+List.\+cpp\end{DoxyCompactItemize}

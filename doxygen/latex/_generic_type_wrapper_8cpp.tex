@@ -1,0 +1,284 @@
+\hypertarget{_generic_type_wrapper_8cpp}{}\doxysection{Generic\+Type\+Wrapper.\+cpp File Reference}
+\label{_generic_type_wrapper_8cpp}\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+
+
+Implementation of \mbox{\hyperlink{_generic_type_wrapper_8h}{Generic\+Type\+Wrapper.\+h}}.  
+
+
+{\ttfamily \#include \char`\"{}Generic\+Type\+Wrapper.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_afa581a6e7a6c7725f6a5855724969c4f}{operator==}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for equality (==). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_a661ac8759199a26648d57dd28d7e84e8}{operator$<$}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for less than ($<$). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_a9b37ee7c15461448152f68efaf57b3fb}{operator$>$}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for greater than ($>$). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_a82a7bcc3d50be4b883aba0d1b431a8ba}{operator$<$=}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for less than or equal to ($<$=). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_ad9ca42e991d26f6513f365df8c014e0c}{operator$>$=}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for greater than or equal to ($>$=). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_generic_type_wrapper_8cpp_a803b6c61724eb967787055758dc3ed18}{operator!=}} (const \mbox{\hyperlink{struct_generic}{Generic}} \&left, const \mbox{\hyperlink{struct_generic}{Generic}} \&right)
+\begin{DoxyCompactList}\small\item\em Compares two Generics for inequality (!=). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a41be8cd0008560c07cbcb591b33be0ce}\label{_generic_type_wrapper_8cpp_a41be8cd0008560c07cbcb591b33be0ce}} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&out, const \mbox{\hyperlink{struct_generic}{Generic}} \&generic)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_aec1e40205e68b2beccbb567a0a30bda3}\label{_generic_type_wrapper_8cpp_aec1e40205e68b2beccbb567a0a30bda3}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ab4824d6e68217ed8b727b945aa427320}\label{_generic_type_wrapper_8cpp_ab4824d6e68217ed8b727b945aa427320}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a871b2c2a890c0715d0115f3f16b536bd}\label{_generic_type_wrapper_8cpp_a871b2c2a890c0715d0115f3f16b536bd}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a78291e9ac99aabed0bd2674be62caef2}\label{_generic_type_wrapper_8cpp_a78291e9ac99aabed0bd2674be62caef2}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_addd2ee63270b1d08432fc2fc52cbfd69}\label{_generic_type_wrapper_8cpp_addd2ee63270b1d08432fc2fc52cbfd69}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a79d5508ec580557e03cda3f66696825c}\label{_generic_type_wrapper_8cpp_a79d5508ec580557e03cda3f66696825c}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{struct_integer}{Integer}} \&left, const \mbox{\hyperlink{struct_integer}{Integer}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_aaa0463a11f5cf24b5c02a892bbcb6536}\label{_generic_type_wrapper_8cpp_aaa0463a11f5cf24b5c02a892bbcb6536}} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&out, const \mbox{\hyperlink{struct_integer}{Integer}} \&integer)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_aff925eead57a2c82548e7a09fafd20aa}\label{_generic_type_wrapper_8cpp_aff925eead57a2c82548e7a09fafd20aa}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a499736fa4c7532402e23a7f85232284c}\label{_generic_type_wrapper_8cpp_a499736fa4c7532402e23a7f85232284c}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a3bac01deccee75994c221d14f8b844ab}\label{_generic_type_wrapper_8cpp_a3bac01deccee75994c221d14f8b844ab}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a72cdce5fedda04d9d3c64c331adc9e6b}\label{_generic_type_wrapper_8cpp_a72cdce5fedda04d9d3c64c331adc9e6b}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a9b9070fc270047eb43728721d2b86ccf}\label{_generic_type_wrapper_8cpp_a9b9070fc270047eb43728721d2b86ccf}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ae93b6c48a46e1b71a1bb25c3624bba5b}\label{_generic_type_wrapper_8cpp_ae93b6c48a46e1b71a1bb25c3624bba5b}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{struct_double}{Double}} \&left, const \mbox{\hyperlink{struct_double}{Double}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ab5409f2681d4589ff2c12c0f2de037ae}\label{_generic_type_wrapper_8cpp_ab5409f2681d4589ff2c12c0f2de037ae}} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&out, const \mbox{\hyperlink{struct_double}{Double}} \&doub)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a483931724196c580552b68751fb4d837}\label{_generic_type_wrapper_8cpp_a483931724196c580552b68751fb4d837}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a5158a142e0966685ec7fb4e147b24ef0}\label{_generic_type_wrapper_8cpp_a5158a142e0966685ec7fb4e147b24ef0}} 
+bool {\bfseries operator$<$} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ac96278a8cbe282632b11f0c8c007df0c}\label{_generic_type_wrapper_8cpp_ac96278a8cbe282632b11f0c8c007df0c}} 
+bool {\bfseries operator$>$} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a3bfb9217788a9978499b8d5696bb0ef2}\label{_generic_type_wrapper_8cpp_a3bfb9217788a9978499b8d5696bb0ef2}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ac1c1bb5dcf02aad3b2c0a1bf74a11cc9}\label{_generic_type_wrapper_8cpp_ac1c1bb5dcf02aad3b2c0a1bf74a11cc9}} 
+bool {\bfseries operator$<$=} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a112689eec28e0ca9489e8c4ec6a34493}\label{_generic_type_wrapper_8cpp_a112689eec28e0ca9489e8c4ec6a34493}} 
+bool {\bfseries operator$>$=} (const \mbox{\hyperlink{struct_string}{String}} \&left, const \mbox{\hyperlink{struct_string}{String}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ab1130e9c9d5305db07f1aaef23057d30}\label{_generic_type_wrapper_8cpp_ab1130e9c9d5305db07f1aaef23057d30}} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&out, const \mbox{\hyperlink{struct_string}{String}} \&str)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a2b7d3915427efbf4015865e7b7835cc0}\label{_generic_type_wrapper_8cpp_a2b7d3915427efbf4015865e7b7835cc0}} 
+bool {\bfseries operator==} (const \mbox{\hyperlink{struct_bool}{Bool}} \&left, const \mbox{\hyperlink{struct_bool}{Bool}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ac793dffdcd43e058ad2728229dac45f6}\label{_generic_type_wrapper_8cpp_ac793dffdcd43e058ad2728229dac45f6}} 
+bool {\bfseries operator!=} (const \mbox{\hyperlink{struct_bool}{Bool}} \&left, const \mbox{\hyperlink{struct_bool}{Bool}} \&right)
+\item 
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a8cee5a17a854c5b4e342d5c709557c78}\label{_generic_type_wrapper_8cpp_a8cee5a17a854c5b4e342d5c709557c78}} 
+ostream \& {\bfseries operator$<$$<$} (ostream \&out, const \mbox{\hyperlink{struct_bool}{Bool}} \&boolean)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of \mbox{\hyperlink{_generic_type_wrapper_8h}{Generic\+Type\+Wrapper.\+h}}. 
+
+\begin{DoxyAuthor}{Author}
+John Nguyen (\href{mailto:jvn1567@gmail.com}{\texttt{ jvn1567@gmail.\+com}}) 
+
+Joshua Goldberg (\href{mailto:joshgoldbergcode@gmail.com}{\texttt{ joshgoldbergcode@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/09-\/28
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a803b6c61724eb967787055758dc3ed18}\label{_generic_type_wrapper_8cpp_a803b6c61724eb967787055758dc3ed18}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for inequality (!=). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true not equal. 
+
+false equal. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a661ac8759199a26648d57dd28d7e84e8}\label{_generic_type_wrapper_8cpp_a661ac8759199a26648d57dd28d7e84e8}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for less than ($<$). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true less than. 
+
+false not less than. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a82a7bcc3d50be4b883aba0d1b431a8ba}\label{_generic_type_wrapper_8cpp_a82a7bcc3d50be4b883aba0d1b431a8ba}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}}
+{\footnotesize\ttfamily bool operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for less than or equal to ($<$=). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true less than or equal to. 
+
+false not less than or equal to. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_afa581a6e7a6c7725f6a5855724969c4f}\label{_generic_type_wrapper_8cpp_afa581a6e7a6c7725f6a5855724969c4f}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for equality (==). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true equal. 
+
+false not equal. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_a9b37ee7c15461448152f68efaf57b3fb}\label{_generic_type_wrapper_8cpp_a9b37ee7c15461448152f68efaf57b3fb}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}}
+{\footnotesize\ttfamily bool operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for greater than ($>$). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true greater than. 
+
+false not greater than. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{_generic_type_wrapper_8cpp_ad9ca42e991d26f6513f365df8c014e0c}\label{_generic_type_wrapper_8cpp_ad9ca42e991d26f6513f365df8c014e0c}} 
+\index{GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!GenericTypeWrapper.cpp@{GenericTypeWrapper.cpp}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}}
+{\footnotesize\ttfamily bool operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{left,  }\item[{const \mbox{\hyperlink{struct_generic}{Generic}} \&}]{right }\end{DoxyParamCaption})}
+
+
+
+Compares two Generics for greater than or equal to ($>$=). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & \\
+\hline
+{\em right} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true greater than or equal to. 
+
+false not greater than or equal to. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em invalid\+\_\+argument} & if the generics are not the same type, they cannot be compared. \\
+\hline
+\end{DoxyExceptions}
