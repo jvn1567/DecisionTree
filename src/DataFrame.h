@@ -85,8 +85,6 @@ private:
         bool inclusive
     ) const;
 
-    std::vector<int> generateRandomIndices(int n);
-
 public:
     /**
      * @brief Constructs and empty DataFrame with no column names.
@@ -214,7 +212,7 @@ public:
      * 
      * @return DataFrame* 
      */
-    DataFrame* shuffle();
+    void shuffle();
     DataFrame* sampleN(int n);
     DataFrame* sampleFrac(double fraction);
 

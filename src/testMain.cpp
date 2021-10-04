@@ -38,6 +38,7 @@ int main() {
 //     cout << firstTenRows << endl;
 
 //     cout << "NOW SHUFFLE..." << endl;
-//     cout << firstTenRows->shuffle() << endl;
+//     firstTenRows->shuffle();
+//     cout <<  firstTenRows << endl;
 //     cout << "SHUFFLED!" << endl;
 // }

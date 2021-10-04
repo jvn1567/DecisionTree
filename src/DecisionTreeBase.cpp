@@ -39,10 +39,9 @@ void DecisionTreeBase::fit(DataFrame* trainData, DecisionNode*& node) {
     if (trainData->rows() >= minSamplesSplit) {
         // split data
         int splitColumn; // If splittable, this should be populated by findSplit()
-        int rightCount = 0;
-        int leftCount = 0;
         Generic* splitValue = nullptr;
-        findSplit(trainData, splitColumn, nodeLoss, leftCount, rightCount, splitValue);
+        int leftCount = findSplit(trainData, splitColumn, nodeLoss, splitValue);
+        int rightCount = trainData->rows() - leftCount;
         bool splitable = leftCount > minSamplesLeaf && rightCount > minSamplesLeaf;
         // make branch node
         if (splitable) {
@@ -80,45 +79,42 @@ void DecisionTreeBase::fit(DataFrame* trainData, DecisionNode*& node) {
     }
 }
 
-void DecisionTreeBase::findSplit(
+int DecisionTreeBase::findSplit(
     DataFrame* trainData,
     int& bestCol,
-    double minLoss,
-    int& leftCount, 
-    int& rightCount, 
+    double minLoss, 
     Generic*& splitValue
-    ) {
+) {
+    int leftCount = -1;
     for (int col = 0; col < trainData->cols() - 1; col++) {
         GenericType type = trainData->get(0, col)->type();
+        int newLeftCount = -1;
         if (type == STRING) {
-            findRowSplitString(
-                col, trainData, bestCol, 
-                minLoss, leftCount, rightCount, splitValue
-            );
+            newLeftCount = findRowSplitString(col, trainData, bestCol, minLoss, splitValue);
         } else if (type == DOUBLE || type == INTEGER) {
-            findRowSplitDouble(
-                col, trainData, bestCol, 
-                minLoss, leftCount, rightCount, splitValue
-            );            
+            newLeftCount = findRowSplitDouble(col, trainData, bestCol, minLoss, splitValue);            
         } else {
             throw invalid_argument("DATA TYPE NOT SUPPORTED");
         }
+        if (newLeftCount != -1) {
+            leftCount = newLeftCount;
+        }
     }
+    return leftCount;
 }
 
-void DecisionTreeBase::findRowSplitString(
+int DecisionTreeBase::findRowSplitString(
     int col,
     DataFrame*& trainData,
     int& bestCol,
     double& minLoss,
-    int& leftCount, 
-    int& rightCount, 
     Generic*& splitValue
 ) {
     unordered_map<string, int> counts;
     for (int row = 0; row < trainData->rows(); row++) {
         counts[trainData->get(row, col)->getString()]++;
     }
+    int leftCount = -1;
     for (auto pair : counts) {
         string colName = trainData->getColName(col);
         DataFrame* left = trainData->filter(colName + "==" + pair.first);
@@ -133,21 +129,20 @@ void DecisionTreeBase::findRowSplitString(
             bestCol = col;
             splitValue = Generic::wrapPrimitive(pair.first);
             leftCount = left->rows();
-            rightCount = right->rows();
         }
-    }        
+    }
+    return leftCount;      
 }
 
-void DecisionTreeBase::findRowSplitDouble(
+int DecisionTreeBase::findRowSplitDouble(
     int col,
     DataFrame*& trainData,
     int& bestCol,
     double& minLoss,
-    int& leftCount, 
-    int& rightCount, 
     Generic*& splitValue
 ) {
     trainData->sort(col);
+    int leftCount = -1;
     for (int row = 1; row < trainData->rows(); row++) {
         DataFrame* left = trainData->slice(0, row);
         DataFrame* right = trainData->slice(row, trainData->rows());
@@ -159,14 +154,14 @@ void DecisionTreeBase::findRowSplitDouble(
         if (weightedLoss < minLoss) {
             minLoss = weightedLoss;
             bestCol = col;
-            double leftValue = ((Double*)trainData->get(row - 1, bestCol))->data;
-            double rightValue = ((Double*)trainData->get(row, bestCol))->data;
+            double leftValue = trainData->get(row - 1, bestCol)->getDouble();
+            double rightValue = trainData->get(row, bestCol)->getDouble();
             double value = (leftValue + rightValue) / 2.0;
             splitValue = Generic::wrapPrimitive(to_string(value));
             leftCount = left->rows();
-            rightCount = right->rows();
         }
-    }  
+    }
+    return leftCount;
 }
 
 void DecisionTreeBase::fit(DataFrame* trainData) {
@@ -189,15 +184,7 @@ void DecisionTreeBase::printTree(DecisionNode* node, int indents) {
         
         if (node->splitValue != nullptr) {
             printSpaces(indents);
-            string splitValue;
-            if (node->splitValue->type() == DOUBLE) {
-                splitValue = (node->splitValue)->getDouble();
-            } else if (node->splitValue->type() == STRING) {
-                splitValue = (node->splitValue)->getString();
-            } else {
-                throw invalid_argument("DATA TYPE NOT SUPPORTED");
-            }
-            cout << splitValue << endl;
+            cout << *node->splitValue << endl;
 
             printSpaces(indents);
             cout << node->splitColumn << endl;

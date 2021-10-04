@@ -26,6 +26,9 @@
  * 
  */
 class DecisionTreeBase {
+protected:
+    DecisionNode* root;
+    
 private:
     std::string lossCriterion;
     int maxDepth;
@@ -35,30 +38,24 @@ private:
     double minImpurityDecrease;
     int* featureImportance;
     void fit(DataFrame* trainData, DecisionNode*& node);    
-    void findSplit(
+    int findSplit(
         DataFrame* trainData,
         int& bestCol, 
         double minLoss,
-        int& leftCount,
-        int& rightCount,
         Generic*& splitValue
     );
-    void findRowSplitString(
+    int findRowSplitString(
         int col,
         DataFrame*& trainData,
         int& bestCol,
         double& minLoss,
-        int& leftCount, 
-        int& rightCount, 
         Generic*& splitValue
     );
-    void findRowSplitDouble(
+    int findRowSplitDouble(
         int col,
         DataFrame*& trainData,
         int& bestCol,
         double& minLoss,
-        int& leftCount, 
-        int& rightCount, 
         Generic*& splitValue
     );
     void printTree(DecisionNode* node, int indents);
@@ -103,9 +100,6 @@ public:
     virtual DataFrame* predict(DataFrame* testData) = 0;
     std::string getLossCriterion() const;
     void printTree();
-
-protected:
-    DecisionNode* root;
 };
 
 #endif

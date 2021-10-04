@@ -82,7 +82,7 @@ vector<vector<Generic*>>* DataFrame::sortMerge(vector<vector<Generic*>>* half1,
             index2++;
         }
     }
-    //push the rest of the unfinished half
+    // push the rest of the unfinished half
     while (index1 < half1->size()) {
         merged->push_back((*half1)[index1]);
         index1++;
@@ -353,34 +353,10 @@ DataFrame* DataFrame::filterEquals(int col, Generic* value, bool equals) const {
     return newDataFrame;
 }
 
-std::vector<int> DataFrame::generateRandomIndices(int n) {
-    // generate vector of indices to shuffle
-    vector<int> indices;
-    for (int i = 0; i < rows(); i++) {
-        indices.push_back(i);
-    }
-
-    std::random_device random_dev;
-    std::mt19937 generator(random_dev());
-    std::shuffle(indices.begin(), indices.end(), generator);
-    
-    // only return n indices
-    vector<int> indicesN;
-    for (int i = 0; i < n; i++) {
-        indicesN.push_back(indices[i]);
-    }    
-    return indicesN;
-}
-
-DataFrame* DataFrame::shuffle() {
-    DataFrame* newDataFrame = new DataFrame();
-    vector<int> indices = generateRandomIndices(rows());
-
-    for (int row = 0; row < rows(); row++) {
-        newDataFrame->appendRow(getRow(indices[row]));
-    }
-    newDataFrame->colNames = colNames;
-    return newDataFrame;
+void DataFrame::shuffle() {
+    random_device random_dev;
+    mt19937 generator(random_dev());
+    std::shuffle(data->begin(), data->end(), generator);
 }
 
 // DataFrame* sampleN(int n) {
