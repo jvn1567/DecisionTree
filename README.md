@@ -1,5 +1,7 @@
 # DecisionTree in C++
 Authors: John Nguyen, Joshua Goldberg
+<br>
+View documentation [here](https://jvn1567.github.io/DecisionTree/).
 
 # Overview
 Decision tree is a popular, yet simple, machine learning algorithm. This C++ implementationwas inspired by sklearn's [DecisionTreeClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html). The dataFrame class is mostly inspired by R's [dplyr](https://dplyr.tidyverse.org) and in some cases, python's [pandas](https://pandas.pydata.org).
