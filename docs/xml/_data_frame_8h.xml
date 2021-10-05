@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="_data_frame_8h" kind="file" language="C++">
+    <compoundname>DataFrame.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">unordered_set</includes>
+    <includes refid="_generic_type_wrapper_8h" local="yes">GenericTypeWrapper.h</includes>
+    <includedby refid="_data_frame_8cpp" local="yes">DataFrame.cpp</includedby>
+    <includedby refid="_decision_tree_base_8h" local="yes">DecisionTreeBase.h</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>unordered_set</label>
+      </node>
+      <node id="1">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vector</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="5">
+        <label>GenericTypeWrapper.h</label>
+        <link refid="_generic_type_wrapper_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>DecisionTreeBase.h</label>
+        <link refid="_decision_tree_base_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DataFrame.cpp</label>
+        <link refid="_data_frame_8cpp"/>
+      </node>
+      <node id="4">
+        <label>DecisionTreeClassifier.h</label>
+        <link refid="_decision_tree_classifier_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_data_frame" prot="public">DataFrame</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_data_frame_8h_1a64681e7d261ce63b1ae7514bdb24564e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::ostream &amp;</type>
+        <definition>std::ostream&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::ostream &amp;out, const DataFrame &amp;data)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const <ref refid="class_data_frame" kindref="compound">DataFrame</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Overloads the output operator. <ref refid="class_data_frame" kindref="compound">DataFrame</ref> output contains a table with column name labels at the top and row count on the left. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output stream </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_data_frame" kindref="compound">DataFrame</ref> to output </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::ostream&amp; the output stream with the output data </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DataFrame.h" line="288" column="1" declfile="DataFrame.h" declline="288" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DataFrame.h"/>
+  </compounddef>
+</doxygen>

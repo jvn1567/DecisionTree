@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="_decision_tree_base_8h" kind="file" language="C++">
+    <compoundname>DecisionTreeBase.h</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="_data_frame_8h" local="yes">DataFrame.h</includes>
+    <includes refid="_decision_node_8h" local="yes">DecisionNode.h</includes>
+    <includes refid="_generic_type_wrapper_8h" local="yes">GenericTypeWrapper.h</includes>
+    <includedby refid="_decision_tree_base_8cpp" local="yes">DecisionTreeBase.cpp</includedby>
+    <includedby refid="_decision_tree_classifier_8h" local="yes">DecisionTreeClassifier.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>DecisionTreeBase.h</label>
+        <link refid="_decision_tree_base_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>unordered_set</label>
+      </node>
+      <node id="4">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="5">
+        <label>iostream</label>
+      </node>
+      <node id="7">
+        <label>GenericTypeWrapper.h</label>
+        <link refid="_generic_type_wrapper_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>DecisionNode.h</label>
+        <link refid="_decision_node_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>DecisionTreeBase.h</label>
+        <link refid="_decision_tree_base_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DecisionTreeClassifier.h</label>
+        <link refid="_decision_tree_classifier_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_decision_tree_base" prot="public">DecisionTreeBase</innerclass>
+    <briefdescription>
+<para>This file implements the functions of <ref refid="_decision_tree_base_8h" kindref="compound">DecisionTreeBase.h</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="class_decision_tree_base" kindref="compound">DecisionTreeBase</ref> is a semi-virtual parent class that contains methods used in both <ref refid="class_decision_tree_classifier" kindref="compound">DecisionTreeClassifier</ref> and DecisionTreeRegressor.</para>
+<para><simplesect kind="author"><para>John Nguyen (<ulink url="mailto:jvn1567@gmail.com">jvn1567@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="author"><para>Joshua Goldberg (<ulink url="mailto:joshgoldbergcode@gmail.com">joshgoldbergcode@gmail.com</ulink>) </para>
+</simplesect>
+<simplesect kind="version"><para>0.1 </para>
+</simplesect>
+<simplesect kind="date"><para>2021-10-01</para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2021 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="DecisionTreeBase.h"/>
+  </compounddef>
+</doxygen>

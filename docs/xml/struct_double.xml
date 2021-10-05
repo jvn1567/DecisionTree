@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="struct_double" kind="struct" language="C++" prot="public">
+    <compoundname>Double</compoundname>
+    <basecompoundref refid="struct_generic" prot="public" virt="non-virtual">Generic</basecompoundref>
+    <includes refid="_generic_type_wrapper_8h" local="no">GenericTypeWrapper.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_double_1afff5e2694c5fef9fcc76aa1cd3f78067" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Double::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="179" column="12" bodyfile="GenericTypeWrapper.h" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_double_1a51c2f517ef5134d236fa31b33aac6afd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Double::Double</definition>
+        <argsstring>(double data)</argsstring>
+        <name>Double</name>
+        <param>
+          <type>double</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Construct a new <ref refid="struct_double" kindref="compound">Double</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="185" column="5" bodyfile="GenericTypeWrapper.h" bodystart="185" bodyend="185"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_double_1a3bf094fb4d0941f3966d41f393c4aef5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>GenericType</type>
+        <definition>GenericType Double::type</definition>
+        <argsstring>() const</argsstring>
+        <name>type</name>
+        <reimplements refid="struct_generic_1a735fcd5f7193736a5e321eeeefb7eb59">type</reimplements>
+        <briefdescription>
+<para>Returns data type. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>enum DOUBLE. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="GenericTypeWrapper.h" line="191" column="17" bodyfile="GenericTypeWrapper.cpp" bodystart="159" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Wrapper class for double. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Double</label>
+        <link refid="struct_double"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Generic</label>
+        <link refid="struct_generic"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Double</label>
+        <link refid="struct_double"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Generic</label>
+        <link refid="struct_generic"/>
+      </node>
+    </collaborationgraph>
+    <location file="GenericTypeWrapper.h" line="178" column="1" bodyfile="GenericTypeWrapper.h" bodystart="178" bodyend="192"/>
+    <listofallmembers>
+      <member refid="struct_double_1afff5e2694c5fef9fcc76aa1cd3f78067" prot="public" virt="non-virtual"><scope>Double</scope><name>data</name></member>
+      <member refid="struct_double_1a51c2f517ef5134d236fa31b33aac6afd" prot="public" virt="non-virtual"><scope>Double</scope><name>Double</name></member>
+      <member refid="struct_generic_1ab080c422cfac7c3cd57937ad0b75aa82" prot="public" virt="non-virtual"><scope>Double</scope><name>getDouble</name></member>
+      <member refid="struct_generic_1a97ec591929d0dee34a65345dfb6d68ca" prot="public" virt="non-virtual"><scope>Double</scope><name>getString</name></member>
+      <member refid="struct_double_1a3bf094fb4d0941f3966d41f393c4aef5" prot="public" virt="virtual"><scope>Double</scope><name>type</name></member>
+      <member refid="struct_generic_1af2c54ecb33c1d8a080ab0e0749787244" prot="public" virt="non-virtual"><scope>Double</scope><name>wrapPrimitive</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

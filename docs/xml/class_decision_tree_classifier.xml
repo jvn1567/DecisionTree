@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="class_decision_tree_classifier" kind="class" language="C++" prot="public">
+    <compoundname>DecisionTreeClassifier</compoundname>
+    <basecompoundref refid="class_decision_tree_base" prot="public" virt="non-virtual">DecisionTreeBase</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_decision_tree_classifier_1ae369cee2df27a1f3fa9c15d70bc6a458" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::string &gt;</type>
+        <definition>std::vector&lt;std::string&gt; DecisionTreeClassifier::labels</definition>
+        <argsstring></argsstring>
+        <name>labels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="8" column="17" bodyfile="DecisionTreeClassifier.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_decision_tree_classifier_1a94d8215d55fc2708ccc74f2e101e6ca7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DecisionTreeClassifier::setLabels</definition>
+        <argsstring>(DataFrame *testData)</argsstring>
+        <name>setLabels</name>
+        <param>
+          <type><ref refid="class_data_frame" kindref="compound">DataFrame</ref> *</type>
+          <declname>testData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="9" column="10" bodyfile="DecisionTreeClassifier.cpp" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1a44170169e39c35485b1f56f3c99ffaea" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double DecisionTreeClassifier::computeLoss</definition>
+        <argsstring>(std::vector&lt; double &gt; labelCounts)</argsstring>
+        <name>computeLoss</name>
+        <reimplements refid="class_decision_tree_base_1ab5d14c08c731cca3cd7f55b4d3d58107">computeLoss</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>labelCounts</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="10" column="12" bodyfile="DecisionTreeClassifier.cpp" bodystart="39" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1ad2940b297018a4086093c3385c93e5ee" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; DecisionTreeClassifier::getTruthVector</definition>
+        <argsstring>(DataFrame *)</argsstring>
+        <name>getTruthVector</name>
+        <reimplements refid="class_decision_tree_base_1a2142440633f0b8c30519cbe2807d162b">getTruthVector</reimplements>
+        <param>
+          <type><ref refid="class_data_frame" kindref="compound">DataFrame</ref> *</type>
+          <defname>data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="11" column="17" bodyfile="DecisionTreeClassifier.cpp" bodystart="87" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1a911c4a434b9984e745dd1c301023bb48" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DecisionTreeClassifier::printTruthVector</definition>
+        <argsstring>(std::vector&lt; double &gt; truthVector)</argsstring>
+        <name>printTruthVector</name>
+        <reimplements refid="class_decision_tree_base_1a1310b75d0f505e481c31c8302f88e5ec">printTruthVector</reimplements>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>truthVector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="12" column="10" bodyfile="DecisionTreeClassifier.cpp" bodystart="102" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1ad3550d919f77729f9561657ed5dda60e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="struct_generic" kindref="compound">Generic</ref> *</type>
+        <definition>Generic* DecisionTreeClassifier::predict</definition>
+        <argsstring>(const std::vector&lt; Generic * &gt; &amp;row, DecisionNode *node)</argsstring>
+        <name>predict</name>
+        <param>
+          <type>const std::vector&lt; <ref refid="struct_generic" kindref="compound">Generic</ref> * &gt; &amp;</type>
+          <declname>row</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_decision_node" kindref="compound">DecisionNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="13" column="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_decision_tree_classifier_1a3c354e4cc9b961dc2eef70cc92856819" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DecisionTreeClassifier::DecisionTreeClassifier</definition>
+        <argsstring>(std::string lossCriterion, double maxFeatures=1.0, int minSamplesSplit=2, int maxDepth=-1, int minSamplesLeaf=0, double minImpurityDecrease=0.0)</argsstring>
+        <name>DecisionTreeClassifier</name>
+        <param>
+          <type>std::string</type>
+          <declname>lossCriterion</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxFeatures</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>minSamplesSplit</declname>
+          <defval>2</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxDepth</declname>
+          <defval>-1</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>minSamplesLeaf</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minImpurityDecrease</declname>
+          <defval>0.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="15" column="5" bodyfile="DecisionTreeClassifier.cpp" bodystart="8" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1af76eb8d3bbd69bbb0c0bf140439f4701" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DecisionTreeClassifier::fit</definition>
+        <argsstring>(DataFrame *trainData)</argsstring>
+        <name>fit</name>
+        <reimplements refid="class_decision_tree_base_1a0b752054d30cfe21d5eac24dd97ae878">fit</reimplements>
+        <param>
+          <type><ref refid="class_data_frame" kindref="compound">DataFrame</ref> *</type>
+          <declname>trainData</declname>
+        </param>
+        <briefdescription>
+<para>This method creates the decision tree, which can be used later for prediction. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="pre"><para><ref refid="class_decision_tree_classifier_1af76eb8d3bbd69bbb0c0bf140439f4701" kindref="member">fit()</ref> assumes computeLoss() private method is implemented by the child class. Otherwise, the user can implement their own <ref refid="class_decision_tree_classifier_1af76eb8d3bbd69bbb0c0bf140439f4701" kindref="member">fit()</ref> if they have a different algorithm for constructing a decision tree.</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>trainData</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="23" column="10" bodyfile="DecisionTreeClassifier.cpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_decision_tree_classifier_1ae6ff8f56919a524127691abe1ea49a95" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="class_data_frame" kindref="compound">DataFrame</ref> *</type>
+        <definition>DataFrame * DecisionTreeClassifier::predict</definition>
+        <argsstring>(DataFrame *testData)</argsstring>
+        <name>predict</name>
+        <reimplements refid="class_decision_tree_base_1a432499dfd7ba508508f7c77e430e829f">predict</reimplements>
+        <param>
+          <type><ref refid="class_data_frame" kindref="compound">DataFrame</ref> *</type>
+          <declname>testData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="DecisionTreeClassifier.h" line="24" column="15" bodyfile="DecisionTreeClassifier.cpp" bodystart="76" bodyend="85"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>DecisionTreeBase</label>
+        <link refid="class_decision_tree_base"/>
+      </node>
+      <node id="1">
+        <label>DecisionTreeClassifier</label>
+        <link refid="class_decision_tree_classifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>DecisionNode</label>
+        <link refid="struct_decision_node"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>splitValue</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>left</edgelabel>
+          <edgelabel>right</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>DecisionTreeBase</label>
+        <link refid="class_decision_tree_base"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>root</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DecisionTreeClassifier</label>
+        <link refid="class_decision_tree_classifier"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Generic</label>
+        <link refid="struct_generic"/>
+      </node>
+    </collaborationgraph>
+    <location file="DecisionTreeClassifier.h" line="6" column="1" bodyfile="DecisionTreeClassifier.h" bodystart="6" bodyend="25"/>
+    <listofallmembers>
+      <member refid="class_decision_tree_classifier_1a44170169e39c35485b1f56f3c99ffaea" prot="private" virt="virtual"><scope>DecisionTreeClassifier</scope><name>computeLoss</name></member>
+      <member refid="class_decision_tree_base_1a4d578791f7c387597de6cd2c88e651dd" prot="public" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>DecisionTreeBase</name></member>
+      <member refid="class_decision_tree_classifier_1a3c354e4cc9b961dc2eef70cc92856819" prot="public" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>DecisionTreeClassifier</name></member>
+      <member refid="class_decision_tree_classifier_1af76eb8d3bbd69bbb0c0bf140439f4701" prot="public" virt="virtual"><scope>DecisionTreeClassifier</scope><name>fit</name></member>
+      <member refid="class_decision_tree_base_1a18c2eac8ecee3c67c06d7cce3aa00dcf" prot="public" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>getLossCriterion</name></member>
+      <member refid="class_decision_tree_classifier_1ad2940b297018a4086093c3385c93e5ee" prot="private" virt="virtual"><scope>DecisionTreeClassifier</scope><name>getTruthVector</name></member>
+      <member refid="class_decision_tree_classifier_1ae369cee2df27a1f3fa9c15d70bc6a458" prot="private" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>labels</name></member>
+      <member refid="class_decision_tree_classifier_1ad3550d919f77729f9561657ed5dda60e" prot="private" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>predict</name></member>
+      <member refid="class_decision_tree_classifier_1ae6ff8f56919a524127691abe1ea49a95" prot="public" virt="virtual"><scope>DecisionTreeClassifier</scope><name>predict</name></member>
+      <member refid="class_decision_tree_base_1a73a58b0c975ca8d23275026fe154e6c9" prot="public" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>printTree</name></member>
+      <member refid="class_decision_tree_classifier_1a911c4a434b9984e745dd1c301023bb48" prot="private" virt="virtual"><scope>DecisionTreeClassifier</scope><name>printTruthVector</name></member>
+      <member refid="class_decision_tree_base_1aa23536b4de629085e0609a013fccc25e" prot="protected" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>root</name></member>
+      <member refid="class_decision_tree_classifier_1a94d8215d55fc2708ccc74f2e101e6ca7" prot="private" virt="non-virtual"><scope>DecisionTreeClassifier</scope><name>setLabels</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

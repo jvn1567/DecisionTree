@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="_decision_tree_base_8cpp" kind="file" language="C++">
+    <compoundname>DecisionTreeBase.cpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">unordered_map</includes>
+    <includes refid="_decision_tree_base_8h" local="yes">DecisionTreeBase.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>DecisionTreeBase.h</label>
+        <link refid="_decision_tree_base_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DecisionTreeBase.cpp</label>
+        <link refid="_decision_tree_base_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>unordered_set</label>
+      </node>
+      <node id="7">
+        <label>DataFrame.h</label>
+        <link refid="_data_frame_8h_source"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>unordered_map</label>
+      </node>
+      <node id="9">
+        <label>GenericTypeWrapper.h</label>
+        <link refid="_generic_type_wrapper_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>DecisionNode.h</label>
+        <link refid="_decision_node_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="DecisionTreeBase.cpp"/>
+  </compounddef>
+</doxygen>
