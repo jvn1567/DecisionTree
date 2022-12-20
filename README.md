@@ -42,50 +42,7 @@ int main() {
     cout << predictions << endl;
 }
 ```
-
-```
-MAKING PREDICTIONS...
-PREDICTIONS PRINTED...
-Index     predictions     
-0         virginica       
-1         virginica       
-2         virginica       
-3         virginica       
-4         virginica       
-5         virginica       
-6         virginica       
-7         versicolor      
-8         virginica       
-9         virginica       
-10        virginica       
-11        virginica       
-12        virginica       
-13        virginica       
-14        virginica       
-15        virginica       
-16        virginica       
-17        virginica       
-18        virginica       
-19        virginica       
-20        virginica       
-21        versicolor      
-22        virginica       
-23        virginica       
-24        virginica       
-25        virginica       
-26        virginica       
-27        virginica       
-28        virginica       
-29        virginica       
-30        virginica       
-31        virginica       
-32        virginica       
-33        virginica       
-34        virginica       
-35        virginica       
-36        virginica       
-37        virginica
-```
+![tree](https://user-images.githubusercontent.com/56368354/208554878-f1be3702-3239-46c7-85ef-42db33ac92f7.png)
 
 # Dependencies
 This implementation relies heavily on the DataFrame class included in this repository.
